@@ -1,0 +1,356 @@
+*{
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+:root{
+    --negro:#111;
+    --negro2:#333;
+    --negro3:#555;
+    --blanco:#EEE;
+    --blanco2:#DDD;
+    --blanco3:#BBB;
+
+    --amarillo:#F4BD19;
+    --morado:#B76BBE;
+    --azul:#428EBE;
+    --verde:#5CDA5D;
+    --naranja:#FA7627;
+}
+
+html{
+    font-family: 'Montserrat', sans-serif;
+}
+
+body{
+    background-color: var(--negro);
+    color: var(--blanco2);
+    font-family: 'Montserrat', sans-serif;
+}
+h1{font-size: 4em;}
+
+#home-container{
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 2em;
+}
+#pokemon-picker-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+#pokemon-picker-container p{
+    font-size: 2em;
+    margin-right: 3em;
+}
+#pokemon-picker-container img{
+    position: relative;
+    width: 70px;
+    aspect-ratio: 1;
+    filter: grayscale(100);
+}
+@keyframes parpadear {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+@keyframes salta {
+    0%{
+        transition: transform 0.5s ease-in-out;
+        transform: translate(0px, -10px);
+    }
+    100%{
+        transition: transform 0.5s ease-in-out;
+        transform: translate(0px, 0px);
+    }
+}
+@keyframes apareceDesdeIzq {
+    0%{
+        transition: transform 0.5s ease-in-out;
+        transform: translate(-400px, 0px);
+    }
+    100%{
+        transition: transform 0.5s ease-in-out;
+        transform: translate(0px, 0px);
+    }
+}
+@keyframes apareceDesdeDcha {
+    0%{
+        transition: transform 0.5s ease-in-out;
+        transform: translate(400px, 0px);
+    }
+    100%{
+        transition: transform 0.5s ease-in-out;
+        transform: translate(0px, 0px);
+    }
+}
+.imagen-y-flecha{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.imagen-y-flecha label{
+    position: relative;
+}
+
+/* HIDE RADIO */
+[type=radio] { 
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* IMAGE STYLES */
+  [type=radio] + img {
+    cursor: pointer;
+  }
+  
+  /* CHECKED STYLES */
+  .salta{
+    animation: salta 1s linear infinte;
+    animation-name: salta;
+    animation-duration: 0.6s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+  }
+  [type=radio]:checked + img {
+    transition: transform 0.5s ease-in-out;
+    animation: salta 1s linear infinte;
+    animation-name: salta;
+    animation-duration: 0.6s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    filter: none!important;
+  }
+  [type=radio]:checked + img + span::after{
+    content: '▲';
+    position: absolute;
+    bottom: -20px;
+    left: 45%;
+    animation-name: parpadear;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+.boton-jugar{
+    padding: 0.5em 1em;
+    font-size: 1.5em;
+    margin: 2em;
+    border: none;
+    border-radius: 10px;
+}
+.linea{
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 2em;
+}
+.combate-container{
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    overflow: hidden;
+}
+.tatami{
+    width: 99%;
+    height: 37%;
+    background-image: url('https://cdna.artstation.com/p/assets/images/images/043/365/940/large/breedermaniac-ce5870cf2c824a9e8c79983fcf51-hires.jpg?1637250078');
+    background-size: cover;
+    background-color: var(--negro2);
+    display: flex;
+    flex-flow: column nowrap;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+}
+.boton-volver{
+    position: absolute;
+    top: 0;
+    margin: 1em;
+    padding: 1em;
+    background-color: var(--azul);
+    color: var(--negro);
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: bolder;
+}
+.tarjeta-combate{
+    opacity: 0.7;
+    position: relative;
+    padding: 1em;
+    color: var(--negro);
+    font-weight: 500;
+    border-radius: 10px;
+    background-color: var(--blanco3);
+    min-width: 15em;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 0.5em;
+    font-size: 0.85em;
+    border: 2px solid var(--negro);
+    box-shadow: 0px 0px 10px 2px var(--negro);
+    
+}
+.--tarjeta-combate-top{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+.tarjeta-combate:first-child{
+    margin: 1em;
+    margin-left: auto;
+    animation-name: apareceDesdeDcha;
+    animation-timing-function: ease-in-out;
+    animation-duration: 1.5s;
+}
+.tarjeta-combate:nth-child(2){
+    margin: 1em;
+    margin-right: auto;
+    animation-name: apareceDesdeIzq;
+    animation-timing-function: ease-in-out;
+    animation-duration: 1.5s;
+}
+.tarjeta-combate:first-child img{
+    bottom: -3.5em;
+    left: 65%;
+}
+.tarjeta-combate:nth-child(2) img{
+    top: -3.5em;
+}
+.tarjeta-combate img{
+    position: absolute;
+    width: 4em;
+    aspect-ratio: 1;
+        z-index: 5;
+}
+.barra-vida{
+    padding: 0.2em;
+    background-color: var(--blanco);
+    position: relative;
+}
+.--barra-vida-vida{
+    background-color: green;
+    z-index: 5;
+    width: 100%;
+    padding: 0.2em;
+}
+.tarjeta-ataques{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+.tarjeta-ataque-objeto{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.tarjeta-ataques div, .tarjeta-ataque-objeto div{
+    border: 1px solid var(--negro2);
+    padding: 1em;
+    margin: 0.15em;
+    background-color: var(--negro3);
+    color: var(--blanco);
+    font-weight: 500;
+    border-radius: 6px;
+    min-width: 10em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.tarjeta-ataques div:active, .tarjeta-ataque-objeto div:active{
+    transform: scale(1.2);
+}   
+.tarjeta-usuario{
+    background-color: var(--blanco3);
+    padding: 0.5em;
+    color: var(--negro);
+    position: relative;
+    min-height: 10em;
+    min-width: 80vw;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    justify-content: space-evenly;
+    align-content: center;
+    border: 6px solid var(--azul);
+    border-radius: 10px;
+}
+.tarjeta-usuario p{
+    font-weight: bolder;
+    margin: 0.5em;
+}
+.boton-volver-tarjeta{
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    width: min-content;
+}
+@keyframes muere {
+
+    100%{
+        transform: translate(0px, 90px);
+        opacity: 0;
+        display: none;
+    }
+}
+.muere{
+    animation-name: muere;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.typying {
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .25em solid var(--azul); /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .05em; /* Adjust as needed */
+    animation: 
+      escribiendo 1.5s steps(40, end),
+      cursor_parpadea .75s step-end infinite;
+  }
+  
+  /* The escribiendo effect */
+  @keyframes escribiendo {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  
+  /* The typewriter cursor effect */
+  @keyframes cursor_parpadea {
+    from, to { border-color: transparent }
+    50% { border-color: var(--azul); }
+  }
+  .delay-fade-in{
+    opacity: 0;
+    animation: fade-in 0.5s ease-in 5s forwards;
+    animation: parpadear 0.5s ease-in 5s infinite;
+  }
+
+  @keyframes fade-in {
+    to {
+        opacity: 1;
+    }
+}
+.pantalla-narrador p:first-child{
+    font-size: 1.25em;
+    margin-bottom: 1em;
+}
+.pantalla-narrador p{
+    text-align: center;
+}
