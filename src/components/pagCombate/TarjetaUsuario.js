@@ -27,18 +27,18 @@ export function TarjetaUsuario(props) {
 //ESCENARIOS
     let tarjetaAtaques = (
         <>
-            <p className="tarjeta-ataques boton-volver-tarjeta" onClick={handleClickVolver}>Volver</p>
+            <p className="boton-volver-tarjeta" onClick={handleClickVolver}>Volver</p>
             <div className="tarjeta-ataques">
-                <div onClick={handleUsarAtaque}>0.-{ataques[0].nombre}</div>
-                <div onClick={handleUsarAtaque}>1.-{ataques[1].nombre}</div>
-                <div onClick={handleUsarAtaque}>2.-{ataques[2].nombre}</div>
-                <div onClick={handleUsarAtaque}>3.-{ataques[3].nombre}</div>
+                <div onClick={handleUsarAtaque}><p>0{ataques[0].nombre}</p></div>
+                <div onClick={handleUsarAtaque}><p>1{ataques[1].nombre}</p></div>
+                <div onClick={handleUsarAtaque}><p>2{ataques[2].nombre}</p></div>
+                <div onClick={handleUsarAtaque}><p>3{ataques[3].nombre}</p></div>
             </div>
         </>
     )
     const tarjetaObjetos = (
         <>
-            <p className="tarjeta-ataques boton-volver-tarjeta" onClick={handleClickVolver}>Volver</p>
+            <p className="boton-volver-tarjeta" onClick={handleClickVolver}>Volver</p>
             <div className="tarjeta-ataques">
                 <div onClick={handleUsarObjeto}>Porro</div>
                 <div onClick={handleUsarObjeto}>Pocion</div>

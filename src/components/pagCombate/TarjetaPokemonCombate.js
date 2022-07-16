@@ -48,16 +48,9 @@ export function TarjetaPokemonCombate(props) {
             <p>{`${vidaActual} / ${vidaInicial}`}</p>
         </div>
         <div className="barra-vida">
-            
-            {color==='verde' && 
-              <div className={`--barra-vida-vida fondo-verde`} style={{width: `${porcentaje}%`}}></div>
-            }
-            {color==='naranja' && 
-              <div className={`--barra-vida-vida fondo-naranja`} style={{width: `${porcentaje}%`}}></div>
-            }
-            {color==='rojo' && 
-              <div className={`--barra-vida-vida fondo-rojo`} style={{width: `${porcentaje}%`}}></div>
-            }
+
+              <div className={`--barra-vida-vida fondo-${color}`} style={{width: `${porcentaje}%`}}></div>
+
         </div>
     </div>
   );
