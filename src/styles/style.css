@@ -16,10 +16,14 @@
     --azul:#428EBE;
     --verde:#5CDA5D;
     --naranja:#FA7627;
+    --rojo:#dc0e0e;
 
     --tiempoEsperaClickParaAvanzar:5s;
 }
-
+#root{
+    display: flex;
+    justify-content: center;
+}
 html{
     font-family: 'Montserrat', sans-serif;
 }
@@ -160,7 +164,7 @@ h1{font-size: 4em;}
 .combate-container{
     position: relative;
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -248,7 +252,8 @@ h1{font-size: 4em;}
     background-color: green;
     z-index: 5;
     width: 100%;
-    padding: 0.2em;
+    padding-top: 0.3em;
+    transition: all linear 1s;
 }
 .tarjeta-ataques{
     display: grid;
@@ -282,7 +287,6 @@ h1{font-size: 4em;}
     color: var(--negro);
     position: relative;
     min-height: 10em;
-    min-width: 80vw;
     display: flex;
     flex-flow: column nowrap;
     align-items: stretch;
@@ -290,6 +294,7 @@ h1{font-size: 4em;}
     align-content: center;
     border: 6px solid var(--azul);
     border-radius: 10px;
+    min-width: 300px;
 }
 .tarjeta-usuario p{
     font-weight: bolder;
@@ -355,4 +360,11 @@ h1{font-size: 4em;}
 }
 .pantalla-narrador p{
     text-align: center;
+}
+
+.fondo-naranja{
+    background-color: var(--naranja);
+}
+.fondo-rojo{
+    background-color: var(--rojo);
 }

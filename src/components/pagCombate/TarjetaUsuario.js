@@ -5,7 +5,6 @@ export function TarjetaUsuario(props) {
 //PROPIEDADES
     const {ataques, infoCombate, callbackAtack} = props;
 
-    //console.log('EL turno en tarjeta uuario '+infoCombate.turno);
     const textoInicial = (<span className="--tarjeta-usuario-texto">¿Qué quieres hacer?</span>)
 //MANEJADORES DE EVENTOS
     const handleClickVolver = () =>{
@@ -17,7 +16,12 @@ export function TarjetaUsuario(props) {
     const handleClickObjetos = () =>{
         setContenidoActivo(tarjetaObjetos);
     }
+
+//HANDLE ACCIONES FINALES   
     const handleUsarAtaque = (evt) =>{
+        callbackAtack(evt, infoCombate.turno);
+    }
+    const handleUsarObjeto = (evt) =>{
         callbackAtack(evt, infoCombate.turno);
     }
 //ESCENARIOS
@@ -36,8 +40,8 @@ export function TarjetaUsuario(props) {
         <>
             <p className="tarjeta-ataques boton-volver-tarjeta" onClick={handleClickVolver}>Volver</p>
             <div className="tarjeta-ataques">
-                <div>Porro</div>
-                <div>Pocion</div>
+                <div onClick={handleUsarObjeto}>Porro</div>
+                <div onClick={handleUsarObjeto}>Pocion</div>
             </div>
         </>
         

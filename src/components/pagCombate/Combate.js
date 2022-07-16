@@ -1,11 +1,8 @@
 //Importaciones necesarias
 import React from "react";
-//Para usar links
 import { Link } from "react-router-dom";
-//Para usar localstorage (almacenar datos en el navegador y recuperarlos en otra pagina)
 import useLocalStorage from "use-local-storage";
-//Pokemons: array que contiene la información de todos los pokemons
-import { pokemons } from "../pokemon-data/pokemons";
+import { pokemons } from "../../pokemon-data/pokemons";
 //Componentes
 import { Narrador } from "./Narrador";
 import { TarjetaPokemonCombate } from "./TarjetaPokemonCombate";
@@ -17,35 +14,27 @@ export function Combate() {
     const [pokemon2LS, setPokemon2LS] = useLocalStorage("pokemon2");
     
 //variable que contiene la información del combate
-    let [infoCombate, setInfoCombate] = React.useState({
+    const [infoCombate, setInfoCombate] = React.useState({
         'jugador1': getPokemonFromLista(pokemon1LS),
         'jugador2': getPokemonFromLista(pokemon2LS),
         'turno': 1
     })
-    let [fin, setFin] = React.useState(false);
-//vida de cada uno de los pokemons
-    let [vidaPokemon1, setVidaPokemon1] = React.useState(getPokemonFromLista(pokemon1LS).propiedades.vida);
-    let [vidaPokemon2, setVidaPokemon2] = React.useState(getPokemonFromLista(pokemon2LS).propiedades.vida);
-
+//variable que indica el final del juego
+    const [fin, setFin] = React.useState(false);
 
 //Texto que va diciendo el narrador
-    let [cfgNarrador, setCfgNarrador] = React.useState({
-        texto:`Turno del jugador 1`,
+    const [cfgNarrador, setCfgNarrador] = React.useState({
+        texto:`Turno del jugador ${infoCombate.turno}`,
         animacion:'typying'
     });
+
     React.useEffect(()=>{
-        if(infoCombate.turno===1){
-            setCfgNarrador({
-                texto:`Turno del jugador ${infoCombate.turno}`,
-                animacion:'typying'
-            })
-        }else if(infoCombate.turno===2){
-            setCfgNarrador({
-                texto:`Turno del jugador ${infoCombate.turno}`,
-                animacion:'typying'
-            })
-        }
+        setCfgNarrador({
+            texto:`Turno del jugador ${infoCombate.turno}`,
+            animacion:'typying'
+        })
     },[infoCombate.turno])
+
 //Funcion que seejecuta cuando un usuario ataca. EVT nos dice qué ataque ha usdao. Jugador es quién ha atacado (1 o 2)
     const userAttacks = (evt, jugador) =>{
         let atackIndex;
@@ -60,7 +49,7 @@ export function Combate() {
         atackIndex=atackIndex[0];
         //Obtener las propiedades del ataque que ha utilizado
         
-        console.log(infoCombate[`jugador${jugador}`]);
+
         potenciaDelAtaque = infoCombate[`jugador${jugador}`].ataques[atackIndex].potencia;
         defensaVictima = infoCombate[`jugador${indiceVictima}`].propiedades.defensa;
         ataqueEmisor = infoCombate[`jugador${jugador}`].propiedades.ataque;
@@ -72,7 +61,6 @@ export function Combate() {
         // eslint-disable-next-line default-case
         switch(jugador){
             case 1:
-                console.log('Ataca el jugador 1');
                 setInfoCombate((prev)=>{
                     return{
                         ...prev,
@@ -87,7 +75,6 @@ export function Combate() {
                 })
                 break;
             case 2:
-                console.log('Ataca el jugador 2');
                 setInfoCombate((prev)=>{
                     return{
                         ...prev,
@@ -139,12 +126,12 @@ export function Combate() {
             
             {infoCombate.turno===1 && 
                 <Narrador
-                cfg={cfgNarrador}
+                    cfg={cfgNarrador}
             />
             }
             {infoCombate.turno===2 && 
                 <Narrador
-                cfg={cfgNarrador}
+                    cfg={cfgNarrador}
             />
             }
             {infoCombate.turno===1 && 

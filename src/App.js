@@ -1,8 +1,8 @@
 //import logo from './logo.svg';
 import './styles/reset.css';
 import './styles/style.css';
-import Home from './components/Home.js';
-import {Combate} from './components/Combate.js';
+import Home from './components/pagHome/Home.js';
+import {Combate} from './components/pagCombate/Combate.js';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 function App() {
 

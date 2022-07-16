@@ -1,5 +1,5 @@
 import React from "react";
-import {pokemons} from '../pokemon-data/pokemons.js'
+import {pokemons} from '../../pokemon-data/pokemons.js'
 
 import { PokemonPick } from "./PokemonPick.js";
 

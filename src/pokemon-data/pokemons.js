@@ -5,6 +5,24 @@ import mew from '../imgs/mew.png'
 
 export const pokemons = [
     {
+        nombre:"FXF",
+        tipo:"Fuego",
+        imagen:charmander,
+        color:'naranja',
+        propiedades:{
+            vida:100,
+            velocidad:100,
+            ataque:100,
+            defensa:100
+        },
+        ataques:[
+            {nombre:'Placaje',potencia:10, usos:3},
+            {nombre:'Ascuas',potencia:20, usos:2},
+            {nombre:'Lanzallamas',potencia:30, usos:1},
+            {nombre:'Gruñido',potencia:0, usos:3}
+        ]
+    },
+    {
         nombre:"Charmander",
         tipo:"Fuego",
         imagen:charmander,

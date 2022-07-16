@@ -1,5 +1,5 @@
 import React from "react";
-import { pokemons } from "../pokemon-data/pokemons";
+import { pokemons } from "../../pokemon-data/pokemons";
 import { PokemonPicker } from "./PokemonPicker";
 import {Link} from 'react-router-dom'
 import useLocalStorage from "use-local-storage";
