@@ -8,14 +8,15 @@ import { Narrador } from "./Narrador";
 import { TarjetaPokemonCombate } from "./TarjetaPokemonCombate";
 import { TarjetaUsuario } from "./TarjetaUsuario";
 
-export function Combate(props) {
+export function Combate() {
 //recuperamos los datos del localstorage (qué pokemons haelegido el usuario)
-    const {pok1,pok2} = props;
+    const [pokemon1LS, setPokemon1LS] = useLocalStorage("pokemon1");
+    const [pokemon2LS, setPokemon2LS] = useLocalStorage("pokemon2");
     
 //variable que contiene la información del combate
     const [infoCombate, setInfoCombate] = React.useState({
-        'jugador1': getPokemonFromLista(pok1),
-        'jugador2': getPokemonFromLista(pok2),
+        'jugador1': getPokemonFromLista(pokemon1LS),
+        'jugador2': getPokemonFromLista(pokemon2LS),
         'turno': 1
     })
 //variable que indica el final del juego

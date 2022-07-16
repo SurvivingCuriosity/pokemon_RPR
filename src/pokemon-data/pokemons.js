@@ -25,7 +25,7 @@ export const pokemons = [
     {
         nombre:"Bulbasour",
         tipo:"Planta",
-        color:'verde',
+        color:'azul',
         imagen:bulbasour,
         propiedades:{
             vida:100,

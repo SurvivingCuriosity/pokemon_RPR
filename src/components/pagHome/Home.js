@@ -4,7 +4,8 @@ import { PokemonPicker } from "./PokemonPicker";
 import { CuadroEstadisticas } from "./CuadroEstadisticas";
 import {Link} from 'react-router-dom'
 import useLocalStorage from "use-local-storage";
-function Home() {
+function Home(props) {
+  const {callbackEleccion} = props;
   const [haySeleccion, setHaySeleccion] = React.useState(false);
   
   const [pokemon1, setPokemon1] = React.useState('');
@@ -28,6 +29,9 @@ function Home() {
       setInfoPokemon1(getPokemonFromLista(pokemon1))
       setInfoPokemon2(getPokemonFromLista(pokemon2))
 
+      setPokemon1LS(getPokemonFromLista(pokemon1))
+      setPokemon2LS(getPokemonFromLista(pokemon2))
+
 
     }else{
       setHaySeleccion(false)
@@ -39,16 +43,20 @@ function Home() {
 
 
   const userSelectsPokemon1 = (evt) => {
+    callbackEleccion(evt,1)
     setPokemon1(evt.target.id)
   } 
   const userSelectsPokemon2 = (evt) => {
+    callbackEleccion(evt,2)
     setPokemon2(evt.target.id)
   }
 
   const handleChangeJ1 = (evt) => {
+    
     setNombreJ1(evt.target.value)
   }
   const handleChangeJ2 = (evt) => {
+    
     setNombreJ2(evt.target.value)
   }
   return (
