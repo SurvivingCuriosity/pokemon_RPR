@@ -3,9 +3,9 @@ import React from "react";
 
 export function TarjetaUsuario(props) {
 //PROPIEDADES
-    const {ataques, _turno, callbackAtack} = props;
+    const {ataques, infoCombate, callbackAtack} = props;
 
-    //console.log('EL turno en tarjeta uuario '+_turno);
+    //console.log('EL turno en tarjeta uuario '+infoCombate.turno);
     const textoInicial = (<span className="--tarjeta-usuario-texto">¿Qué quieres hacer?</span>)
 //MANEJADORES DE EVENTOS
     const handleClickVolver = () =>{
@@ -18,7 +18,7 @@ export function TarjetaUsuario(props) {
         setContenidoActivo(tarjetaObjetos);
     }
     const handleUsarAtaque = (evt) =>{
-        callbackAtack(evt, _turno);
+        callbackAtack(evt, infoCombate.turno);
     }
 //ESCENARIOS
     let tarjetaAtaques = (
@@ -31,7 +31,6 @@ export function TarjetaUsuario(props) {
                 <div onClick={handleUsarAtaque}>3.-{ataques[3].nombre}</div>
             </div>
         </>
-        
     )
     const tarjetaObjetos = (
         <>
@@ -54,17 +53,15 @@ export function TarjetaUsuario(props) {
     let [contenidoActivo, setContenidoActivo] = React.useState(textoInicial);
     
     React.useEffect(()=>{
-
-
-        setContenidoActivo(tarjetaAtacarObjetos)
-
-        
+        window.setTimeout(()=>{
+            setContenidoActivo(tarjetaAtacarObjetos)
+        },2000)
     },[])
 
 
   return (
     <div className="tarjeta-usuario">
-        <p>{`Turno del jugador ${_turno}`}</p>
+        <p>{`Turno del jugador ${infoCombate.turno}`}</p>
         {contenidoActivo}
     </div>
   );

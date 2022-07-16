@@ -10,7 +10,6 @@ import { pokemons } from "../pokemon-data/pokemons";
 import { Narrador } from "./Narrador";
 import { TarjetaPokemonCombate } from "./TarjetaPokemonCombate";
 import { TarjetaUsuario } from "./TarjetaUsuario";
-import { TarjetaUsuario2 } from "./TarjetaUsuario2";
 
 export function Combate() {
 //recuperamos los datos del localstorage (qué pokemons haelegido el usuario)
@@ -20,26 +19,35 @@ export function Combate() {
 //variable que contiene la información del combate
     let [infoCombate, setInfoCombate] = React.useState({
         'jugador1': getPokemonFromLista(pokemon1LS),
-        'jugador2': getPokemonFromLista(pokemon2LS)
+        'jugador2': getPokemonFromLista(pokemon2LS),
+        'turno': 1
     })
+    let [fin, setFin] = React.useState(false);
 //vida de cada uno de los pokemons
     let [vidaPokemon1, setVidaPokemon1] = React.useState(getPokemonFromLista(pokemon1LS).propiedades.vida);
     let [vidaPokemon2, setVidaPokemon2] = React.useState(getPokemonFromLista(pokemon2LS).propiedades.vida);
 
-//turno (1 o 2)
-    let [turno, setTurno] = React.useState(1);
 
 //Texto que va diciendo el narrador
     let [cfgNarrador, setCfgNarrador] = React.useState({
-        texto:`Turno del jugador ${turno}`,
+        texto:`Turno del jugador 1`,
         animacion:'typying'
     });
+    React.useEffect(()=>{
+        if(infoCombate.turno===1){
+            setCfgNarrador({
+                texto:`Turno del jugador ${infoCombate.turno}`,
+                animacion:'typying'
+            })
+        }else if(infoCombate.turno===2){
+            setCfgNarrador({
+                texto:`Turno del jugador ${infoCombate.turno}`,
+                animacion:'typying'
+            })
+        }
+    },[infoCombate.turno])
 //Funcion que seejecuta cuando un usuario ataca. EVT nos dice qué ataque ha usdao. Jugador es quién ha atacado (1 o 2)
     const userAttacks = (evt, jugador) =>{
-        let nuevoTurno;
-        turno===1 ? nuevoTurno=2 : nuevoTurno=1;
-
-        setTurno(nuevoTurno);
         let atackIndex;
         let potenciaDelAtaque;
         let ataqueEmisor;
@@ -51,12 +59,15 @@ export function Combate() {
         atackIndex = evt.target.textContent
         atackIndex=atackIndex[0];
         //Obtener las propiedades del ataque que ha utilizado
+        
+        console.log(infoCombate[`jugador${jugador}`]);
         potenciaDelAtaque = infoCombate[`jugador${jugador}`].ataques[atackIndex].potencia;
         defensaVictima = infoCombate[`jugador${indiceVictima}`].propiedades.defensa;
         ataqueEmisor = infoCombate[`jugador${jugador}`].propiedades.ataque;
         danoCausado = potenciaDelAtaque * (ataqueEmisor/defensaVictima);
 
         let vidaVictima= infoCombate[`jugador${indiceVictima}`].propiedades.vida;
+
         //restarle el daño a la vida de la victima
         // eslint-disable-next-line default-case
         switch(jugador){
@@ -69,70 +80,91 @@ export function Combate() {
                             ...prev.jugador2,
                             propiedades:{
                                 ...prev.jugador2.propiedades,
-                                vida:20
+                                vida:Math.round(vidaVictima-danoCausado)
                             }
                         }
                     }
                 })
-                setVidaPokemon2((prev)=>{
-                    //si la vida final es menor que 0, devolvemos un 0 (prev es la vida que tiene el pokemon en este momento)
-                    if(prev-danoCausado<0){
-                        return(0)
-                    }else{
-                        return(Math.round(prev-danoCausado))
-                    }
-                });
                 break;
             case 2:
                 console.log('Ataca el jugador 2');
-                setVidaPokemon1((prev)=>{
-                    //si la vida final es menor que 0, devolvemos un 0
-                    if(prev-danoCausado<0){
-                        return(0)
-                    }else{
-                        return(Math.round(prev-danoCausado))
+                setInfoCombate((prev)=>{
+                    return{
+                        ...prev,
+                        jugador1:{
+                            ...prev.jugador1,
+                            propiedades:{
+                                ...prev.jugador1.propiedades,
+                                vida: Math.round(vidaVictima-danoCausado)
+                            }
+                        }
                     }
-                });
+                })
                 break;
         }
+        if(Math.round(vidaVictima-danoCausado) <= 0){
+            setCfgNarrador({
+                texto:`Jugador ${infoCombate.turno} gana`
+            })
+            setFin(true);
+            return;
+        }
+        let nuevoTurno;
+        infoCombate.turno===1 ? nuevoTurno=2 : nuevoTurno=1;
+        setInfoCombate((prev)=>{
+            return{
+                ...prev,
+                turno: nuevoTurno
+            }
+        })
     }
 
   return (
     <>
         <div className="combate-container">
-            <Link to='/' className="boton-volver">Volver</Link>
+            {fin && <Link to='/' className="boton-volver">Volver</Link>}
             
             <div className="tatami">
                 <TarjetaPokemonCombate 
                     jugador={1}
-                    _turno={turno}
                     infoPokemon={infoCombate['jugador1']}
-                    vida={vidaPokemon1}
+                    turno={infoCombate['turno']}
                 />
                 <TarjetaPokemonCombate 
                     jugador={2}
-                    _turno={turno}
                     infoPokemon={infoCombate['jugador2']}
-                    vida={vidaPokemon2}
+                    turno={infoCombate['turno']}
                 />
             </div>
-            <Narrador
+            
+            {infoCombate.turno===1 && 
+                <Narrador
                 cfg={cfgNarrador}
             />
-            {turno===1 ? 
-                <TarjetaUsuario 
-                    _turno={turno}
-                    ataques={infoCombate.jugador1.ataques}
-                    callbackAtack={userAttacks}
-                />
-            : 
-                <TarjetaUsuario2
-                    _turno={turno}
-                    ataques={infoCombate.jugador2.ataques}
-                    callbackAtack={userAttacks}
-                    infoCombate={infoCombate}
-                />
             }
+            {infoCombate.turno===2 && 
+                <Narrador
+                cfg={cfgNarrador}
+            />
+            }
+            {infoCombate.turno===1 && 
+                <TarjetaUsuario 
+                    ataques={infoCombate.jugador1.ataques}
+                    infoCombate={infoCombate}
+                    callbackAtack={userAttacks}
+                /> 
+            }
+            {infoCombate.turno===2 && 
+                <TarjetaUsuario 
+                    ataques={infoCombate.jugador2.ataques}
+                    infoCombate={infoCombate}
+                    callbackAtack={userAttacks}
+                /> 
+            }
+            
+            
+
+
                 
         </div>
     </>

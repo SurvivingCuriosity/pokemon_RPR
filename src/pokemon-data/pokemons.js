@@ -8,6 +8,7 @@ export const pokemons = [
         nombre:"Charmander",
         tipo:"Fuego",
         imagen:charmander,
+        color:'naranja',
         propiedades:{
             vida:100,
             velocidad:100,
@@ -24,6 +25,7 @@ export const pokemons = [
     {
         nombre:"Bulbasour",
         tipo:"Planta",
+        color:'verde',
         imagen:bulbasour,
         propiedades:{
             vida:100,
@@ -42,6 +44,7 @@ export const pokemons = [
         nombre:"Mew",
         tipo:"Psiquico",
         imagen:mew,
+        color:'morado',
         propiedades:{
             vida:90,
             velocidad:70,
@@ -59,6 +62,7 @@ export const pokemons = [
         nombre:"Pikachu",
         tipo:"Electrico",
         imagen:pikachu,
+        color:'amarillo',
         propiedades:{
             vida:80,
             velocidad:100,

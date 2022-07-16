@@ -3,7 +3,7 @@ import React from "react";
 export function Narrador(props) {
     
     const {cfg} = props;
-    console.log(cfg);
+
     let contenidoActivo = (
         <>
             <p className={cfg.animacion}>{cfg.texto}</p>

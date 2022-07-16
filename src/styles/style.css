@@ -16,6 +16,8 @@
     --azul:#428EBE;
     --verde:#5CDA5D;
     --naranja:#FA7627;
+
+    --tiempoEsperaClickParaAvanzar:5s;
 }
 
 html{
@@ -338,8 +340,8 @@ h1{font-size: 4em;}
   }
   .delay-fade-in{
     opacity: 0;
-    animation: fade-in 0.5s ease-in 5s forwards;
-    animation: parpadear 0.5s ease-in 5s infinite;
+    animation: fade-in 0.5s ease-in var(--tiempoEsperaClickParaAvanzar) forwards;
+    animation: parpadear 2s ease-in-out var(--tiempoEsperaClickParaAvanzar) infinite;
   }
 
   @keyframes fade-in {
