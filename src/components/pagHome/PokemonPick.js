@@ -6,6 +6,7 @@ export function PokemonPick(props) {
 
     
     const handleClick = (evt) => {
+        console.log(evt)
         callback(evt);
     }
 

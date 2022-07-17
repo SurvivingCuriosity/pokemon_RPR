@@ -10,16 +10,17 @@ export const pokemons = [
         imagen:charmander,
         color:'naranja',
         propiedades:{
-            vida:100,
-            velocidad:100,
-            ataque:100,
-            defensa:100
+            vida:90,
+            velocidad:90,
+            ataque:90,
+            defensa:90,
+            precision:80
         },
         ataques:[
-            {nombre:'Placaje',potencia:10, usos:3},
-            {nombre:'Ascuas',potencia:20, usos:2},
-            {nombre:'Lanzallamas',potencia:30, usos:1},
-            {nombre:'Gruñido',potencia:0, usos:3}
+            {nombre:'Placaje',potencia:15, usos:3,categoria:'normal'},
+            {nombre:'Ascuas',potencia:20, usos:2,categoria:'tipo'},
+            {nombre:'Lanzallamas',potencia:30, usos:1, categoria:'tipo'},
+            {nombre:'Gruñido',potencia:0, usos:3, categoria:'especial'}
         ]
     },
     {
@@ -29,15 +30,16 @@ export const pokemons = [
         imagen:bulbasour,
         propiedades:{
             vida:100,
-            velocidad:100,
-            ataque:100,
-            defensa:100
+            velocidad:60,
+            ataque:80,
+            defensa:90,
+            precision:80
         },
         ataques:[
-            {nombre:'Látigo cepa',potencia:20, usos:2},
-            {nombre:'Ataque hoja',potencia:30, usos:1},
-            {nombre:'Absorver',potencia:10, usos:3},
-            {nombre:'Chupavidas',potencia:0, usos:3}
+            {nombre:'Látigo cepa',potencia:25, usos:2, categoria:'tipo'},
+            {nombre:'Ataque hoja',potencia:20, usos:1, categoria:'tipo'},
+            {nombre:'Absorver',potencia:15, usos:3, categoria:'especial'},
+            {nombre:'Gruñido',potencia:0, usos:3, categoria:'especial'}
         ]
     },
     {
@@ -49,13 +51,14 @@ export const pokemons = [
             vida:90,
             velocidad:70,
             ataque:90,
-            defensa:90
+            defensa:85,
+            precision:80
         },
         ataques:[
-            {nombre:'Confusión',potencia:30, usos:1},
-            {nombre:'Psíquico',potencia:20, usos:2},
-            {nombre:'Placaje',potencia:10, usos:3},
-            {nombre:'Meditar',potencia:0, usos:3}
+            {nombre:'Confusión',potencia:30, usos:1, categoria:'tipo'},
+            {nombre:'Psíquico',potencia:20, usos:2, categoria:'tipo'},
+            {nombre:'Placaje',potencia:10, usos:3, categoria:'normal'},
+            {nombre:'Meditar',potencia:0, usos:3, categoria:'especial'}
         ]
     },
     {
@@ -66,14 +69,15 @@ export const pokemons = [
         propiedades:{
             vida:80,
             velocidad:100,
-            ataque:70,
-            defensa:60
+            ataque:85,
+            defensa:60,
+            precision:80
         },
         ataques:[
-            {nombre:'Onda trueno',potencia:20, usos:2},
-            {nombre:'Rayo',potencia:30, usos:1},
-            {nombre:'Ataque rápido',potencia:10, usos:3},
-            {nombre:'Latigo',potencia:0, usos:3}
+            {nombre:'Onda trueno',potencia:20, usos:2, categoria:'tipo'},
+            {nombre:'Rayo',potencia:30, usos:1, categoria:'tipo'},
+            {nombre:'Ataque rápido',potencia:15, usos:3, categoria:'normal'},
+            {nombre:'Latigo',potencia:0, usos:3, categoria:'especial'}
         ]
     }
 ]

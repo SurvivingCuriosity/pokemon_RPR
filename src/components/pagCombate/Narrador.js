@@ -1,8 +1,10 @@
 import React from "react";
 
-export function Narrador({cfg}) {
+export function Narrador(props) {
 //VARIABLES
-    const {animacion, texto} = cfg;
+  const {cfg, narradorTrabajando} = props
+
+  console.log(cfg);
 
 //FUTURA IMPLENTACION HANDLE CLICK
     const handleClick = (evt) => {
@@ -12,8 +14,11 @@ export function Narrador({cfg}) {
   return (
     <>
         <div className="pantalla-narrador">
-        <p className={animacion}>{texto}</p>
-            <p className='delay-fade-in'>Click para avanzar...</p>
+            {cfg.textos.map((t)=>{
+              return(
+                <p key={t.texto} className={`${t.animacion}`}>{t.texto}</p>
+              )
+            })}
         </div>
     </>
   );

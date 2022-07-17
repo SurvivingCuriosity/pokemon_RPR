@@ -5,7 +5,6 @@ import { CuadroEstadisticas } from "./CuadroEstadisticas";
 import {Link} from 'react-router-dom'
 import useLocalStorage from "use-local-storage";
 function Home(props) {
-  const {callbackEleccion} = props;
   const [haySeleccion, setHaySeleccion] = React.useState(false);
   
   const [pokemon1, setPokemon1] = React.useState('');
@@ -43,11 +42,9 @@ function Home(props) {
 
 
   const userSelectsPokemon1 = (evt) => {
-    callbackEleccion(evt,1)
     setPokemon1(evt.target.id)
   } 
   const userSelectsPokemon2 = (evt) => {
-    callbackEleccion(evt,2)
     setPokemon2(evt.target.id)
   }
 

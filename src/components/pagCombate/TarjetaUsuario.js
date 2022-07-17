@@ -3,7 +3,7 @@ import React from "react";
 
 export function TarjetaUsuario(props) {
 //PROPIEDADES
-    const {ataques, infoCombate, callbackAtack} = props;
+    const {ataques, colorBorde='amarillo', infoCombate, callbackAtack, callbackObjeto, narradorTrabajando} = props;
 
     const textoInicial = (<span className="--tarjeta-usuario-texto">¿Qué quieres hacer?</span>)
 //MANEJADORES DE EVENTOS
@@ -22,7 +22,7 @@ export function TarjetaUsuario(props) {
         callbackAtack(evt, infoCombate.turno);
     }
     const handleUsarObjeto = (evt) =>{
-        callbackAtack(evt, infoCombate.turno);
+        callbackObjeto(evt, infoCombate.turno);
     }
 //ESCENARIOS
     let tarjetaAtaques = (
@@ -64,9 +64,9 @@ export function TarjetaUsuario(props) {
 
 
   return (
-    <div className="tarjeta-usuario">
+    <div className={`tarjeta-usuario color-borde-${colorBorde}`}>
         <p>{`Turno del jugador ${infoCombate.turno}`}</p>
-        {contenidoActivo}
+        {!narradorTrabajando && contenidoActivo}
     </div>
   );
 
