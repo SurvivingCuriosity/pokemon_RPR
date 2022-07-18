@@ -21,6 +21,9 @@
 
     --tiempoEsperaClickParaAvanzar:5s;
 }
+*:not(input){
+    user-select: none;
+}
 #root{
     display: flex;
     justify-content: center;
@@ -55,9 +58,10 @@ input[type="text"]{
 .columna-flex-1{
     display: flex;
     flex-flow: column nowrap;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 0.5em;
     margin-top: 2em;
+    width: 100%;
 }
 
                     /*PAGINA HOME*/
@@ -68,6 +72,9 @@ input[type="text"]{
     align-items: center;
     height: 100vh;
     gap: 0.5em;
+    width: 95%;
+    justify-content: center;
+    padding-bottom: 4em;
 }
 .titulo-jugador-home{
     font-size: 1.15em;
@@ -80,7 +87,7 @@ input[type="text"]{
         width: 100%;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-evenly;
         gap: 1em;
     }
 #pokemon-picker-container p{
@@ -206,15 +213,13 @@ input[type="text"]{
     position: relative;
     height: 100vh;
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 1.75fr 1fr 1.25fr;
     overflow: hidden;
+    justify-items: center;
 }
 .tatami{
     width: 99%;
-    height: 37%;
     background-image: url('https://cdna.artstation.com/p/assets/images/images/043/365/940/large/breedermaniac-ce5870cf2c824a9e8c79983fcf51-hires.jpg?1637250078');
     background-size: cover;
     background-color: var(--negro2);
@@ -371,9 +376,7 @@ input[type="text"]{
 
 .typying {
     overflow: hidden; /* Ensures the content is not revealed until the animation */
-    border-right: .25em solid var(--azul); /* The typwriter cursor */
     white-space: nowrap; /* Keeps the content on a single line */
-    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
     letter-spacing: .05em; /* Adjust as needed */
     animation: 
       escribiendo 1.2s steps(40, end),
@@ -407,10 +410,9 @@ input[type="text"]{
     }
 }
 .pantalla-narrador p:first-child{
-    font-size: 1.25em;
-    margin-bottom: 1em;
-}
-.pantalla-narrador p{
+    font-size: 0.8em;
+    width: fit-content;
+    height: fit-content;
     text-align: center;
 }
 
@@ -481,4 +483,12 @@ input[type="text"]{
     justify-content: space-between;
     align-items: center;
     gap: 1em;
+}
+.pantalla-narrador{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2em;
+    width: 100%;
 }

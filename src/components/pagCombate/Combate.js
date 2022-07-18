@@ -35,6 +35,7 @@ export function Combate(props) {
 
 //Se ejecuta cada vez que cambia el turno
     React.useEffect(()=>{
+        console.log(infoCombate);
         if(!narradorTrabajando){
             console.log('no');
         }else{

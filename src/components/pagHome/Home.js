@@ -39,10 +39,12 @@ function Home(props) {
 
   const userSelectsPokemon1 = (evt) => {
     setInfoPokemon1(getPokemonFromLista(evt.target.id))
+    setPokemon1LS(getPokemonFromLista(evt.target.id))
     setPokemon1(evt.target.id)
   } 
   const userSelectsPokemon2 = (evt) => {
     setInfoPokemon2(getPokemonFromLista(evt.target.id))
+    setPokemon2LS(getPokemonFromLista(evt.target.id))
     setPokemon2(evt.target.id)
   }
 

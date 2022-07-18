@@ -4,6 +4,7 @@ export function Narrador(props) {
 //VARIABLES
   const {cfg, narradorTrabajando=true, callbackFin} = props
   const [indiceTextoActivo, setIndiceTextoActivo] = React.useState(0);
+  const [mostrarTextoDelay, setMostrarTextoDelay] = React.useState(false);
 
 //FUTURA IMPLENTACION HANDLE CLICK
     const mostrarSiguienteTexto = () => {
@@ -20,7 +21,9 @@ export function Narrador(props) {
 
     }
     React.useEffect(()=>{
-
+      window.setTimeout(()=>{
+        setMostrarTextoDelay(true);
+      },5000)
     },[])
 
     React.useEffect(()=>{
@@ -32,8 +35,9 @@ export function Narrador(props) {
 
   return (
     <>
-        <div className="pantalla-narrador">
-          <p onClick={mostrarSiguienteTexto} className={`${cfg.textos[indiceTextoActivo].animacion}`}>{cfg.textos[indiceTextoActivo].texto}</p>
+        <div onClick={mostrarSiguienteTexto} className="pantalla-narrador">
+          <p className={`${cfg.textos[indiceTextoActivo].animacion}`}>{cfg.textos[indiceTextoActivo].texto}</p>
+          {mostrarTextoDelay && <p className={''}>Click para continuar...</p>}
         </div>
     </>
   );
