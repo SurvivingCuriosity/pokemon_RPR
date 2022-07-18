@@ -6,6 +6,7 @@
 
 :root{
     --negro:#111;
+    --negroTransparencia:#111111EE;
     --negro2:#333;
     --negro3:#555;
     --blanco:#EEE;
@@ -234,13 +235,17 @@ input[type="text"]{
     position: absolute;
     top: 1em;
     left: 1.5em;
-    /* margin: 0.5em; */
-    /* padding: 0.5em; */
     color: var(--white);
     text-decoration: none;
     transform: scale(2,3);
-    /* transform: scaleX(1); */
-    transform: scale3d(1.5, 1.5, 1.5)(5.3);
+}
+.boton-info{
+    position: absolute;
+    top: 3em;
+    right: 1.5em;
+    color: var(--white);
+    text-decoration: none;
+    transform: scale(2,3);
 }
 .tarjeta-combate{
     opacity: 0.7;
@@ -313,23 +318,23 @@ input[type="text"]{
 }
 .tarjeta-ataques div, .tarjeta-ataque-objeto div{
     border: 1px solid var(--negro2);
-    padding: 1em;
+    padding: 0.5em 1em;
     margin: 0.15em;
     background-color: var(--negro3);
     color: var(--blanco);
-    font-weight: 500;
     border-radius: 6px;
     min-width: 10em;
+    min-height: 3.3em;
     display: flex;
     align-items: center;
-    justify-content: center;
-
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
 }
-.tarjeta-ataques p::first-letter{
+.tarjeta-ataques img, .tarjeta-ataque-objeto img{
+    width: 1.75em;
+}
+.oculta-primer-caracter::first-letter{
     color: rgba(0,0,0,0);
-}
-.tarjeta-ataques p{
-    font-weight: inherit;
 }
 .tarjeta-ataques div:active, .tarjeta-ataque-objeto div:active{
     transform: scale(1.2);
@@ -350,14 +355,10 @@ input[type="text"]{
     min-width: 300px;
     width: 100%;
 }
-.tarjeta-usuario p{
-    font-weight: 500;
-    margin: 0.5em;
-}
 .boton-volver-tarjeta{
     position: absolute;
-    top: 0.5em;
-    right: 0.5em;
+    top: 1em;
+    right: 1em;
     width: min-content;
 }
 @keyframes muere {
@@ -515,4 +516,26 @@ input[type="text"]{
     top: 0;
     padding: 0.3em;
     border-radius: 5px;
+}
+.infoCombate-overlay{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background-color: var(--negroTransparencia);
+    z-index: 1000;
+    display: flex;
+    flex-flow: column nowrap;
+    align-content: center;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.infoCombate-overlay .btn-cerrar{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 1em;
+    padding: 0.5em;
+    background-color: var(--rojo);
+    color: var(--blanco);
+    font-weight: bolder;
 }

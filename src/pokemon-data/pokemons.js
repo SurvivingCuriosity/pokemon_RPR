@@ -1,7 +1,7 @@
-import charmander from '../imgs/charmander.png'
-import pikachu from '../imgs/pikachu.png'
-import bulbasour from '../imgs/bulbasour.png'
-import mew from '../imgs/mew.png'
+import charmander from '../imgs/pokemons/charmander.png'
+import pikachu from '../imgs/pokemons/pikachu.png'
+import bulbasour from '../imgs/pokemons/bulbasour.png'
+import mew from '../imgs/pokemons/mew.png'
 
 export const pokemons = [
     {

@@ -1,5 +1,5 @@
 import React from "react";
-
+import { objetos } from "../../pokemon-data/objetos";
 
 export function TarjetaUsuario(props) {
 //PROPIEDADES
@@ -29,10 +29,10 @@ export function TarjetaUsuario(props) {
         <>
             <p className="boton-volver-tarjeta" onClick={handleClickVolver}>Volver</p>
             <div className="tarjeta-ataques">
-                <div onClick={handleUsarAtaque}><p>0{ataques[0].nombre}</p></div>
-                <div onClick={handleUsarAtaque}><p>1{ataques[1].nombre}</p></div>
-                <div onClick={handleUsarAtaque}><p>2{ataques[2].nombre}</p></div>
-                <div onClick={handleUsarAtaque}><p>3{ataques[3].nombre}</p></div>
+                <div onClick={handleUsarAtaque}><p className="oculta-primer-caracter">0{ataques[0].nombre}</p></div>
+                <div onClick={handleUsarAtaque}><p className="oculta-primer-caracter">1{ataques[1].nombre}</p></div>
+                <div onClick={handleUsarAtaque}><p className="oculta-primer-caracter">2{ataques[2].nombre}</p></div>
+                <div onClick={handleUsarAtaque}><p className="oculta-primer-caracter">3{ataques[3].nombre}</p></div>
             </div>
         </>
     )
@@ -40,8 +40,22 @@ export function TarjetaUsuario(props) {
         <>
             <p className="boton-volver-tarjeta" onClick={handleClickVolver}>Volver</p>
             <div className="tarjeta-ataques">
-                <div onClick={handleUsarObjeto}>Porro</div>
-                <div onClick={handleUsarObjeto}>Pocion</div>
+                <div onClick={handleUsarObjeto}>
+                    <p>{objetos[0].nombre}</p>
+                    <img src={objetos[0].img} />
+                </div>
+                <div onClick={handleUsarObjeto}>
+                    <p>{objetos[1].nombre}</p>
+                    <img src={objetos[1].img} />
+                </div>
+                <div onClick={handleUsarObjeto}>
+                    <p>{objetos[2].nombre}</p>
+                    <img src={objetos[2].img} />
+                </div>
+                <div onClick={handleUsarObjeto}>
+                    <p>{objetos[3].nombre}</p>
+                    <img src={objetos[3].img} />
+                </div>
             </div>
         </>
         

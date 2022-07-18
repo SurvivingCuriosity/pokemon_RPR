@@ -9,6 +9,7 @@ import { Narrador } from "./Narrador";
 import { TarjetaPokemonCombate } from "./TarjetaPokemonCombate";
 import { TarjetaUsuario } from "./TarjetaUsuario";
 import { obtenerDialogo } from "../../pokemon-data/dialogosNarrador";
+import { InfoCombateOverlay } from "./InfoCombateOverlay";
 
 export function Combate(props) {
     const [narradorTrabajando, setNarradorTrabajando] = React.useState(true);
@@ -27,6 +28,7 @@ export function Combate(props) {
 
 //variable que indica el final del juego
     const [fin, setFin] = React.useState(false);
+    const [mostrandoInfo, setMostrandoInfo] = React.useState(false);
 
 //Texto que va diciendo el narrador
     const [cfgNarrador, setCfgNarrador] = React.useState({
@@ -123,6 +125,7 @@ export function Combate(props) {
     }
     const userUsesObject = (evt, jugador) =>{
         setNarradorTrabajando(true);
+        console.log(evt.target.textContent);
         let objeto = getObjetoFromLista(evt.target.textContent);
         switch (objeto.tipo) {
             case 'curativo':
@@ -133,6 +136,10 @@ export function Combate(props) {
                 })
                 break;
             default:
+                setNarradorTrabajando(true);
+                setCfgNarrador({
+                    textos: obtenerDialogo(infoCombate, 'objeto', '', objeto.nombre)
+                })
                 break;
         }
         cambiarTurno();
@@ -140,8 +147,15 @@ export function Combate(props) {
 
   return (
     <>
+        {mostrandoInfo && 
+            <InfoCombateOverlay 
+            callback={abrirCerrarInfoCombate}
+            infoCombate={infoCombate}
+            />
+        }
         <div className="combate-container">
             <Link to='/' className="flecha-atras">←</Link>
+            <p onClick={()=>{setMostrandoInfo(true)}} className="boton-info">i</p>
             
             <div className="tatami">
                 <TarjetaPokemonCombate 
@@ -272,6 +286,9 @@ export function Combate(props) {
                 }
             })
         }
+    }
+    function abrirCerrarInfoCombate(){
+        setMostrandoInfo(false);
     }
 }
 
