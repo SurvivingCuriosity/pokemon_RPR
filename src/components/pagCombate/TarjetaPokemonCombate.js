@@ -24,7 +24,6 @@ export function TarjetaPokemonCombate(props) {
 
     React.useEffect(()=>{
       //console.log('Porcentaje cambia. Calculando color de vida. Actual: '+color);
-      console.log(porcentaje);
       if(porcentaje<50 && porcentaje>20){
         setColor('naranja')
       }else
@@ -45,7 +44,7 @@ export function TarjetaPokemonCombate(props) {
       </div>
         <div className="--tarjeta-combate-top">
             <p>{`J${jugador}: ${infoPokemon.nombre}`}</p>
-            <p>{`${vidaActual} / ${vidaInicial}`}</p>
+            <p>{`${vidaActual}/${vidaInicial}`}</p>
         </div>
         <div className="barra-vida">
 

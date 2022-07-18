@@ -1,23 +1,18 @@
 
 export function obtenerDialogo(infoCombate, nombreDialogo, ataque='ataque desconocido', objeto='objeto desconocido'){
-    console.log(ataque);
-    console.log(objeto);
-    console.log(infoCombate);
     let dialogoReturn;
     let pokemonCausante;
-    if(infoCombate.turno==1){
+    if(infoCombate.turno===1){
         pokemonCausante=infoCombate.jugador1;
-    }else if(infoCombate.turno==2){
+    }else if(infoCombate.turno===2){
         pokemonCausante=infoCombate.jugador2;
     }
-    console.log('Pokemon causante');
-    console.log(pokemonCausante);
     switch (nombreDialogo) {
         case 'inicioCombate':
             dialogoReturn =   
                 [
                     {texto: 'CHAN...CHAN....CHANNN', duracion:'corto', animacion:'typying'},
-                    {texto: 'Bienvenidos al combate', duracion:'medio', animacion:'typying'},
+                    {texto: 'Bienvenidos al combate', duracion:'medio', animacion:'fade-in'},
                     {texto: 'PREPARADOS?......YAAAA!!!!', duracion:'medio', animacion:'typying'}
                 ]
             break;
@@ -43,6 +38,12 @@ export function obtenerDialogo(infoCombate, nombreDialogo, ataque='ataque descon
             dialogoReturn = 
                 [
                     {texto: `${pokemonCausante.nombre} aplastó a su oponente`, duracion:'corto', animacion:'typying'},
+                ]
+                break;
+        case 'finNarracion':
+            dialogoReturn = 
+                [
+                    {texto: `(...)`, duracion:'corto', animacion:'typying'},
                 ]
                 break;
         default:

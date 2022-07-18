@@ -11,7 +11,7 @@ import { TarjetaUsuario } from "./TarjetaUsuario";
 import { obtenerDialogo } from "../../pokemon-data/dialogosNarrador";
 
 export function Combate(props) {
-    const [narradorTrabajando, setNarradorTrabajando] = React.useState(false);
+    const [narradorTrabajando, setNarradorTrabajando] = React.useState(true);
     
 
 //objetos pokemon obtenidos del localstorage    
@@ -35,18 +35,13 @@ export function Combate(props) {
 
 //Se ejecuta cada vez que cambia el turno
     React.useEffect(()=>{
-
-
-        console.log('El turno es'+infoCombate.turno);
-        console.log('El pokemon activo es: ');
-        console.log(infoCombate);
-
-        window.setTimeout(()=>{
-            setCfgNarrador({
-                textos: obtenerDialogo(infoCombate, 'turno')
-            })
-        },3000)
-    },[infoCombate.turno])
+        if(!narradorTrabajando){
+            console.log('no');
+        }else{
+            console.log('si');
+        }
+        
+    },[infoCombate])
 
     React.useEffect(()=>{
 
@@ -54,8 +49,16 @@ export function Combate(props) {
 
 //Funcion que seejecuta cuando un usuario ataca. EVT nos dice qué ataque ha usdao. Jugador es quién ha atacado (1 o 2)
     const userAttacks = (evt, jugador) =>{
-        
         let atackIndex;
+        atackIndex = evt.target.textContent
+        atackIndex=atackIndex[0];
+        let nombreAtaque = infoCombate[`jugador${jugador}`].ataques[atackIndex].nombre;
+
+        setNarradorTrabajando(true);
+        setCfgNarrador({
+            textos: obtenerDialogo(infoCombate, 'ataque',nombreAtaque ,'' )
+
+        })
         let potenciaDelAtaque;
         let ataqueEmisor;
         let defensaVictima;
@@ -63,13 +66,8 @@ export function Combate(props) {
         let danoCausado;
         jugador === 1 ? indiceVictima=2 : indiceVictima=1
 
-        atackIndex = evt.target.textContent
-        atackIndex=atackIndex[0];
         //Obtener las propiedades del ataque que ha utilizado
-        let nombreAtaque = infoCombate[`jugador${jugador}`].ataques[atackIndex].nombre;
-        setCfgNarrador({
-            textos: obtenerDialogo(infoCombate, 'ataque',nombreAtaque ,'' )
-        })
+        
 
         potenciaDelAtaque = infoCombate[`jugador${jugador}`].ataques[atackIndex].potencia;
         defensaVictima = infoCombate[`jugador${indiceVictima}`].propiedades.defensa;
@@ -123,11 +121,12 @@ export function Combate(props) {
         
     }
     const userUsesObject = (evt, jugador) =>{
+        setNarradorTrabajando(true);
         let objeto = getObjetoFromLista(evt.target.textContent);
-        console.log(objeto);
         switch (objeto.tipo) {
             case 'curativo':
                 curar(jugador, objeto.cantidadCura);
+                setNarradorTrabajando(true);
                 setCfgNarrador({
                     textos: obtenerDialogo(infoCombate, 'objeto', '', objeto.nombre)
                 })
@@ -141,7 +140,7 @@ export function Combate(props) {
   return (
     <>
         <div className="combate-container">
-            <Link to='/' className="boton-volver">Nuevo juego</Link>
+            <Link to='/' className="flecha-atras">←</Link>
             
             <div className="tatami">
                 <TarjetaPokemonCombate 
@@ -159,16 +158,18 @@ export function Combate(props) {
             {infoCombate.turno===1 && 
                 <Narrador
                     cfg={cfgNarrador}
+                    callbackFin={handleFinNarracion}
                     narradorTrabajando={narradorTrabajando}
             />
             }
             {infoCombate.turno===2 && 
                 <Narrador
                     cfg={cfgNarrador}
+                    callbackFin={handleFinNarracion}
                     narradorTrabajando={narradorTrabajando}
             />
             }
-            {infoCombate.turno===1 && 
+            {(infoCombate.turno===1 && !narradorTrabajando) &&
                 <TarjetaUsuario 
                     narradorTrabajando={narradorTrabajando}
                     colorBorde={infoCombate.jugador1.color==="" ? 'amarillo' : infoCombate.jugador1.color}
@@ -178,7 +179,7 @@ export function Combate(props) {
                     callbackObjeto={userUsesObject}
                 /> 
             }
-            {infoCombate.turno===2 && 
+            {(infoCombate.turno===2 && !narradorTrabajando) &&
                 <TarjetaUsuario 
                     narradorTrabajando={narradorTrabajando}
                     colorBorde={infoCombate.jugador2.color || 'amarillo'}
@@ -210,7 +211,13 @@ export function Combate(props) {
         let pokemon = pokemons.filter(pokemon => pokemon.nombre === _nombre)[0];
         return pokemon.propiedades.vida;
     }
-
+    function handleFinNarracion(){
+        console.log('Fin narrador');
+        setCfgNarrador({
+            textos: obtenerDialogo(infoCombate, 'finNarracion')
+        })
+        setNarradorTrabajando(false);
+    }
     function cambiarTurno(){
         let nuevoTurno;
         infoCombate.turno===1 ? nuevoTurno=2 : nuevoTurno=1;

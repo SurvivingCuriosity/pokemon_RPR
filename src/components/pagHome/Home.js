@@ -25,11 +25,7 @@ function Home(props) {
     if(pokemon1!="" && pokemon2!=""){
       setHaySeleccion(true)
 
-      setInfoPokemon1(getPokemonFromLista(pokemon1))
-      setInfoPokemon2(getPokemonFromLista(pokemon2))
 
-      setPokemon1LS(getPokemonFromLista(pokemon1))
-      setPokemon2LS(getPokemonFromLista(pokemon2))
 
 
     }else{
@@ -42,9 +38,11 @@ function Home(props) {
 
 
   const userSelectsPokemon1 = (evt) => {
+    setInfoPokemon1(getPokemonFromLista(evt.target.id))
     setPokemon1(evt.target.id)
   } 
   const userSelectsPokemon2 = (evt) => {
+    setInfoPokemon2(getPokemonFromLista(evt.target.id))
     setPokemon2(evt.target.id)
   }
 
@@ -59,33 +57,38 @@ function Home(props) {
   return (
     <div id="home-container">
       <h1>Pokemon</h1>
-      <div className="linea-flex-empujarLados">
-        <p>{`Jugador 1: ${pokemon1}`}</p>
+      
+      <div className="columna-flex-1">
+        <p className="titulo-jugador-home">{`Jugador 1: ${pokemon1}`}</p>
         <input 
           type="text" 
           value={nombreJ1}
           onChange={handleChangeJ1}
           placeholder='Nombre ...(opcional)'
         />
-      </div>
-      <PokemonPicker 
+        <PokemonPicker 
         jugador={1}
+        nombrePokemonElegido={pokemon1.nombre || ''}
         callbackHome={userSelectsPokemon1}
       />
-      <div className="linea-flex-empujarLados"> 
-      <p>{`Jugador 2: ${pokemon2}`}</p>
+      </div>
+      
+      <div className="columna-flex-1"> 
+      <p className="titulo-jugador-home">{`Jugador 2: ${pokemon2}`}</p>
       <input 
           type="text" 
           value={nombreJ2}
           onChange={handleChangeJ2}
           placeholder='Nombre ...(opcional)'
         />
-      </div>
-
-      <PokemonPicker 
+        <PokemonPicker 
         jugador={2}
+        nombrePokemonElegido={pokemon2.nombre || ''}
         callbackHome={userSelectsPokemon2}
       />
+      </div>
+
+      
       <Link to={haySeleccion ? '/play' : ''}><button className="boton-jugar">{haySeleccion ? 'Jugar' : 'Elige Pokemon'}</button></Link>
       <CuadroEstadisticas
         nombreJ1={nombreJ1}

@@ -54,19 +54,16 @@ export function TarjetaUsuario(props) {
         </div>
     )
 //ESTADO    
-    let [contenidoActivo, setContenidoActivo] = React.useState(textoInicial);
+    let [contenidoActivo, setContenidoActivo] = React.useState(tarjetaAtacarObjetos);
     
     React.useEffect(()=>{
-        window.setTimeout(()=>{
-            setContenidoActivo(tarjetaAtacarObjetos)
-        },2000)
     },[])
 
 
   return (
-    <div className={`tarjeta-usuario color-borde-${colorBorde}`}>
+    <div className={`tarjeta-usuario color-borde-${colorBorde} fade-in`}>
         <p>{`Turno del jugador ${infoCombate.turno}`}</p>
-        {!narradorTrabajando && contenidoActivo}
+        {narradorTrabajando===false ? contenidoActivo : ''}
     </div>
   );
 

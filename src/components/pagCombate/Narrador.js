@@ -2,23 +2,38 @@ import React from "react";
 
 export function Narrador(props) {
 //VARIABLES
-  const {cfg, narradorTrabajando} = props
-
-  console.log(cfg);
+  const {cfg, narradorTrabajando=true, callbackFin} = props
+  const [indiceTextoActivo, setIndiceTextoActivo] = React.useState(0);
 
 //FUTURA IMPLENTACION HANDLE CLICK
-    const handleClick = (evt) => {
-        
+    const mostrarSiguienteTexto = () => {
+      if(indiceTextoActivo === cfg.textos.length-1){
+        setIndiceTextoActivo(0);
+        callbackFin();
+        return;
+      }
+      if(!narradorTrabajando){
+        return;
+      }else{
+        setIndiceTextoActivo(prev => {return prev+1})
+      }
+
     }
+    React.useEffect(()=>{
+
+    },[])
+
+    React.useEffect(()=>{
+      if(indiceTextoActivo === cfg.textos.length+1){
+        callbackFin();
+        return;
+      }
+    },[indiceTextoActivo])
 
   return (
     <>
         <div className="pantalla-narrador">
-            {cfg.textos.map((t)=>{
-              return(
-                <p key={t.texto} className={`${t.animacion}`}>{t.texto}</p>
-              )
-            })}
+          <p onClick={mostrarSiguienteTexto} className={`${cfg.textos[indiceTextoActivo].animacion}`}>{cfg.textos[indiceTextoActivo].texto}</p>
         </div>
     </>
   );

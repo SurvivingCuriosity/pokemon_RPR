@@ -4,7 +4,7 @@ import {pokemons} from '../../pokemon-data/pokemons.js'
 import { PokemonPick } from "./PokemonPick.js";
 
 export function PokemonPicker(props) {
-    const {jugador, callbackHome} = props;
+    const {jugador, callbackHome, pokemonElegido} = props;
 
     
     
@@ -17,6 +17,7 @@ export function PokemonPicker(props) {
                         jugador={jugador}
                         json={pokemon}
                         callback={callbackHome}
+                        pokemonElegido={pokemonElegido}
                     />
                 )
             })}
