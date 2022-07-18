@@ -89,7 +89,7 @@ function Home(props) {
       </div>
 
       
-      <Link to={haySeleccion ? '/play' : ''}><button className="boton-jugar">{haySeleccion ? 'Jugar' : 'Elige Pokemon'}</button></Link>
+      <Link className='link-boton-jugar' to={haySeleccion ? '/play' : ''}><button className="boton-jugar">{haySeleccion ? 'Jugar' : 'Elige Pokemon'}</button></Link>
       <CuadroEstadisticas
         nombreJ1={nombreJ1}
         nombreJ2={nombreJ2}
