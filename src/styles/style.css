@@ -70,9 +70,8 @@ input[type="text"]{
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    height: 100vh;
     gap: 0.5em;
-    width: 95%;
+    width: 90%;
     justify-content: center;
     padding-bottom: 4em;
 }
@@ -80,6 +79,8 @@ input[type="text"]{
     font-size: 1.15em;
     text-align: left;
     width: 100%;
+    white-space: nowrap;
+    letter-spacing: -2px;
 }
 
     /**/
@@ -210,8 +211,8 @@ input[type="text"]{
     /**/
 
 .combate-container{
-    position: relative;
-    height: 100vh;
+    margin-top: 5em;
+    height: 75vh;
     width: 100%;
     display: grid;
     grid-template-rows: 1.75fr 1fr 1.25fr;
@@ -244,7 +245,7 @@ input[type="text"]{
 .tarjeta-combate{
     opacity: 0.7;
     position: relative;
-    padding: 1em;
+    padding: 0.7em;
     color: var(--negro);
     font-weight: 500;
     border-radius: 10px;
@@ -484,6 +485,14 @@ input[type="text"]{
     align-items: center;
     gap: 1em;
 }
+.linea-flex-hijosIguales{
+    display: grid;
+    grid-template-columns: 1fr 1fr 0.5fr;
+    gap: 0.25em;
+    justify-items: center;
+    align-items: center;
+}
+
 .pantalla-narrador{
     display: flex;
     align-items: center;
@@ -491,4 +500,19 @@ input[type="text"]{
     justify-content: center;
     gap: 2em;
     width: 100%;
+}
+.barra-porcentaje{
+    padding-top: 0.6em;
+    background-color: var(--blanco3);
+    width: 100%;
+    position: relative;
+    border-radius: 5px;
+}
+.barra-porcentaje div{
+    position: absolute;
+    z-index: 19;
+    padding-top: 0.5em;
+    top: 0;
+    padding: 0.3em;
+    border-radius: 5px;
 }
