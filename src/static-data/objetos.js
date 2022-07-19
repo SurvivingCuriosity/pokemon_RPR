@@ -1,6 +1,7 @@
 import pocion from '../imgs/objetos/pocion.webp'
 import porro from '../imgs/objetos/porro.webp'
 import jagger from '../imgs/objetos/jagger.webp'
+
 export const objetos = [
     {   
         nombre : 'Pocion',

@@ -13,10 +13,9 @@ export function PokemonPick(props) {
     <>
         <div className="imagen-y-flecha">
             <label>
-                <input type="radio" value={json.nombre} name={jugador}/>
+                <input className='hidden-radio' type="radio" value={json.nombre} name={jugador}/>
                 <img  id={json.nombre} src={json.imagen} alt="" onClick={handleClick}></img>
                 <span></span>
-                
             </label>
         </div>
     </>

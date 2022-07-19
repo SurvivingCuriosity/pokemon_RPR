@@ -1,12 +1,10 @@
 import React from "react";
-import {pokemons} from '../../pokemon-data/pokemons.js'
+import {pokemons} from '../../static-data/pokemons.js'
 
 import { PokemonPick } from "./PokemonPick.js";
 
 export function PokemonPicker(props) {
     const {jugador, callbackHome, pokemonElegido} = props;
-
-    
     
   return (
         <ul id="pokemon-picker-container">

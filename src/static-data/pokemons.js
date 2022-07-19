@@ -18,8 +18,8 @@ export const pokemons = [
         },
         ataques:[
             {nombre:'Placaje',potencia:15, usos:3,categoria:'normal'},
-            {nombre:'Ascuas',potencia:20, usos:2,categoria:'tipo'},
-            {nombre:'Lanzallamas',potencia:30, usos:1, categoria:'tipo'},
+            {nombre:'Ascuas',potencia:20, usos:2,categoria:'normal'},
+            {nombre:'Lanzallamas',potencia:30, usos:1, categoria:'normal'},
             {nombre:'Gruñido',potencia:0, usos:3, categoria:'especial'}
         ]
     },
@@ -79,5 +79,6 @@ export const pokemons = [
             {nombre:'Ataque rápido',potencia:15, usos:3, categoria:'normal'},
             {nombre:'Latigo',potencia:0, usos:3, categoria:'especial'}
         ]
-    }
+    },
+    
 ]

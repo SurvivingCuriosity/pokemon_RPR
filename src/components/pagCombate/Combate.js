@@ -2,53 +2,42 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import useLocalStorage from "use-local-storage";
-import { pokemons } from "../../pokemon-data/pokemons";
-import { objetos } from "../../pokemon-data/objetos";
+import { getObjetoFromLista } from "../../helpers/funciones";
+import { getVidaInicial } from "../../helpers/funciones";
 //Componentes
 import { Narrador } from "./Narrador";
 import { TarjetaPokemonCombate } from "./TarjetaPokemonCombate";
 import { TarjetaUsuario } from "./TarjetaUsuario";
-import { obtenerDialogo } from "../../pokemon-data/dialogosNarrador";
+import { obtenerDialogo } from "../../static-data/dialogosNarrador";
 import { InfoCombateOverlay } from "./InfoCombateOverlay";
-
+import { PantallaFinal } from "./PantallaFinal";
 export function Combate(props) {
+//muestra u oculta tarjetaUsuario
     const [narradorTrabajando, setNarradorTrabajando] = React.useState(true);
-    
+
+//variable que indica el final del juego
+    const [fin, setFin] = React.useState(false);
+
+//variable que controla el mostrar la informacion del combate
+    const [mostrandoInfo, setMostrandoInfo] = React.useState(false);
 
 //objetos pokemon obtenidos del localstorage    
     const [pokemon1LS] = useLocalStorage("pokemon1");
     const [pokemon2LS] = useLocalStorage("pokemon2");
 
-//variable que contiene la información del combate
+//variable que contiene la información del combate 
+//toma el valor inicial de lo almacenado en el localstorage
     const [infoCombate, setInfoCombate] = React.useState({
         'jugador1': pokemon1LS,
         'jugador2': pokemon2LS,
         'turno': 1
     })
 
-//variable que indica el final del juego
-    const [fin, setFin] = React.useState(false);
-    const [mostrandoInfo, setMostrandoInfo] = React.useState(false);
-
 //Texto que va diciendo el narrador
     const [cfgNarrador, setCfgNarrador] = React.useState({
         textos: obtenerDialogo(infoCombate, 'inicioCombate')
     });
 
-//Se ejecuta cada vez que cambia el turno
-    React.useEffect(()=>{
-        console.log(infoCombate);
-        if(!narradorTrabajando){
-            console.log('no');
-        }else{
-            console.log('si');
-        }
-        
-    },[infoCombate])
-
-    React.useEffect(()=>{
-
-    },[])
 
 //Funcion que seejecuta cuando un usuario ataca. EVT nos dice qué ataque ha usdao. Jugador es quién ha atacado (1 o 2)
     const userAttacks = (evt, jugador) =>{
@@ -62,6 +51,7 @@ export function Combate(props) {
             textos: obtenerDialogo(infoCombate, 'ataque',nombreAtaque ,'' )
 
         })
+        
         let potenciaDelAtaque;
         let ataqueEmisor;
         let defensaVictima;
@@ -116,8 +106,7 @@ export function Combate(props) {
             setCfgNarrador({
                 textos: obtenerDialogo(infoCombate, 'victoria')
             })
-            setFin(true);
-            return;
+            finDeLaPartida();
         }
 
         cambiarTurno();
@@ -149,108 +138,84 @@ export function Combate(props) {
     <>
         {mostrandoInfo && 
             <InfoCombateOverlay 
-            callback={abrirCerrarInfoCombate}
+            callback={()=>{setMostrandoInfo(false)}}
             infoCombate={infoCombate}
             />
         }
-        <div className="combate-container">
-            <Link to='/' className="flecha-atras">←</Link>
-            <p onClick={()=>{setMostrandoInfo(true)}} className="boton-info">i</p>
-            
-            <div className="tatami">
-                <TarjetaPokemonCombate 
-                    jugador={2}
-                    infoPokemon={infoCombate['jugador2']}
-                    turno={infoCombate['turno']}
-                />
-                <TarjetaPokemonCombate 
-                    jugador={1}
-                    infoPokemon={infoCombate['jugador1']}
-                    turno={infoCombate['turno']}
-                />
-            </div>
-            
-            {infoCombate.turno===1 && 
-                <Narrador
-                    cfg={cfgNarrador}
-                    callbackFin={handleFinNarracion}
-                    narradorTrabajando={narradorTrabajando}
-            />
-            }
-            {infoCombate.turno===2 && 
-                <Narrador
-                    cfg={cfgNarrador}
-                    callbackFin={handleFinNarracion}
-                    narradorTrabajando={narradorTrabajando}
-            />
-            }
-            {(infoCombate.turno===1 && !narradorTrabajando) &&
-                <TarjetaUsuario 
-                    narradorTrabajando={narradorTrabajando}
-                    colorBorde={infoCombate.jugador1.color==="" ? 'amarillo' : infoCombate.jugador1.color}
-                    ataques={infoCombate.jugador1.ataques}
-                    infoCombate={infoCombate}
-                    callbackAtack={userAttacks}
-                    callbackObjeto={userUsesObject}
-                /> 
-            }
-            {(infoCombate.turno===2 && !narradorTrabajando) &&
-                <TarjetaUsuario 
-                    narradorTrabajando={narradorTrabajando}
-                    colorBorde={infoCombate.jugador2.color || 'amarillo'}
-                    ataques={infoCombate.jugador2.ataques}
-                    infoCombate={infoCombate}
-                    callbackAtack={userAttacks}
-                    callbackObjeto={userUsesObject}
-                /> 
-            }
-            
-            
-
-
+        {fin===false ? 
+            <div className="combate-container">
+                <Link to='/' className="flecha-atras">←</Link>
+                <p onClick={()=>{setMostrandoInfo(true)}} className="boton-info">i</p>
                 
-        </div>
+                <div className="tatami">
+                    <TarjetaPokemonCombate 
+                        jugador={2}
+                        infoPokemon={infoCombate['jugador2']}
+                        turno={infoCombate['turno']}
+                    />
+                    <TarjetaPokemonCombate 
+                        jugador={1}
+                        infoPokemon={infoCombate['jugador1']}
+                        turno={infoCombate['turno']}
+                    />
+                </div>
+                
+                {infoCombate.turno===1 && 
+                    <Narrador
+                        cfg={cfgNarrador}
+                        callbackFin={handleFinNarracion}
+                        narradorTrabajando={narradorTrabajando}
+                    />
+                }
+                {infoCombate.turno===2 && 
+                    <Narrador
+                        cfg={cfgNarrador}
+                        callbackFin={handleFinNarracion}
+                        narradorTrabajando={narradorTrabajando}
+                    />
+                }
+                {(!narradorTrabajando) &&
+                    <TarjetaUsuario 
+                        narradorTrabajando={narradorTrabajando}
+                        infoCombate={infoCombate}
+                        pokemonActivo={infoCombate.turno===1 ? infoCombate.jugador1 : infoCombate.jugador2}
+                        callbackAtack={userAttacks}
+                        callbackObjeto={userUsesObject}
+                    /> 
+                }
+            </div>
+        :
+        <PantallaFinal 
+            
+        />
+        }
     </>
   );
 
-//funcion que devuelve un pokemon del array con todos los pokemons buscando por nombre
-    function getPokemonFromLista(_nombre){
-        let pokemon = pokemons.filter(pokemon => pokemon.nombre === _nombre)[0];
-        return pokemon;
-    }
-    function getObjetoFromLista(_nombre){
-        let objeto = objetos.filter(objeto => objeto.nombre === _nombre)[0];
-        return objeto;
-    }
-    function getVidaInicial(_nombre){
-        let pokemon = pokemons.filter(pokemon => pokemon.nombre === _nombre)[0];
-        return pokemon.propiedades.vida;
-    }
+
     function handleFinNarracion(){
-        console.log('Fin narrador');
         setCfgNarrador({
             textos: obtenerDialogo(infoCombate, 'finNarracion')
         })
         setNarradorTrabajando(false);
     }
+
     function cambiarTurno(){
-        let nuevoTurno;
-        infoCombate.turno===1 ? nuevoTurno=2 : nuevoTurno=1;
         setInfoCombate((prev)=>{
             return{
                 ...prev,
-                turno: nuevoTurno
+                turno: infoCombate.turno===1 ? 2 : 1
             }
         })
     }
+
     function curar(aQuien, cuanto){
         let vidaActual;
         let nuevaVida;
-        let vidaInicial;
+        let vidaInicial = getVidaInicial(infoCombate.jugador1.nombre);
         if(aQuien === 1){
             vidaActual=infoCombate.jugador1.propiedades.vida*1
             nuevaVida = vidaActual*1+cuanto*1;
-            vidaInicial = getVidaInicial(infoCombate.jugador1.nombre);
             if(nuevaVida > vidaInicial){
                 nuevaVida = vidaInicial
             }
@@ -287,8 +252,11 @@ export function Combate(props) {
             })
         }
     }
-    function abrirCerrarInfoCombate(){
-        setMostrandoInfo(false);
+
+    function finDeLaPartida(){
+        window.setTimeout(()=>{
+            setFin(true)
+        },2000)
     }
 }
 
