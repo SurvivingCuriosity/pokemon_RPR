@@ -581,3 +581,16 @@ input[type="text"]{
     font-size: 0.45em;
     margin: 0.5em;
 }
+.preview-elegidos{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.preview-elegidos .caja{
+    border: 1px solid var(--blanco);
+    padding: 1em;
+}
+.preview-elegidos .caja-resalta{
+    border: 3px solid var(--blanco);
+    padding: 1em;
+}

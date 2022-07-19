@@ -1,8 +1,10 @@
 import img_pocion from '../imgs/objetos/pocion.webp'
 import img_porro from '../imgs/objetos/porro.webp'
 import img_jagger from '../imgs/objetos/jagger.webp'
+import img_pistola from '../imgs/objetos/pistola.webp'
 
 export const objetos = [
+//cura
     {
         nombreDisplay:'CURACIÓN',
         descripcion:'Objetos que curan',
@@ -72,6 +74,7 @@ export const objetos = [
             },
         ]
     },
+//ataque
     {
         nombreDisplay:'ATAQUE',
         descripcion:'Objetos que atacan',
@@ -81,7 +84,7 @@ export const objetos = [
                 nombre:'pistola',
                 tipo:'ataque',
                 nombreDisplay : 'Pistola',
-                imagen : img_pocion,
+                imagen : img_pistola,
                 descripcion:'Daña 50HP',
                 usos: 1,
                 efecto: {
@@ -96,7 +99,7 @@ export const objetos = [
                 nombre:'pistola1',
                 tipo:'ataque',
                 nombreDisplay : 'Pistola',
-                imagen : img_pocion,
+                imagen : img_pistola,
                 descripcion:'Lorem ipsum blablabla',
                 usos: 1,
                 efecto: {
@@ -111,7 +114,7 @@ export const objetos = [
                 nombre:'pistola2',
                 tipo:'ataque',
                 nombreDisplay : 'Pistola',
-                imagen : img_pocion,
+                imagen : img_pistola,
                 descripcion:'Lorem ipsum blablabla',
                 usos: 1,
                 efecto: {
@@ -139,85 +142,7 @@ export const objetos = [
             },
         ]
     },
-    {
-        nombreDisplay:'INTERACTIVO',
-        descripcion:'Objetos interactivos',
-        tipo:'eleccion',
-        objetos:[
-
-        ]
-    },
-    {
-        nombreDisplay:'PORTABLE',
-        descripcion:'Efectos durante todo el combate',
-        tipo:'amuleto',
-        objetos:[
-            {
-                nombre:'escudoAntidisturbios',
-                tipo:'amuleto',
-                nombreDisplay:'Escudo antidisturbios',
-                imagen: img_pocion,
-                usos: 1,
-                efecto: {
-                    'alteraStats':[
-                        {'velocidad': -20},
-                        {'precision': -20},
-                        {'ataque': 20}
-                    ]
-                },
-                consecuencia:{},
-                respuestaAnteEventoAleatorio:{}
-            },
-            {
-                nombre:'escudoAntidisturbios2',
-                tipo:'amuleto',
-                nombreDisplay:'Escudo antidisturbios',
-                imagen: img_pocion,
-                usos: 1,
-                efecto: {
-                    'alteraStats':[
-                        {'velocidad': -20},
-                        {'precision': -20},
-                        {'ataque': 20}
-                    ]
-                },
-                consecuencia:{},
-                respuestaAnteEventoAleatorio:{}
-            },
-            {
-                nombre:'escudoAntidisturbios3',
-                tipo:'amuleto',
-                nombreDisplay:'Escudo antidisturbios',
-                imagen: img_pocion,
-                usos: 1,
-                efecto: {
-                    'alteraStats':[
-                        {'velocidad': -20},
-                        {'precision': -20},
-                        {'ataque': 20}
-                    ]
-                },
-                consecuencia:{},
-                respuestaAnteEventoAleatorio:{}
-            },
-            {
-                nombre:'escudoAntidisturbios4',
-                tipo:'amuleto',
-                nombreDisplay:'Escudo antidisturbios',
-                imagen: img_pocion,
-                usos: 1,
-                efecto: {
-                    'alteraStats':[
-                        {'velocidad': -20},
-                        {'precision': -20},
-                        {'ataque': 20}
-                    ]
-                },
-                consecuencia:{},
-                respuestaAnteEventoAleatorio:{}
-            },
-        ]
-    },
+//alteraStats
     {
         nombreDisplay:'MODIFICADOR',
         descripcion:'Objetos que altera propiedades',
@@ -276,6 +201,116 @@ export const objetos = [
                 tipo:'alteraStats',
                 nombreDisplay:'Porro',
                 imagen: img_porro,
+                usos: 1,
+                efecto: {
+                    'alteraStats':[
+                        {'velocidad': -20},
+                        {'precision': -20},
+                        {'ataque': 20}
+                    ]
+                },
+                consecuencia:{},
+                respuestaAnteEventoAleatorio:{}
+            },
+        ]
+    },
+//eleccion
+    {
+        nombreDisplay:'INTERACTIVO',
+        descripcion:'Objetos interactivos',
+        tipo:'eleccion',
+        objetos:[
+            {
+                nombre:'litrona',
+                tipo:'interactivo',
+                nombreDisplay : 'Litrona',
+                imagen : img_pocion,
+                descripcion:'Podrás bebertela o...',
+                usos: 1,
+                efecto: {
+                    'ataque':{
+                        cantidad:50
+                    }
+                },
+                consecuencia:{},
+                respuestaAnteEventoAleatorio:{}
+            },
+            {
+                nombre:'tarjetaCredito',
+                tipo:'interactivo',
+                nombreDisplay : 'Tarjeta de crédito',
+                imagen : img_pocion,
+                descripcion:'¿Cómo la usarás...?',
+                usos: 1,
+                efecto: {
+                    'ataque':{
+                        cantidad:50
+                    }
+                },
+                consecuencia:{},
+                respuestaAnteEventoAleatorio:{}
+            }
+        ]
+    },
+//amuleto
+    {
+        nombreDisplay:'PORTABLE',
+        descripcion:'Efectos durante todo el combate',
+        tipo:'amuleto',
+        objetos:[
+            {
+                nombre:'escudo',
+                tipo:'amuleto',
+                nombreDisplay:'Escudo antidisturbios',
+                imagen: img_pocion,
+                usos: 1,
+                efecto: {
+                    'alteraStats':[
+                        {'velocidad': -20},
+                        {'precision': -20},
+                        {'ataque': 20}
+                    ]
+                },
+                consecuencia:{},
+                respuestaAnteEventoAleatorio:{}
+            },
+            {
+                nombre:'escudoAntidisturbios2',
+                tipo:'amuleto',
+                nombreDisplay:'Escudo antidisturbios',
+                imagen: img_pocion,
+                usos: 1,
+                efecto: {
+                    'alteraStats':[
+                        {'velocidad': -20},
+                        {'precision': -20},
+                        {'ataque': 20}
+                    ]
+                },
+                consecuencia:{},
+                respuestaAnteEventoAleatorio:{}
+            },
+            {
+                nombre:'escudoAntidisturbios3',
+                tipo:'amuleto',
+                nombreDisplay:'Escudo antidisturbios',
+                imagen: img_pocion,
+                usos: 1,
+                efecto: {
+                    'alteraStats':[
+                        {'velocidad': -20},
+                        {'precision': -20},
+                        {'ataque': 20}
+                    ]
+                },
+                consecuencia:{},
+                respuestaAnteEventoAleatorio:{}
+            },
+            {
+                nombre:'escudoAntidisturbios4',
+                tipo:'amuleto',
+                nombreDisplay:'Escudo antidisturbios',
+                imagen: img_pocion,
                 usos: 1,
                 efecto: {
                     'alteraStats':[

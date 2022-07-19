@@ -6,9 +6,14 @@ export function getPokemonFromLista(_nombre){
     return pokemon;
 }
 
-export function getObjetoFromLista(_nombre){
-    let objeto = objetos.filter(objeto => objeto.nombre === _nombre)[0];
-    return objeto;
+export function getObjetoFromLista(_nombre, indiceCategoria){
+    objetos[indiceCategoria].objetos.forEach(obj => {
+        if(obj.nombre===_nombre){
+            //return obj;
+        }
+        
+    });
+    return objetos[indiceCategoria].objetos[0];
 }
 
 export function getVidaInicial(_nombre){
