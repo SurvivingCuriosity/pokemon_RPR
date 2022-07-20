@@ -24,6 +24,9 @@ export function Combate(props) {
 //objetos pokemon obtenidos del localstorage    
     const [pokemon1LS] = useLocalStorage("pokemon1");
     const [pokemon2LS] = useLocalStorage("pokemon2");
+    
+    const [objetos1LS] = useLocalStorage("objetos1");
+    const [objetos2LS] = useLocalStorage("objetos2");
 
 //variable que contiene la información del combate 
 //toma el valor inicial de lo almacenado en el localstorage
@@ -151,11 +154,13 @@ export function Combate(props) {
                     
                     <div className="tatami">
                         <TarjetaPokemonCombate 
+                            amuleto={objetos1LS[4]}
                             jugador={2}
                             infoPokemon={infoCombate['jugador2']}
                             turno={infoCombate['turno']}
                         />
                         <TarjetaPokemonCombate 
+                            amuleto={objetos2LS[4]}
                             jugador={1}
                             infoPokemon={infoCombate['jugador1']}
                             turno={infoCombate['turno']}
@@ -178,6 +183,7 @@ export function Combate(props) {
                     }
                     {(!narradorTrabajando) &&
                         <TarjetaUsuario 
+                            objetos={infoCombate.turno===1 ? objetos1LS : objetos2LS}
                             narradorTrabajando={narradorTrabajando}
                             infoCombate={infoCombate}
                             pokemonActivo={infoCombate.turno===1 ? infoCombate.jugador1 : infoCombate.jugador2}

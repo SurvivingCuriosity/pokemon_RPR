@@ -1,9 +1,8 @@
 import React from "react";
-import { objetos } from "../../static-data/objetos";
 
 export function TarjetaUsuario(props) {
 //PROPIEDADES
-    const {pokemonActivo, infoCombate, callbackAtack, callbackObjeto, narradorTrabajando} = props;
+    const {objetos, pokemonActivo, infoCombate, callbackAtack, callbackObjeto, narradorTrabajando} = props;
     console.log(pokemonActivo);
 //MANEJADORES DE EVENTOS
     const handleClickVolver = () =>{
@@ -41,20 +40,20 @@ export function TarjetaUsuario(props) {
             <p className="boton-volver-tarjeta" onClick={handleClickVolver}>Volver</p>
             <div className="tarjeta-ataques">
                 <div onClick={handleUsarObjeto}>
-                    <p>{objetos[0].nombre}</p>
-                    <img src={objetos[0].img} />
+                    <p>{objetos[0].nombreDisplay}</p>
+                    <img src={objetos[0].imagen} />
                 </div>
                 <div onClick={handleUsarObjeto}>
-                    <p>{objetos[1].nombre}</p>
-                    <img src={objetos[1].img} />
+                    <p>{objetos[1].nombreDisplay}</p>
+                    <img src={objetos[1].imagen} />
                 </div>
                 <div onClick={handleUsarObjeto}>
-                    <p>{objetos[2].nombre}</p>
-                    <img src={objetos[2].img} />
+                    <p>{objetos[2].nombreDisplay}</p>
+                    <img src={objetos[2].imagen} />
                 </div>
                 <div onClick={handleUsarObjeto}>
-                    <p>{objetos[3].nombre}</p>
-                    <img src={objetos[3].img} />
+                    <p>{objetos[3].nombreDisplay}</p>
+                    <img src={objetos[3].imagen} />
                 </div>
             </div>
         </>

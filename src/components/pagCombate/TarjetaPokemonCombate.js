@@ -3,7 +3,7 @@ import React from "react";
 
 export function TarjetaPokemonCombate(props) {
 //PROPS
-    const {infoPokemon, jugador, turno} = props;
+    const {infoPokemon, jugador, turno, amuleto} = props;
 
 //ESTADO
     const [vidaInicial, setVidaInicial] = React.useState(infoPokemon.propiedades.vida);
@@ -41,6 +41,7 @@ export function TarjetaPokemonCombate(props) {
     <div className="tarjeta-combate">
       <div className={infoPokemon.propiedades.vida <=0 ? 'muere' : ''}>
         <img className={turno===jugador ? 'salta' : ''} src={infoPokemon.imagen} alt='Icono pokemon'></img>
+        <img className='imagen-amuleto' src={amuleto.imagen} alt='Icono amuleto del pokemon'></img>
       </div>
         <div className="--tarjeta-combate-top">
             <p>{`J${jugador}: ${infoPokemon.nombre}`}</p>

@@ -15,12 +15,12 @@ export function PaginaEleccion() {
 	const [pokemon1, setPokemon1] = React.useState(getPokemonFromLista('Charmander'));
 	const [pokemon2, setPokemon2] = React.useState(getPokemonFromLista('Bulbasour'));
 
-
-	const [pokemon1LS, setPokemon1LS] = useLocalStorage("pokemon1", '');
-	const [pokemon2LS, setPokemon2LS] = useLocalStorage("pokemon2", '');
+	const [pokemon1LS, setPokemon1LS] = useLocalStorage("pokemon1", getPokemonFromLista('Charmander'));
+	const [pokemon2LS, setPokemon2LS] = useLocalStorage("pokemon2", getPokemonFromLista('Bulbasour'));
 	
 	const [objetos1LS, setObjetos1LS] = useLocalStorage("objetos1", '');
 	const [objetos2LS ,setObjetos2LS] = useLocalStorage("objetos2", '');
+
 
 
 
@@ -29,7 +29,15 @@ export function PaginaEleccion() {
 		if(pokemon1.nombre && objetos1LS){
 			setMostrandoJugador2(true)
 		}
-	},[objetos1LS, pokemon1])
+	},[objetos1LS, pokemon1LS])
+	
+	React.useEffect(()=>{
+		//este codigo se ejecuta cuando cambia pokemon1 o pokemon2
+		if(pokemon2LS.nombre && objetos2LS){
+			navigate('/play')
+		}
+	},[objetos2LS, pokemon2LS])
+
 
 
 
@@ -88,11 +96,9 @@ export function PaginaEleccion() {
 
 	function usuario1EligeObjetos(objetos){
 		setObjetos1LS(objetos)
-		
 	}
 	function usuario2EligeObjetos(objetos){
 		setObjetos2LS(objetos)
-		navigate('/play')
 	}
 }
 
