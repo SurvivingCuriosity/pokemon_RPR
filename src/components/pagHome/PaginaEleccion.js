@@ -58,7 +58,7 @@ export function PaginaEleccion() {
 
 	const parteJugador1 = (
 		<div className="columna-flex-1">
-			<h2 className={`fondo-${pokemon1.color}`}>{jugador1LS.nombre || ''}</h2>
+			<h2 className={`fondo-${pokemon1.color}`}>{jugador1LS.nombre || 'Jugador 1'}</h2>
 			<PokemonPicker 
 				jugador={1}
 				pokemonElegido={pokemon1 || ''}
@@ -73,7 +73,7 @@ export function PaginaEleccion() {
 	)
 	const parteJugador2 = (
 		<div className="columna-flex-1">
-			<h2 className={`fondo-${pokemon2.color}`}>{jugador2LS.nombre || ''}</h2>
+			<h2 className={`fondo-${pokemon2.color}`}>{jugador2LS.nombre || 'Jugador 2'}</h2>
 
 			<PokemonPicker 
 				jugador={2}

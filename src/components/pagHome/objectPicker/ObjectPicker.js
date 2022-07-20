@@ -59,7 +59,7 @@ const [hayEleccion, sethayEleccion] = React.useState(false);
                             <div id={`${obj.nombre},${objetos[mostrandoCategoria].tipo}`} onClick={userClicksObject} className={`tarjeta-objeto`} key={Math.random()*4000}>
                                 <p>{obj.nombreDisplay}</p>
                                 <p className="descripcion-objeto">{obj.descripcion}</p>
-                                <img style={{width: `25px`}} src={obj.imagen}></img>
+                                <img style={{width: `1.75em`}} src={obj.imagen}></img>
                             </div>
                         </label>
 
@@ -77,7 +77,7 @@ const [hayEleccion, sethayEleccion] = React.useState(false);
                 
             </div>
         </div>
-        <button onClick={usuarioClicksTerminar}disabled={hayEleccion ? false : true}>{hayEleccion ? 'Terminar' : 'Elige objetos'}</button>
+        <button className={`boton-jugar fondo-${pokemonElegido.color}`} onClick={usuarioClicksTerminar} disabled={hayEleccion ? false : true}>{hayEleccion ? 'Terminar' : 'Elige objetos'}</button>
     </div>
   );
 

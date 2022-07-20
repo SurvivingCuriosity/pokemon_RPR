@@ -1,7 +1,11 @@
-import img_pocion from '../imgs/objetos/pocion.webp'
+import img_pocion from '../imgs/objetos/pocion.png'
+import img_pocion2 from '../imgs/objetos/pocion2.png'
+import img_pocion3 from '../imgs/objetos/pocion3.png'
+import img_pocion4 from '../imgs/objetos/pocion4.png'
 import img_porro from '../imgs/objetos/porro.webp'
 import img_jagger from '../imgs/objetos/jagger.webp'
 import img_pistola from '../imgs/objetos/pistola.webp'
+import img_tarjetCredito from '../imgs/objetos/tarjetaCredito.png'
 
 export const objetos = [
 //cura
@@ -29,7 +33,7 @@ export const objetos = [
                 nombre:'superpocion',
                 tipo:'cura',
                 nombreDisplay:'Superpoción',
-                imagen: img_pocion,
+                imagen: img_pocion2,
                 usos: 1,
                 efecto: {
                     'alteraStats':[
@@ -45,7 +49,7 @@ export const objetos = [
                 nombre:'pocion2',
                 tipo:'cura',
                 nombreDisplay : 'Poción',
-                imagen : img_pocion,
+                imagen : img_pocion3,
                 descripcion:'Lorem ipsum blablabla',
                 usos: 1,
                 efecto: {
@@ -60,7 +64,7 @@ export const objetos = [
                 nombre:'superpocion2',
                 tipo:'cura',
                 nombreDisplay:'Superpoción',
-                imagen: img_pocion,
+                imagen: img_pocion4,
                 usos: 1,
                 efecto: {
                     'alteraStats':[
@@ -239,7 +243,7 @@ export const objetos = [
                 nombre:'tarjetaCredito',
                 tipo:'interactivo',
                 nombreDisplay : 'Tarjeta de crédito',
-                imagen : img_pocion,
+                imagen : img_tarjetCredito,
                 descripcion:'¿Cómo la usarás...?',
                 usos: 1,
                 efecto: {
@@ -254,7 +258,7 @@ export const objetos = [
                 nombre:'tarjetaCredito2',
                 tipo:'interactivo',
                 nombreDisplay : 'Tarjeta de crédito',
-                imagen : img_pocion,
+                imagen : img_tarjetCredito,
                 descripcion:'¿Cómo la usarás...?',
                 usos: 1,
                 efecto: {
@@ -269,7 +273,7 @@ export const objetos = [
                 nombre:'tarjetaCredito3',
                 tipo:'interactivo',
                 nombreDisplay : 'Tarjeta de crédito',
-                imagen : img_pocion,
+                imagen : img_tarjetCredito,
                 descripcion:'¿Cómo la usarás...?',
                 usos: 1,
                 efecto: {

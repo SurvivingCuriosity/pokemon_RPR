@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from 'react-router-dom'
+import logo from '../../imgs/iconos/logo.png'
 import useLocalStorage from "use-local-storage";
 
 function Home() {
@@ -34,6 +35,7 @@ function Home() {
 		<>
 			<div className="page-container home-container">
 				<div className="titulo-y-descripcion">
+					<img className='logo-home' src={logo}></img>
 					<h1>Pokemon</h1>
 					<p>Juego de combate Pokemon para dos jugadores donde todo puede pasar...</p>
 				</div>
