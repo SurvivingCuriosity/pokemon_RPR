@@ -50,6 +50,8 @@ input[type="text"]{
     background-color: var(--negro);
     color: var(--blanco);
     border: 2px solid var(--negro2);
+    width: 100%;
+    margin: 1em 0;
 }
 ::placeholder, ::-moz-placeholder, ::-webkit-input-placeholder{
     font-size: 0.8em;

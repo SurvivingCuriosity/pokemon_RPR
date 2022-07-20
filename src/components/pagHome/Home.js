@@ -7,12 +7,20 @@ function Home() {
 //EL NOMBRE DEL JUGADOR
 	const [nombreJ1, setNombreJ1] = React.useState('');
 	const [nombreJ2, setNombreJ2] = React.useState('');
+	const [jugadorJ1LS, setJugadorJ1LS] = useLocalStorage('jugador1','');
+	const [jugadorJ2LS, setJugadorJ2LS] = useLocalStorage('jugador2','');
 	
-	limpiaLocalStorage();
+	localStorage.clear();
 
-	function limpiaLocalStorage(){
-		localStorage.clear();
-	}
+
+	React.useEffect(()=>{
+		setJugadorJ1LS({
+			nombre:nombreJ1
+		})
+		setJugadorJ2LS({
+			nombre:nombreJ2
+		})
+	},[nombreJ1,nombreJ2])
 
 	const usuario1Teclea = (evt) => {
 		setNombreJ1(evt.target.value)
@@ -29,24 +37,24 @@ function Home() {
 					<h1>Pokemon</h1>
 					<p>Juego de combate Pokemon para dos jugadores donde todo puede pasar...</p>
 				</div>
-				<div className="linea-flex-empujarLados">
-					<p className="titulo-jugador-home">{`Jugador 1: ${nombreJ1 || ''}`}</p>
+				
+					<p className="titulo-jugador-home">{`Jugador 1: `}</p>
 					<input 
 						type="text" 
 						value={nombreJ1}
 						onChange={usuario1Teclea}
 						placeholder='Nombre ...(opcional)'
 					/>
-				</div>
-				<div className="linea-flex-empujarLados">
-					<p className="titulo-jugador-home">{`Jugador 2: ${nombreJ2 || ''}`}</p>
+				
+				
+					<p className="titulo-jugador-home">{`Jugador 2: `}</p>
 					<input 
 						type="text" 
 						value={nombreJ2}
 						onChange={usuario2Teclea}
 						placeholder='Nombre ...(opcional)'
 					/>
-				</div>
+				
 				<Link className='link-boton-jugar' to='/eleccionPokemon'><button className="boton-jugar">Jugar</button></Link>
 			</div>
 		</>

@@ -18,6 +18,9 @@ export function PaginaEleccion() {
 	const [pokemon1LS, setPokemon1LS] = useLocalStorage("pokemon1", getPokemonFromLista('Charmander'));
 	const [pokemon2LS, setPokemon2LS] = useLocalStorage("pokemon2", getPokemonFromLista('Bulbasour'));
 	
+	const [jugador1LS] = useLocalStorage("jugador1");
+	const [jugador2LS] = useLocalStorage("jugador2");
+	
 	const [objetos1LS, setObjetos1LS] = useLocalStorage("objetos1", '');
 	const [objetos2LS ,setObjetos2LS] = useLocalStorage("objetos2", '');
 
@@ -55,7 +58,7 @@ export function PaginaEleccion() {
 
 	const parteJugador1 = (
 		<div className="columna-flex-1">
-			<h2 className={`fondo-${pokemon1.color}`}>Jugador 1</h2>
+			<h2 className={`fondo-${pokemon1.color}`}>{jugador1LS.nombre || ''}</h2>
 			<PokemonPicker 
 				jugador={1}
 				pokemonElegido={pokemon1 || ''}
@@ -70,7 +73,7 @@ export function PaginaEleccion() {
 	)
 	const parteJugador2 = (
 		<div className="columna-flex-1">
-			<h2 className={`fondo-${pokemon2.color}`}>Jugador 2</h2>
+			<h2 className={`fondo-${pokemon2.color}`}>{jugador2LS.nombre || ''}</h2>
 
 			<PokemonPicker 
 				jugador={2}
