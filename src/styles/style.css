@@ -28,6 +28,8 @@
 #root{
     display: flex;
     justify-content: center;
+    align-content: center;
+    height: 100vh;
 }
 html{
     font-family: 'Press Start 2P', cursive;
@@ -60,21 +62,44 @@ input[type="text"]{
     display: flex;
     flex-flow: column nowrap;
     align-items: stretch;
-    gap: 0.5em;
-    margin-top: 2em;
     width: 100%;
 }
 
                     /*PAGINA HOME*/
-#home-container{
+.page-container{
+    width: 95vw;
+}
+.home-container{
     font-family: 'Press Start 2P', cursive;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    gap: 0.5em;
-    width: 90%;
     justify-content: center;
-    padding-bottom: 4em;
+}
+.home-container h2{
+    font-size: 1.33em;
+    letter-spacing: -2px;
+    background-color: var(--blanco2);
+    color: var(--negro);
+    padding: 0.15em;
+}
+.home-container h3{
+    font-size: 1.15em;
+    letter-spacing: -2px;
+    padding: 0.15em;
+}
+.home-container .titulo-y-descripcion{
+    padding-bottom: 1em;
+    text-align: center;
+}
+.home-container .titulo-y-descripcion h1{
+    margin-bottom: 0.25em;
+}
+.combate-container{
+    margin-top: 5em;
+    display: grid;
+    grid-template-rows: 1.75fr 1fr 1.25fr;
+    justify-items: center;
 }
 .titulo-jugador-home{
     font-size: 1.15em;
@@ -194,14 +219,20 @@ input[type="text"]{
     cursor: pointer;
 }
 .boton-jugar{
-    padding: 0.5em 1em;
-    font-size: 1.25em;
+    padding: 0.5em 3em;
+    font-size: 1.15em;
+    letter-spacing: -1px;
     border: none;
     border-radius: 10px;
     white-space: nowrap;
 }
 .link-boton-jugar{
     margin: 2em 0em;
+}
+.link-boton-home{
+    position: absolute;
+    top: 1em;
+    left: 1em;
 }
 .linea{
     display: flex;
@@ -211,15 +242,6 @@ input[type="text"]{
 
     /**/
 
-.combate-container{
-    margin-top: 5em;
-    height: 75vh;
-    width: 100%;
-    display: grid;
-    grid-template-rows: 1.75fr 1fr 1.25fr;
-    overflow: hidden;
-    justify-items: center;
-}
 .tatami{
     width: 99%;
     background-image: url('https://cdna.artstation.com/p/assets/images/images/043/365/940/large/breedermaniac-ce5870cf2c824a9e8c79983fcf51-hires.jpg?1637250078');
@@ -419,48 +441,58 @@ input[type="text"]{
 }
 
 .fondo-naranja{
-    background-color: var(--naranja);
-    transition: all linear 1s;
+    background-color: var(--naranja)!important;
 }
 .fondo-rojo{
-    background-color: var(--rojo);
-    transition: all linear 1s;
+    background-color: var(--rojo)!important;
+}
+.fondo-amarillo{
+    background-color: var(--amarillo)!important;
+}
+.fondo-azul{
+    background-color: var(--azul)!important;
+}
+.fondo-morado{
+    background-color: var(--morado)!important;
+}
+.fondo-rojo{
+    background-color: var(--rojo)!important;
 }
 .texto-color-amarillo{
-    color: var(--amarillo);
+    color: var(--amarillo)!important;
 }
 .texto-color-rojo{
-    color: var(--rojo);
+    color: var(--rojo)!important;
 }
 .texto-color-naranja{
-    color: var(--naranja);
+    color: var(--naranja)!important;
 }
 .texto-color-azul{
-    color: var(--azul);
+    color: var(--azul)!important;
 }
 .texto-color-verde{
-    color: var(--verde);
+    color: var(--verde)!important;
 }
 .texto-color-morado{
-    color: var(--morado);
+    color: var(--morado)!important;
 }
-.color-borde-amarillo{
-    border: 6px solid var(--amarillo);
+.borde-amarillo{
+    border-color: var(--amarillo)!important;
 }
-.color-borde-rojo{
-    border: 6px solid var(--rojo);
+.borde-rojo{
+    border-color: var(--rojo)!important;
 }
-.color-borde-naranja{
-    border: 6px solid var(--naranja);
+.borde-naranja{
+    border-color: var(--naranja)!important;
 }
-.color-borde-azul{
-    border: 6px solid var(--azul);
+.borde-azul{
+    border-color: var(--azul)!important;
 }
-.color-borde-verde{
-    border: 6px solid var(--verde);
+.borde-verde{
+    border-color: var(--verde)!important;
 }
-.color-borde-morado{
-    border: 6px solid var(--morado);
+.borde-morado{
+    border-color: var(--morado)!important;
 }
 .cuadro-estadisticas{
     display: flex;
@@ -545,18 +577,21 @@ input[type="text"]{
 }
 .object-picker .titulos-categorias{
     font-weight: bolder;
-    margin-bottom: 0.5em;
     border-bottom: 1px solid var(--blanco);
-    min-height: 2.5em;
+    min-height: 2em;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
+}
+.boton-terminar-eleccion{
+
 }
 .object-picker .listaObjetos{
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.5em;
+    margin: 1em 0;
 }
 .object-picker .categoria-container{
     text-align: center;
@@ -570,13 +605,20 @@ input[type="text"]{
     padding: 1em;
 }
 .tarjeta-objeto{
+    font-size: 1.1em;
     background-color: var(--negro3);
-    padding: 0.25em;
+    padding: 0.5em;
     border-radius: 4px;
-    height: 100%;
-    border: 2px solid transparent;
+    height: 5em;
+    width: 100%;
+    overflow: hidden;
+    letter-spacing: -2px;
 }
-
+.descripcion-categorias{
+    min-height: 4em;
+    padding: 1em;
+    text-align: center;
+}
 .descripcion-objeto{
     font-size: 0.45em;
     margin: 0.5em;
@@ -594,3 +636,45 @@ input[type="text"]{
     border: 3px solid var(--blanco);
     padding: 1em;
 }
+.home-step-box{
+    padding: 0.50em;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1em;
+    margin-bottom: 1em;
+}
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+    .page-container{
+        width: 70vw;
+    }
+  }
+  
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+    .page-container{
+        width: 60vw;
+    }
+  }
+  
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+    .page-container{
+        width: 50vw;
+    }
+  }
+  
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+    .page-container{
+        width: 50vw;
+    }
+    
+  } 
+  
+  @media only screen and (min-width: 1400px) {
+    .page-container{
+        width: 40vw;
+    }
+  } 
+  /* FIN MEDIA QUERIES */

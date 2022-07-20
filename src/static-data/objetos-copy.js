@@ -7,7 +7,7 @@ export const objetos = [
 //cura
     {
         nombreDisplay:'CURACIÓN',
-        descripcion:'Objetos que curan',
+        descripcion:'Estos objetos aumentan la vida a tu pokemon.',
         tipo:'cura',
         objetos:[
             {
@@ -77,7 +77,7 @@ export const objetos = [
 //ataque
     {
         nombreDisplay:'ATAQUE',
-        descripcion:'Objetos que atacan',
+        descripcion:'Estos objetos causan daño al rival.',
         tipo:'ataque',
         objetos:[
             {
@@ -145,7 +145,7 @@ export const objetos = [
 //alteraStats
     {
         nombreDisplay:'MODIFICADOR',
-        descripcion:'Objetos que altera propiedades',
+        descripcion:'Estos objetos modifican las propiedades de los pokemon.',
         tipo:'alterStats',
         objetos:[
             {
@@ -217,7 +217,7 @@ export const objetos = [
 //eleccion
     {
         nombreDisplay:'INTERACTIVO',
-        descripcion:'Objetos interactivos',
+        descripcion:'Objetos multiuso',
         tipo:'eleccion',
         objetos:[
             {
@@ -249,13 +249,43 @@ export const objetos = [
                 },
                 consecuencia:{},
                 respuestaAnteEventoAleatorio:{}
+            },
+            {
+                nombre:'tarjetaCredito2',
+                tipo:'interactivo',
+                nombreDisplay : 'Tarjeta de crédito',
+                imagen : img_pocion,
+                descripcion:'¿Cómo la usarás...?',
+                usos: 1,
+                efecto: {
+                    'ataque':{
+                        cantidad:50
+                    }
+                },
+                consecuencia:{},
+                respuestaAnteEventoAleatorio:{}
+            },
+            {
+                nombre:'tarjetaCredito3',
+                tipo:'interactivo',
+                nombreDisplay : 'Tarjeta de crédito',
+                imagen : img_pocion,
+                descripcion:'¿Cómo la usarás...?',
+                usos: 1,
+                efecto: {
+                    'ataque':{
+                        cantidad:50
+                    }
+                },
+                consecuencia:{},
+                respuestaAnteEventoAleatorio:{}
             }
         ]
     },
 //amuleto
     {
         nombreDisplay:'PORTABLE',
-        descripcion:'Efectos durante todo el combate',
+        descripcion:'Tu pokemon llevará este objeto durante todo el combate',
         tipo:'amuleto',
         objetos:[
             {

@@ -134,63 +134,65 @@ export function Combate(props) {
         cambiarTurno();
     }
 
-  return (
-    <>
-        {mostrandoInfo && 
-            <InfoCombateOverlay 
-            callback={()=>{setMostrandoInfo(false)}}
-            infoCombate={infoCombate}
-            />
-        }
-        {fin===false ? 
-            <div className="combate-container">
-                <Link to='/' className="flecha-atras">←</Link>
-                <p onClick={()=>{setMostrandoInfo(true)}} className="boton-info">i</p>
-                
-                <div className="tatami">
-                    <TarjetaPokemonCombate 
-                        jugador={2}
-                        infoPokemon={infoCombate['jugador2']}
-                        turno={infoCombate['turno']}
-                    />
-                    <TarjetaPokemonCombate 
-                        jugador={1}
-                        infoPokemon={infoCombate['jugador1']}
-                        turno={infoCombate['turno']}
-                    />
+    return (
+        <>
+        {/*Se muestra cuando se hace click en info*/}
+            {mostrandoInfo && 
+                <InfoCombateOverlay 
+                    callback={()=>{setMostrandoInfo(false)}}
+                    infoCombate={infoCombate}
+                />
+            }
+        {/*Muestra el combate o la pantalla final si elcombate ha terminado*/}
+            {fin===false ? 
+                <div className="combate-container page-container">
+                    <Link to='/' className="flecha-atras">←</Link>
+                    <p onClick={()=>{setMostrandoInfo(true)}} className="boton-info">i</p>
+                    
+                    <div className="tatami">
+                        <TarjetaPokemonCombate 
+                            jugador={2}
+                            infoPokemon={infoCombate['jugador2']}
+                            turno={infoCombate['turno']}
+                        />
+                        <TarjetaPokemonCombate 
+                            jugador={1}
+                            infoPokemon={infoCombate['jugador1']}
+                            turno={infoCombate['turno']}
+                        />
+                    </div>
+                    
+                    {infoCombate.turno===1 && 
+                        <Narrador
+                            cfg={cfgNarrador}
+                            callbackFin={handleFinNarracion}
+                            narradorTrabajando={narradorTrabajando}
+                        />
+                    }
+                    {infoCombate.turno===2 && 
+                        <Narrador
+                            cfg={cfgNarrador}
+                            callbackFin={handleFinNarracion}
+                            narradorTrabajando={narradorTrabajando}
+                        />
+                    }
+                    {(!narradorTrabajando) &&
+                        <TarjetaUsuario 
+                            narradorTrabajando={narradorTrabajando}
+                            infoCombate={infoCombate}
+                            pokemonActivo={infoCombate.turno===1 ? infoCombate.jugador1 : infoCombate.jugador2}
+                            callbackAtack={userAttacks}
+                            callbackObjeto={userUsesObject}
+                        /> 
+                    }
                 </div>
+            :
+            <PantallaFinal 
                 
-                {infoCombate.turno===1 && 
-                    <Narrador
-                        cfg={cfgNarrador}
-                        callbackFin={handleFinNarracion}
-                        narradorTrabajando={narradorTrabajando}
-                    />
-                }
-                {infoCombate.turno===2 && 
-                    <Narrador
-                        cfg={cfgNarrador}
-                        callbackFin={handleFinNarracion}
-                        narradorTrabajando={narradorTrabajando}
-                    />
-                }
-                {(!narradorTrabajando) &&
-                    <TarjetaUsuario 
-                        narradorTrabajando={narradorTrabajando}
-                        infoCombate={infoCombate}
-                        pokemonActivo={infoCombate.turno===1 ? infoCombate.jugador1 : infoCombate.jugador2}
-                        callbackAtack={userAttacks}
-                        callbackObjeto={userUsesObject}
-                    /> 
-                }
-            </div>
-        :
-        <PantallaFinal 
-            
-        />
-        }
-    </>
-  );
+            />
+            }
+        </>
+    );
 
 
     function handleFinNarracion(){

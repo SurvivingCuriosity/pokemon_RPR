@@ -7,13 +7,15 @@ export function getPokemonFromLista(_nombre){
 }
 
 export function getObjetoFromLista(_nombre, indiceCategoria){
+    let objReturn;
     objetos[indiceCategoria].objetos.forEach(obj => {
         if(obj.nombre===_nombre){
-            //return obj;
+            objReturn = obj;
         }
         
     });
-    return objetos[indiceCategoria].objetos[0];
+    return objReturn;
+    //return objetos[indiceCategoria].objetos[0];
 }
 
 export function getVidaInicial(_nombre){
