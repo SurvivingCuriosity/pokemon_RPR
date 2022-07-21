@@ -3,7 +3,7 @@ import { BarraPorcentaje } from "./BarraPorcentaje";
 
 export function CuadroEstadisticas(props) {
 //VARIABLES
-    const {nombreJ1, nombreJ2, pok1,pok2} = props;
+    const {pok1,pok2} = props;
   return (
         <div className="cuadro-estadisticas">
             {pok1 ? 

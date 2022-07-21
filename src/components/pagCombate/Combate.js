@@ -194,7 +194,8 @@ export function Combate(props) {
                 </div>
             :
             <PantallaFinal 
-                
+                ganador={infoCombate.jugador1.propiedades.vida <= 0 ? infoCombate.jugador2 : infoCombate.jugador1}
+                infoCombate={infoCombate}
             />
             }
         </>
