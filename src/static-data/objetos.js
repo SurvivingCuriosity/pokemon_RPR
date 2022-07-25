@@ -1,14 +1,23 @@
 import img_litrona from '../imgs/objetos/litrona.png'
-import img_humo from '../imgs/objetos/humo.gif'
 import img_seta from '../imgs/objetos/seta.png'
 import img_guitarra from '../imgs/objetos/guitarra.png'
 import img_pocion from '../imgs/objetos/pocion.png'
-import img_pocion2 from '../imgs/objetos/pocion2.png'
+import img_polvos from '../imgs/objetos/polvos.png'
 import img_escudo from '../imgs/objetos/escudo.png'
 import img_porro from '../imgs/objetos/porro.png'
-import img_jagger from '../imgs/objetos/jagger.webp'
 import img_pistola from '../imgs/objetos/pistola.png'
-import img_tarjetCredito from '../imgs/objetos/tarjetaCredito.png'
+import img_tarjetaCredito from '../imgs/objetos/tarjetaCredito.png'
+import img_libro from '../imgs/objetos/libro.png'
+import img_shuriken from '../imgs/objetos/shuriken.png'
+import img_monster from '../imgs/objetos/monster.png'
+import img_cruz from '../imgs/objetos/cruz.png'
+import img_altavoz from '../imgs/objetos/altavoz.png'
+import img_boli from '../imgs/objetos/boli.png'
+import img_magdalena from '../imgs/objetos/magdalena.png'
+import img_pastillas from '../imgs/objetos/pastillas.png'
+import img_vino from '../imgs/objetos/vino.png'
+import img_rinonera from '../imgs/objetos/rinonera.png'
+import img_carro from '../imgs/objetos/carro.png'
 
 export const objetos = [
 //cura
@@ -32,7 +41,7 @@ export const objetos = [
                 nombre:'seta',
                 tipo:'cura',
                 nombreDisplay:'Seta',
-                imagen: img_pocion2,
+                imagen: img_seta,
                 usos: 1,
                 cantidadCura:30,
                 efecto: {
@@ -49,7 +58,7 @@ export const objetos = [
                 nombre:'magdalena',
                 tipo:'cura',
                 nombreDisplay : 'Magdalenas',
-                imagen : img_seta,
+                imagen : img_magdalena,
                 descripcion:'Unas buenas setitas...',
                 usos: 1,
                 cantidadCura:30,
@@ -65,7 +74,7 @@ export const objetos = [
                 nombre:'monster',
                 tipo:'cura',
                 nombreDisplay:'Monster',
-                imagen: img_pocion2,
+                imagen: img_monster,
                 usos: 1,
                 cantidadCura:30,
                 efecto: {
@@ -105,7 +114,7 @@ export const objetos = [
                 nombre:'carroCompra',
                 tipo:'ataque',
                 nombreDisplay : 'Carro de la compra',
-                imagen : img_pistola,
+                imagen : img_carro,
                 descripcion:'Lorem ipsum blablabla',
                 usos: 1,
                 efecto: {
@@ -120,7 +129,7 @@ export const objetos = [
                 nombre:'boli',
                 tipo:'ataque',
                 nombreDisplay : 'Bolígrafo',
-                imagen : img_pistola,
+                imagen : img_boli,
                 descripcion:'Lorem ipsum blablabla',
                 usos: 1,
                 efecto: {
@@ -135,7 +144,7 @@ export const objetos = [
                 nombre:'shuriken',
                 tipo:'ataque',
                 nombreDisplay : 'Shuriken',
-                imagen : img_pocion,
+                imagen : img_shuriken,
                 descripcion:'Lorem ipsum blablabla',
                 usos: 1,
                 efecto: {
@@ -174,7 +183,7 @@ export const objetos = [
                 nombre:'pastillas',
                 tipo:'alteraStats',
                 nombreDisplay:'Pastillas',
-                imagen: img_porro,
+                imagen: img_pastillas,
                 usos: 1,
                 efecto: {
                     'alteraStats':[
@@ -190,7 +199,7 @@ export const objetos = [
                 nombre:'altavoz',
                 tipo:'alteraStats',
                 nombreDisplay:'Altavoz',
-                imagen: img_porro,
+                imagen: img_altavoz,
                 usos: 1,
                 efecto: {
                     'alteraStats':[
@@ -206,7 +215,7 @@ export const objetos = [
                 nombre:'polvos',
                 tipo:'alteraStats',
                 nombreDisplay:'Polvos sospechosos',
-                imagen: img_porro,
+                imagen: img_polvos,
                 usos: 1,
                 efecto: {
                     'alteraStats':[
@@ -245,7 +254,7 @@ export const objetos = [
                 nombre:'tarjetaCredito',
                 tipo:'interactivo',
                 nombreDisplay : 'Tarjeta de crédito',
-                imagen : img_tarjetCredito,
+                imagen : img_tarjetaCredito,
                 descripcion:'¿Cómo la usarás...?',
                 usos: 1,
                 efecto: {
@@ -275,7 +284,7 @@ export const objetos = [
                 nombre:'vino',
                 tipo:'interactivo',
                 nombreDisplay : 'Copa de vino',
-                imagen : img_tarjetCredito,
+                imagen : img_vino,
                 descripcion:'¿Cómo la usarás...?',
                 usos: 1,
                 efecto: {
@@ -298,7 +307,7 @@ export const objetos = [
                 nombre:'crucifijo',
                 tipo:'amuleto',
                 nombreDisplay:'Crucifijo',
-                imagen: img_escudo,
+                imagen: img_cruz,
                 usos: 1,
                 efecto: {
                     'alteraStats':[
@@ -314,7 +323,7 @@ export const objetos = [
                 nombre:'guitarra',
                 tipo:'amuleto',
                 nombreDisplay:'Guitarra',
-                imagen: img_pocion,
+                imagen: img_guitarra,
                 usos: 1,
                 efecto: {
                     'alteraStats':[
@@ -330,7 +339,7 @@ export const objetos = [
                 nombre:'rinonera',
                 tipo:'amuleto',
                 nombreDisplay:'Riñonera',
-                imagen: img_pocion,
+                imagen: img_rinonera,
                 usos: 1,
                 efecto: {
                     'alteraStats':[
@@ -346,7 +355,7 @@ export const objetos = [
                 nombre:'libro',
                 tipo:'amuleto',
                 nombreDisplay:'Libro',
-                imagen: img_pocion,
+                imagen: img_libro,
                 usos: 1,
                 efecto: {
                     'alteraStats':[
