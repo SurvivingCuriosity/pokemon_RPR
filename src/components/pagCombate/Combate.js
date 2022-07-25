@@ -134,7 +134,7 @@ export function Combate() {
 
         let indiceVictima;
         turno === 1 ? indiceVictima = 2 : indiceVictima=1
-        quitarVida(turno, calcularDano(indiceVictima, indiceAtaque,infoCombate));
+        quitarVida(indiceVictima, calcularDano(turno, indiceAtaque,infoCombate));
 
         if(hayGanador()){
             setCfgNarrador({
