@@ -132,8 +132,9 @@ export function Combate() {
             textos: obtenerDialogo(infoCombate, 'ataque', nombreAtaque ,'' )
         })
 
-        
-        quitarVida(turno, calcularDano(turno, indiceAtaque,infoCombate));
+        let indiceVictima;
+        turno === 1 ? indiceVictima = 2 : indiceVictima=1
+        quitarVida(turno, calcularDano(indiceVictima, indiceAtaque,infoCombate));
 
         if(hayGanador()){
             setCfgNarrador({
