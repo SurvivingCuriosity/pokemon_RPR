@@ -1,21 +1,32 @@
 import { pokemons } from "../static-data/pokemons";
-import { objetos } from "../static-data/objetos-copy";
+import { objetos } from "../static-data/objetos";
 //funcion que devuelve un pokemon del array con todos los pokemons buscando por nombre
 export function getPokemonFromLista(_nombre){
     let pokemon = pokemons.filter(pokemon => pokemon.nombre === _nombre)[0];
     return pokemon;
 }
 
-export function getObjetoFromLista(_nombre, indiceCategoria){
+export function getObjetoFromLista(_nombre){
     let objReturn;
-    objetos[indiceCategoria].objetos.forEach(obj => {
-        if(obj.nombre===_nombre){
-            objReturn = obj;
-        }
-        
+    objetos.forEach(categoria => {
+        categoria.objetos.forEach(objeto => {
+            if(objeto.nombre===_nombre){
+                objReturn=objeto;
+            }
+        });
     });
     return objReturn;
-    //return objetos[indiceCategoria].objetos[0];
+}
+export function getObjetoFromListaDisplay(_nombre){
+    let objReturn;
+    objetos.forEach(categoria => {
+        categoria.objetos.forEach(objeto => {
+            if(objeto.nombreDisplay===_nombre){
+                objReturn=objeto;
+            }
+        });
+    });
+    return objReturn;
 }
 
 export function getVidaInicial(_nombre){

@@ -1,6 +1,6 @@
 import React from "react";
 import { getObjetoFromLista } from "../../../helpers/funciones";
-import { objetos } from "../../../static-data/objetos-copy";
+import { objetos } from "../../../static-data/objetos";
 export function ObjectPicker(props) {
     const{callbackEleccion, pokemonElegido}=props;
 
@@ -11,7 +11,6 @@ export function ObjectPicker(props) {
 2-objeto alteraStats
 3-objeto interactivo
 4-objeto portable
-    
 */
 
 const [objetoCura, setObjetoCura] = React.useState({});
@@ -87,22 +86,22 @@ const [hayEleccion, sethayEleccion] = React.useState(false);
         switch (mostrandoCategoria) {
             case 0:
                 setMostrandoCategoria(prev=>{return prev+1})
-                setObjetoCura(getObjetoFromLista(nombreObjeto,0));
+                setObjetoCura(getObjetoFromLista(nombreObjeto));
                 break;
             case 1:
                 setMostrandoCategoria(prev=>{return prev+1})
-                setObjetoAtaque(getObjetoFromLista(nombreObjeto,1));
+                setObjetoAtaque(getObjetoFromLista(nombreObjeto));
                 break;
             case 2:
                 setMostrandoCategoria(prev=>{return prev+1})
-                setObjetoAlteraStats(getObjetoFromLista(nombreObjeto,2));
+                setObjetoAlteraStats(getObjetoFromLista(nombreObjeto));
                 break;
             case 3:
                 setMostrandoCategoria(prev=>{return prev+1})
-                setObjetoEleccion(getObjetoFromLista(nombreObjeto,3));
+                setObjetoEleccion(getObjetoFromLista(nombreObjeto));
                 break;
             case 4:
-                setObjetoPortable(getObjetoFromLista(nombreObjeto,4));
+                setObjetoPortable(getObjetoFromLista(nombreObjeto));
                 break;
             default:
         }

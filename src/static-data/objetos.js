@@ -5,7 +5,6 @@ import img_guitarra from '../imgs/objetos/guitarra.png'
 import img_pocion from '../imgs/objetos/pocion.png'
 import img_pocion2 from '../imgs/objetos/pocion2.png'
 import img_escudo from '../imgs/objetos/escudo.png'
-import img_pocion4 from '../imgs/objetos/pocion4.png'
 import img_porro from '../imgs/objetos/porro.png'
 import img_jagger from '../imgs/objetos/jagger.webp'
 import img_pistola from '../imgs/objetos/pistola.png'
@@ -25,51 +24,17 @@ export const objetos = [
                 imagen : img_pocion,
                 descripcion:'Cura 50HP',
                 usos: 1,
-                efecto: {
-                    'cura':{
-                        cantidad:50
-                    }
-                },
+                cantidadCura:30,
                 consecuencia:{},
-                respuestaAnteEventoAleatorio:{}
-            },
-            {
-                nombre:'superpocion',
-                tipo:'cura',
-                nombreDisplay:'Superpoción',
-                imagen: img_pocion2,
-                usos: 1,
-                efecto: {
-                    'alteraStats':[
-                        {'velocidad': -20},
-                        {'precision': -20},
-                        {'ataque': 20}
-                    ]
-                },
-                consecuencia:{},
-                respuestaAnteEventoAleatorio:{}
+                respuestaAnteEventoAleatorio:{},
             },
             {
                 nombre:'seta',
                 tipo:'cura',
-                nombreDisplay : 'Setas',
-                imagen : img_seta,
-                descripcion:'Unas buenas setitas...',
+                nombreDisplay:'Seta',
+                imagen: img_pocion2,
                 usos: 1,
-                efecto: {
-                    'cura':{
-                        cantidad:50
-                    }
-                },
-                consecuencia:{},
-                respuestaAnteEventoAleatorio:{}
-            },
-            {
-                nombre:'superpocion2',
-                tipo:'cura',
-                nombreDisplay:'Superpoción',
-                imagen: img_humo,
-                usos: 1,
+                cantidadCura:30,
                 efecto: {
                     'alteraStats':[
                         {'velocidad': -20},
@@ -78,7 +43,40 @@ export const objetos = [
                     ]
                 },
                 consecuencia:{},
-                respuestaAnteEventoAleatorio:{}
+                respuestaAnteEventoAleatorio:{},
+            },
+            {
+                nombre:'magdalena',
+                tipo:'cura',
+                nombreDisplay : 'Magdalenas',
+                imagen : img_seta,
+                descripcion:'Unas buenas setitas...',
+                usos: 1,
+                cantidadCura:30,
+                efecto: {
+                    'cura':{
+                        cantidad:50
+                    }
+                },
+                consecuencia:{},
+                respuestaAnteEventoAleatorio:{},
+            },
+            {
+                nombre:'monster',
+                tipo:'cura',
+                nombreDisplay:'Monster',
+                imagen: img_pocion2,
+                usos: 1,
+                cantidadCura:30,
+                efecto: {
+                    'alteraStats':[
+                        {'velocidad': -20},
+                        {'precision': -20},
+                        {'ataque': 20}
+                    ]
+                },
+                consecuencia:{},
+                respuestaAnteEventoAleatorio:{},
             },
         ]
     },
@@ -101,12 +99,12 @@ export const objetos = [
                     }
                 },
                 consecuencia:{},
-                respuestaAnteEventoAleatorio:{}
+                respuestaAnteEventoAleatorio:{},
             },
             {
-                nombre:'pistola1',
+                nombre:'carroCompra',
                 tipo:'ataque',
-                nombreDisplay : 'Pistola',
+                nombreDisplay : 'Carro de la compra',
                 imagen : img_pistola,
                 descripcion:'Lorem ipsum blablabla',
                 usos: 1,
@@ -116,12 +114,12 @@ export const objetos = [
                     }
                 },
                 consecuencia:{},
-                respuestaAnteEventoAleatorio:{}
+                respuestaAnteEventoAleatorio:{},
             },
             {
-                nombre:'pistola2',
+                nombre:'boli',
                 tipo:'ataque',
-                nombreDisplay : 'Pistola',
+                nombreDisplay : 'Bolígrafo',
                 imagen : img_pistola,
                 descripcion:'Lorem ipsum blablabla',
                 usos: 1,
@@ -131,12 +129,12 @@ export const objetos = [
                     }
                 },
                 consecuencia:{},
-                respuestaAnteEventoAleatorio:{}
+                respuestaAnteEventoAleatorio:{},
             },
             {
-                nombre:'pistola3',
+                nombre:'shuriken',
                 tipo:'ataque',
-                nombreDisplay : 'Pistola',
+                nombreDisplay : 'Shuriken',
                 imagen : img_pocion,
                 descripcion:'Lorem ipsum blablabla',
                 usos: 1,
@@ -146,7 +144,7 @@ export const objetos = [
                     }
                 },
                 consecuencia:{},
-                respuestaAnteEventoAleatorio:{}
+                respuestaAnteEventoAleatorio:{},
             },
         ]
     },
@@ -170,12 +168,12 @@ export const objetos = [
                     ]
                 },
                 consecuencia:{},
-                respuestaAnteEventoAleatorio:{}
+                respuestaAnteEventoAleatorio:{},
             },
             {
-                nombre:'porro1',
+                nombre:'pastillas',
                 tipo:'alteraStats',
-                nombreDisplay:'Porro',
+                nombreDisplay:'Pastillas',
                 imagen: img_porro,
                 usos: 1,
                 efecto: {
@@ -186,12 +184,12 @@ export const objetos = [
                     ]
                 },
                 consecuencia:{},
-                respuestaAnteEventoAleatorio:{}
+                respuestaAnteEventoAleatorio:{},
             },
             {
-                nombre:'porro2',
+                nombre:'altavoz',
                 tipo:'alteraStats',
-                nombreDisplay:'Porro',
+                nombreDisplay:'Altavoz',
                 imagen: img_porro,
                 usos: 1,
                 efecto: {
@@ -202,12 +200,12 @@ export const objetos = [
                     ]
                 },
                 consecuencia:{},
-                respuestaAnteEventoAleatorio:{}
+                respuestaAnteEventoAleatorio:{},
             },
             {
-                nombre:'porro3',
+                nombre:'polvos',
                 tipo:'alteraStats',
-                nombreDisplay:'Porro',
+                nombreDisplay:'Polvos sospechosos',
                 imagen: img_porro,
                 usos: 1,
                 efecto: {
@@ -218,7 +216,7 @@ export const objetos = [
                     ]
                 },
                 consecuencia:{},
-                respuestaAnteEventoAleatorio:{}
+                respuestaAnteEventoAleatorio:{},
             },
         ]
     },
@@ -241,7 +239,7 @@ export const objetos = [
                     }
                 },
                 consecuencia:{},
-                respuestaAnteEventoAleatorio:{}
+                respuestaAnteEventoAleatorio:{},
             },
             {
                 nombre:'tarjetaCredito',
@@ -256,12 +254,12 @@ export const objetos = [
                     }
                 },
                 consecuencia:{},
-                respuestaAnteEventoAleatorio:{}
+                respuestaAnteEventoAleatorio:{},
             },
             {
-                nombre:'guitarra',
+                nombre:'raton',
                 tipo:'interactivo',
-                nombreDisplay : 'Guitarra',
+                nombreDisplay : 'Ratón',
                 imagen : img_guitarra,
                 descripcion:'¿Cómo la usarás...?',
                 usos: 1,
@@ -271,12 +269,12 @@ export const objetos = [
                     }
                 },
                 consecuencia:{},
-                respuestaAnteEventoAleatorio:{}
+                respuestaAnteEventoAleatorio:{},
             },
             {
-                nombre:'tarjetaCredito3',
+                nombre:'vino',
                 tipo:'interactivo',
-                nombreDisplay : 'Tarjeta de crédito',
+                nombreDisplay : 'Copa de vino',
                 imagen : img_tarjetCredito,
                 descripcion:'¿Cómo la usarás...?',
                 usos: 1,
@@ -286,7 +284,7 @@ export const objetos = [
                     }
                 },
                 consecuencia:{},
-                respuestaAnteEventoAleatorio:{}
+                respuestaAnteEventoAleatorio:{},
             }
         ]
     },
@@ -297,9 +295,9 @@ export const objetos = [
         tipo:'amuleto',
         objetos:[
             {
-                nombre:'escudo',
+                nombre:'crucifijo',
                 tipo:'amuleto',
-                nombreDisplay:'Escudo antidisturbios',
+                nombreDisplay:'Crucifijo',
                 imagen: img_escudo,
                 usos: 1,
                 efecto: {
@@ -310,12 +308,12 @@ export const objetos = [
                     ]
                 },
                 consecuencia:{},
-                respuestaAnteEventoAleatorio:{}
+                respuestaAnteEventoAleatorio:{},
             },
             {
-                nombre:'escudoAntidisturbios2',
+                nombre:'guitarra',
                 tipo:'amuleto',
-                nombreDisplay:'Escudo antidisturbios',
+                nombreDisplay:'Guitarra',
                 imagen: img_pocion,
                 usos: 1,
                 efecto: {
@@ -326,12 +324,12 @@ export const objetos = [
                     ]
                 },
                 consecuencia:{},
-                respuestaAnteEventoAleatorio:{}
+                respuestaAnteEventoAleatorio:{},
             },
             {
-                nombre:'escudoAntidisturbios3',
+                nombre:'rinonera',
                 tipo:'amuleto',
-                nombreDisplay:'Escudo antidisturbios',
+                nombreDisplay:'Riñonera',
                 imagen: img_pocion,
                 usos: 1,
                 efecto: {
@@ -342,12 +340,12 @@ export const objetos = [
                     ]
                 },
                 consecuencia:{},
-                respuestaAnteEventoAleatorio:{}
+                respuestaAnteEventoAleatorio:{},
             },
             {
-                nombre:'escudoAntidisturbios4',
+                nombre:'libro',
                 tipo:'amuleto',
-                nombreDisplay:'Escudo antidisturbios',
+                nombreDisplay:'Libro',
                 imagen: img_pocion,
                 usos: 1,
                 efecto: {
@@ -358,7 +356,7 @@ export const objetos = [
                     ]
                 },
                 consecuencia:{},
-                respuestaAnteEventoAleatorio:{}
+                respuestaAnteEventoAleatorio:{},
             },
         ]
     },

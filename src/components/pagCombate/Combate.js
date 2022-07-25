@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import useLocalStorage from "use-local-storage";
-import { getObjetoFromLista } from "../../helpers/funciones";
+import { getObjetoFromListaDisplay } from "../../helpers/funciones";
 import { getVidaInicial } from "../../helpers/funciones";
 //Componentes
 import { Narrador } from "./Narrador";
@@ -11,15 +11,14 @@ import { TarjetaUsuario } from "./TarjetaUsuario";
 import { obtenerDialogo } from "../../static-data/dialogosNarrador";
 import { InfoCombateOverlay } from "./InfoCombateOverlay";
 import { PantallaFinal } from "./PantallaFinal";
-export function Combate(props) {
+import { calcularDano } from "../../helpers/funcionesCombate";
+export function Combate() {
 //muestra u oculta tarjetaUsuario
     const [narradorTrabajando, setNarradorTrabajando] = React.useState(true);
-
-//variable que indica el final del juego
-    const [fin, setFin] = React.useState(false);
-
-//variable que controla el mostrar la informacion del combate
+    //variable que controla el mostrar la informacion del combate
     const [mostrandoInfo, setMostrandoInfo] = React.useState(false);
+    //variable que indica el final del juego
+    const [fin, setFin] = React.useState(false);
 
 //objetos pokemon obtenidos del localstorage    
     const [pokemon1LS] = useLocalStorage("pokemon1");
@@ -33,109 +32,13 @@ export function Combate(props) {
     const [infoCombate, setInfoCombate] = React.useState({
         'jugador1': pokemon1LS,
         'jugador2': pokemon2LS,
-        'turno': 1
+        'turno': pokemon1LS.propiedades.velocidad>pokemon2LS.propiedades.velocidad ? 1 : 2
     })
-
-//Texto que va diciendo el narrador
+    //Texto que va diciendo el narrador
     const [cfgNarrador, setCfgNarrador] = React.useState({
         textos: obtenerDialogo(infoCombate, 'inicioCombate')
     });
 
-
-//Funcion que seejecuta cuando un usuario ataca. EVT nos dice qué ataque ha usdao. Jugador es quién ha atacado (1 o 2)
-    const userAttacks = (evt, jugador) =>{
-        let atackIndex;
-        atackIndex = evt.target.textContent
-        atackIndex=atackIndex[0];
-        let nombreAtaque = infoCombate[`jugador${jugador}`].ataques[atackIndex].nombre;
-
-        setNarradorTrabajando(true);
-        setCfgNarrador({
-            textos: obtenerDialogo(infoCombate, 'ataque',nombreAtaque ,'' )
-
-        })
-        
-        let potenciaDelAtaque;
-        let ataqueEmisor;
-        let defensaVictima;
-        let indiceVictima;
-        let danoCausado;
-        jugador === 1 ? indiceVictima=2 : indiceVictima=1
-
-        //Obtener las propiedades del ataque que ha utilizado
-        
-
-        potenciaDelAtaque = infoCombate[`jugador${jugador}`].ataques[atackIndex].potencia;
-        defensaVictima = infoCombate[`jugador${indiceVictima}`].propiedades.defensa;
-        ataqueEmisor = infoCombate[`jugador${jugador}`].propiedades.ataque;
-        danoCausado = potenciaDelAtaque * (ataqueEmisor/defensaVictima);
-
-        let vidaVictima= infoCombate[`jugador${indiceVictima}`].propiedades.vida;
-
-        //restarle el daño a la vida de la victima
-        // eslint-disable-next-line default-case
-        switch(jugador){
-            case 1:
-                setInfoCombate((prev)=>{
-                    return{
-                        ...prev,
-                        jugador2:{
-                            ...prev.jugador2,
-                            propiedades:{
-                                ...prev.jugador2.propiedades,
-                                vida:Math.round(vidaVictima-danoCausado)
-                            }
-                        }
-                    }
-                })
-                break;
-            case 2:
-                setInfoCombate((prev)=>{
-                    return{
-                        ...prev,
-                        jugador1:{
-                            ...prev.jugador1,
-                            propiedades:{
-                                ...prev.jugador1.propiedades,
-                                vida: Math.round(vidaVictima-danoCausado)
-                            }
-                        }
-                    }
-                })
-                break;
-        }
-        //si lo ha matado
-        if(Math.round(vidaVictima-danoCausado) <= 0){
-            setCfgNarrador({
-                textos: obtenerDialogo(infoCombate, 'victoria')
-            })
-            finDeLaPartida();
-        }
-
-        cambiarTurno();
-        
-    }
-    const userUsesObject = (evt, jugador) =>{
-        setNarradorTrabajando(true);
-        console.log(evt.target.textContent);
-        let objeto = getObjetoFromLista(evt.target.textContent);
-        switch (objeto.tipo) {
-            case 'curativo':
-                curar(jugador, objeto.cantidadCura);
-                setNarradorTrabajando(true);
-                setCfgNarrador({
-                    textos: obtenerDialogo(infoCombate, 'objeto', '', objeto.nombre)
-                })
-                break;
-            default:
-                setNarradorTrabajando(true);
-                setCfgNarrador({
-                    textos: obtenerDialogo(infoCombate, 'objeto', '', objeto.nombre)
-                })
-                break;
-        }
-        cambiarTurno();
-    }
 
     return (
         <>
@@ -218,6 +121,116 @@ export function Combate(props) {
         })
     }
 
+    function userAttacks(evt, turno){
+        let indiceAtaque = evt.target.textContent;//saca el texto dle boton: 0Ascuas
+        indiceAtaque=indiceAtaque[0];//saca el primer caracter: 0
+        let nombreAtaque = infoCombate[`jugador${turno}`].ataques[indiceAtaque].nombre;
+        
+
+        setNarradorTrabajando(true);
+        setCfgNarrador({
+            textos: obtenerDialogo(infoCombate, 'ataque', nombreAtaque ,'' )
+        })
+
+        
+        quitarVida(turno, calcularDano(turno, indiceAtaque,infoCombate));
+
+        if(hayGanador()){
+            setCfgNarrador({
+                textos: obtenerDialogo(infoCombate, 'victoria')
+            })
+            finDeLaPartida();
+        }else{
+            cambiarTurno();
+        }
+
+        
+    }
+/**TODO: 
+*/
+    function userUsesObject(evt, jugador){
+        setNarradorTrabajando(true);
+        let objeto = getObjetoFromListaDisplay(evt.target.textContent);
+        switch (objeto.tipo) {
+            case 'cura':
+                curar(jugador, objeto.cantidadCura);
+
+                setNarradorTrabajando(true);
+                setCfgNarrador({
+                    textos: obtenerDialogo(infoCombate, 'objeto', '', objeto.nombre, objeto.dialogo)
+                })
+                break;
+            case 'ataque':
+                //TODO:20
+                quitarVida(jugador, 20);
+                setNarradorTrabajando(true);
+                setCfgNarrador({
+                    textos: obtenerDialogo(infoCombate, 'objeto', '', objeto.nombre)
+                })
+                break;
+            case 'alteraStats':
+                alterarPropiedades(jugador)
+                setNarradorTrabajando(true);
+                setCfgNarrador({
+                    textos: obtenerDialogo(infoCombate, 'objeto', '', objeto.nombre)
+                })
+                break;
+            case 'eleccion':
+                setNarradorTrabajando(true);
+                setCfgNarrador({
+                    textos: obtenerDialogo(infoCombate, 'objeto', '', objeto.nombre)
+                })
+                break;
+            case 'amuleto':
+                setNarradorTrabajando(true);
+                setCfgNarrador({
+                    textos: obtenerDialogo(infoCombate, 'objeto', '', objeto.nombre)
+                })
+                break;
+            default:
+                setNarradorTrabajando(true);
+                setCfgNarrador({
+                    textos: obtenerDialogo(infoCombate, 'objeto', '', objeto.nombre)
+                })
+                break;
+        }
+        cambiarTurno();
+    }
+
+    function quitarVida(aQuien, cuanto){
+        switch(aQuien){
+            case 1:
+                setInfoCombate((prev)=>{
+                    return{
+                        ...prev,
+                        jugador1:{
+                            ...prev.jugador1,
+                            propiedades:{
+                                ...prev.jugador1.propiedades,
+                                vida:Math.round(infoCombate.jugador1.propiedades.vida-cuanto)
+                            }
+                        }
+                    }
+                })
+                break;
+            case 2:
+                setInfoCombate((prev)=>{
+                    return{
+                        ...prev,
+                        jugador2:{
+                            ...prev.jugador2,
+                            propiedades:{
+                                ...prev.jugador2.propiedades,
+                                vida:Math.round(infoCombate.jugador2.propiedades.vida-cuanto)
+                            }
+                        }
+                    }
+                })
+                break;
+                default:
+        }
+    }
+
     function curar(aQuien, cuanto){
         let vidaActual;
         let nuevaVida;
@@ -259,6 +272,20 @@ export function Combate(props) {
                     }
                 }
             })
+        }
+    }
+
+    function alterarPropiedades(){
+
+    }
+
+    function hayGanador(){
+        let vida1 = Math.round(infoCombate.jugador1.propiedades.vida);
+        let vida2 = Math.round(infoCombate.jugador2.propiedades.vida);
+        if(vida1 <= 0 || vida2 <= 0){
+            return true;
+        }else{
+            return false
         }
     }
 

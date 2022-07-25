@@ -3,6 +3,8 @@ import React from "react";
 export function Narrador(props) {
 //VARIABLES
   const {cfg, narradorTrabajando=true, callbackFin} = props
+
+  
   const [indiceTextoActivo, setIndiceTextoActivo] = React.useState(0);
   const [mostrarTextoDelay, setMostrarTextoDelay] = React.useState(false);
 
