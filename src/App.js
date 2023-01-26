@@ -7,7 +7,9 @@ import {Combate} from './components/pagCombate/Combate.js';
 import {PaginaEleccion} from './components/pagHome/PaginaEleccion';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 function App() {
-
+  React.useEffect(()=>{
+    localStorage.clear()
+  },[])
   return (
         <Router>
             <Routes>

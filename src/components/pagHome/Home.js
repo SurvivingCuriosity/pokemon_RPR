@@ -1,36 +1,21 @@
 import React from "react";
-import {Link} from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import logo from '../../imgs/iconos/logo.png'
-import useLocalStorage from "use-local-storage";
+import { useSelector, useDispatch } from "react-redux";
+import { setNombreJ1, setNombreJ2, resetBattle } from "../../redux/Actions";
 
 function Home() {
-	
-//EL NOMBRE DEL JUGADOR
-	const [nombreJ1, setNombreJ1] = React.useState('');
-	const [nombreJ2, setNombreJ2] = React.useState('');
-	const [jugadorJ1LS, setJugadorJ1LS] = useLocalStorage('jugador1','');
-	const [jugadorJ2LS, setJugadorJ2LS] = useLocalStorage('jugador2','');
-	
-	localStorage.clear();
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const reduxState = useSelector(state => state);
 
+	React.useEffect(() => {
+		dispatch(resetBattle())
+	}, [])
 
-	React.useEffect(()=>{
-		setJugadorJ1LS({
-			nombre:nombreJ1
-		})
-		setJugadorJ2LS({
-			nombre:nombreJ2
-		})
-	},[nombreJ1,nombreJ2])
-
-	const usuario1Teclea = (evt) => {
-		setNombreJ1(evt.target.value)
+	const handleSubmit = () => {
+		navigate('/eleccionPokemon')
 	}
-
-	const usuario2Teclea = (evt) => {
-		setNombreJ2(evt.target.value)
-	}
-
 	return (
 		<>
 			<div className="page-container home-container">
@@ -39,25 +24,26 @@ function Home() {
 					<h1>Pokemon</h1>
 					<p>Juego de combate Pokemon para dos jugadores donde todo puede pasar...</p>
 				</div>
-				
+
+				<form onSubmit={handleSubmit}>
 					<p className="titulo-jugador-home">{`Jugador 1: `}</p>
-					<input 
-						type="text" 
-						value={nombreJ1}
-						onChange={usuario1Teclea}
+					<input
+						type="text"
+						value={useSelector(state => state.nombreJ1) || ''}
+						onChange={evt => dispatch(setNombreJ1(evt.target.value))}
 						placeholder='Nombre ...(opcional)'
 					/>
-				
-				
+
+
 					<p className="titulo-jugador-home">{`Jugador 2: `}</p>
-					<input 
-						type="text" 
-						value={nombreJ2}
-						onChange={usuario2Teclea}
+					<input
+						type="text"
+						value={useSelector(state => state.nombreJ2) || ''}
+						onChange={evt => dispatch(setNombreJ2(evt.target.value))}
 						placeholder='Nombre ...(opcional)'
 					/>
-				
-				<Link className='link-boton-jugar' to='/eleccionPokemon'><button className="boton-jugar">Jugar</button></Link>
+					<button className="boton-jugar">Jugar</button>
+				</form>
 			</div>
 		</>
 	);

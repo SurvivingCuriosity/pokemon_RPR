@@ -1,57 +1,44 @@
 import React from "react";
-
+import { useSelector } from "react-redux";
 
 export function TarjetaPokemonCombate(props) {
-//PROPS
-    const {infoPokemon, jugador, turno, amuleto} = props;
+  //PROPS
+  const { jugador, turno, datosCombate, datosIniciales, objetos } = props;
+  //ESTADO
+  const [porcentaje, setPorcentaje] = React.useState(100);
+  const [color, setColor] = React.useState('verde');
 
-//ESTADO
-    const [vidaInicial, setVidaInicial] = React.useState(infoPokemon.propiedades.vida);
+  React.useEffect(() => {
+    let miPorcentaje;
+    miPorcentaje = (datosCombate.propiedades.vida / datosIniciales.propiedades.vida) * 100;
+    setPorcentaje(miPorcentaje);
+  }, [datosCombate])
 
-    let vidaActual = infoPokemon.propiedades.vida;
-    vidaActual < 0 ? vidaActual=0 : vidaActual=vidaActual
-
-    const [porcentaje, setPorcentaje] = React.useState(100);
-    const [color, setColor] = React.useState('verde');
-
-    React.useEffect(()=>{
-      //console.log('InfoPokemon cambia. Calculando porcentaje de vida. Actual: '+porcentaje);
-      let miPorcentaje;
-      miPorcentaje=(vidaActual/vidaInicial)*100;
-      setPorcentaje(miPorcentaje);
-      //console.log('Porcentaje teoricamente cambiado:'+porcentaje);
-    },[infoPokemon])
-
-    React.useEffect(()=>{
-      //console.log('Porcentaje cambia. Calculando color de vida. Actual: '+color);
-      if(porcentaje<50 && porcentaje>20){
-        setColor('naranja')
-      }else
-      if(porcentaje<=20){
+  React.useEffect(() => {
+    if (porcentaje < 50 && porcentaje > 20) {
+      setColor('naranja')
+    } else
+      if (porcentaje <= 20) {
         setColor('rojo')
-      }else{
+      } else {
         setColor('verde')
       }
-    },[porcentaje])
-    
-
+  }, [porcentaje])
 
 
   return (
     <div className="tarjeta-combate">
-      <div className={infoPokemon.propiedades.vida <=0 ? 'muere' : ''}>
-        <img className={turno===jugador ? 'salta' : ''} src={infoPokemon.imagen} alt='Icono pokemon'></img>
-        <img className='imagen-amuleto' src={amuleto.imagen} alt='Icono amuleto del pokemon'></img>
+      <div className={datosCombate.propiedades.vida <= 0 ? 'muere' : ''}>
+        <img className={turno === jugador ? 'salta' : ''} src={datosIniciales.imagen} alt='Icono pokemon'></img>
+        <img className='imagen-amuleto' src={objetos[4].imagen} alt='Icono amuleto del pokemon'></img>
       </div>
-        <div className="--tarjeta-combate-top">
-            <p>{`J${jugador}: ${infoPokemon.nombre}`}</p>
-            <p>{`${vidaActual}/${vidaInicial}`}</p>
-        </div>
-        <div className="barra-vida">
-
-              <div className={`--barra-vida-vida fondo-${color}`} style={{width: `${porcentaje}%`}}></div>
-
-        </div>
+      <div className="--tarjeta-combate-top">
+        <p>{`J${jugador}: ${datosIniciales.nombre}`}</p>
+        <p>{`${datosCombate.propiedades.vida}/${datosIniciales.propiedades.vida}`}</p>
+      </div>
+      <div className="barra-vida">
+        <div className={`--barra-vida-vida fondo-${color}`} style={{ width: `${porcentaje}%` }}></div>
+      </div>
     </div>
   );
 

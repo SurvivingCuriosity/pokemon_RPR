@@ -20,352 +20,358 @@ import img_rinonera from '../imgs/objetos/rinonera.png'
 import img_carro from '../imgs/objetos/carro.png'
 
 export const objetos = [
-//cura
+    //cura
     {
-        nombreDisplay:'CURACIÓN',
-        descripcion:'Estos objetos aumentan la vida a tu pokemon.',
-        tipo:'cura',
-        objetos:[
+        nombreDisplay: 'CURACIÓN',
+        descripcion: 'Estos objetos aumentan la vida a tu pokemon.',
+        tipo: 'cura',
+        objetos: [
             {
-                nombre:'pocion',
-                tipo:'cura',
-                nombreDisplay : 'Poción',
-                imagen : img_pocion,
-                descripcion:'Cura 50HP',
+                nombre: 'pocion',
+                tipo: 'cura',
+                nombreDisplay: 'Poción',
+                nombreCombate: 'poción',
+                imagen: img_pocion,
+                descripcion: 'Cura 50HP',
                 usos: 1,
-                cantidadCura:30,
-                consecuencia:{},
-                respuestaAnteEventoAleatorio:{},
+                efecto: [
+                    { nombre: 'cura', cantidad: 50 }
+                ],
+                consecuencia: {},
+                respuestaAnteEventoAleatorio: {},
             },
             {
-                nombre:'seta',
-                tipo:'cura',
-                nombreDisplay:'Seta',
+                nombre: 'seta',
+                tipo: 'cura',
+                nombreDisplay: 'Seta',
+                nombreCombate: 'seta',
                 imagen: img_seta,
                 usos: 1,
-                cantidadCura:30,
-                efecto: {
-                    'alteraStats':[
-                        {'velocidad': -20},
-                        {'precision': -20},
-                        {'ataque': 20}
-                    ]
-                },
-                consecuencia:{},
-                respuestaAnteEventoAleatorio:{},
+                cantidadCura: 30,
+                efecto: [
+                    { nombre: 'cura', cantidad: 50 }
+                ],
+                consecuencia: {},
+                respuestaAnteEventoAleatorio: {},
             },
             {
-                nombre:'magdalena',
-                tipo:'cura',
-                nombreDisplay : 'Magdalenas',
-                imagen : img_magdalena,
-                descripcion:'Unas buenas setitas...',
+                nombre: 'magdalena',
+                tipo: 'cura',
+                nombreDisplay: 'Magdalenas',
+                nombreCombate: 'magdalena',
+                imagen: img_magdalena,
+                descripcion: 'Unas buenas setitas...',
                 usos: 1,
-                cantidadCura:30,
-                efecto: {
-                    'cura':{
-                        cantidad:50
-                    }
-                },
-                consecuencia:{},
-                respuestaAnteEventoAleatorio:{},
+                cantidadCura: 30,
+                efecto: [
+                    { nombre: 'cura', cantidad: 50 }
+                ],
+                consecuencia: {},
+                respuestaAnteEventoAleatorio: {},
             },
             {
-                nombre:'monster',
-                tipo:'cura',
-                nombreDisplay:'Monster',
+                nombre: 'monster',
+                tipo: 'cura',
+                nombreDisplay: 'Monster',
+                nombreCombate: 'monster',
                 imagen: img_monster,
                 usos: 1,
-                cantidadCura:30,
-                efecto: {
-                    'alteraStats':[
-                        {'velocidad': -20},
-                        {'precision': -20},
-                        {'ataque': 20}
-                    ]
-                },
-                consecuencia:{},
-                respuestaAnteEventoAleatorio:{},
+                cantidadCura: 30,
+                efecto: [
+                    { nombre: 'cura', cantidad: 50 }
+                ],
+                consecuencia: {},
+                respuestaAnteEventoAleatorio: {},
             },
         ]
     },
-//ataque
+    //ataque
     {
-        nombreDisplay:'ATAQUE',
-        descripcion:'Estos objetos causan daño al rival.',
-        tipo:'ataque',
-        objetos:[
+        nombreDisplay: 'ATAQUE',
+        descripcion: 'Estos objetos causan daño al rival.',
+        tipo: 'ataque',
+        objetos: [
             {
-                nombre:'pistola',
-                tipo:'ataque',
-                nombreDisplay : 'Pistola',
-                imagen : img_pistola,
-                descripcion:'Daña 50HP',
+                nombre: 'pistola',
+                tipo: 'ataque',
+                nombreDisplay: 'Pistola',
+                nombreCombate: 'pistola',
+                imagen: img_pistola,
+                descripcion: 'Daña 50HP',
                 usos: 1,
-                efecto: {
-                    'ataque':{
-                        cantidad:50
-                    }
-                },
-                consecuencia:{},
-                respuestaAnteEventoAleatorio:{},
+                efecto: [
+                    { nombre: 'ataque', cantidad: 50 }
+                ],
+                consecuencia: {},
+                respuestaAnteEventoAleatorio: {},
             },
             {
-                nombre:'carroCompra',
-                tipo:'ataque',
-                nombreDisplay : 'Carro de la compra',
-                imagen : img_carro,
-                descripcion:'Lorem ipsum blablabla',
+                nombre: 'carroCompra',
+                tipo: 'ataque',
+                nombreDisplay: 'Carro de la compra',
+                nombreCombate: 'carro de la compra',
+                imagen: img_carro,
+                descripcion: 'Lorem ipsum blablabla',
                 usos: 1,
-                efecto: {
-                    'ataque':{
-                        cantidad:50
-                    }
-                },
-                consecuencia:{},
-                respuestaAnteEventoAleatorio:{},
+                efecto: [
+                    { nombre: 'ataque', cantidad: 50 }
+                ],
+                consecuencia: {},
+                respuestaAnteEventoAleatorio: {},
             },
             {
-                nombre:'boli',
-                tipo:'ataque',
-                nombreDisplay : 'Bolígrafo',
-                imagen : img_boli,
-                descripcion:'Lorem ipsum blablabla',
+                nombre: 'boli',
+                tipo: 'ataque',
+                nombreDisplay: 'Bolígrafo',
+                nombreCombate: 'bolígrafo',
+                imagen: img_boli,
+                descripcion: 'Lorem ipsum blablabla',
                 usos: 1,
-                efecto: {
-                    'ataque':{
-                        cantidad:50
-                    }
-                },
-                consecuencia:{},
-                respuestaAnteEventoAleatorio:{},
+                efecto: [
+                    { nombre: 'ataque', cantidad: 50 }
+                ],
+                consecuencia: {},
+                respuestaAnteEventoAleatorio: {},
             },
             {
-                nombre:'shuriken',
-                tipo:'ataque',
-                nombreDisplay : 'Shuriken',
-                imagen : img_shuriken,
-                descripcion:'Lorem ipsum blablabla',
+                nombre: 'shuriken',
+                tipo: 'ataque',
+                nombreDisplay: 'Shuriken',
+                nombreCombate: 'shuriken',
+                imagen: img_shuriken,
+                descripcion: 'Lorem ipsum blablabla',
                 usos: 1,
-                efecto: {
-                    'ataque':{
-                        cantidad:50
-                    }
-                },
-                consecuencia:{},
-                respuestaAnteEventoAleatorio:{},
+                efecto: [
+                    { nombre: 'ataque', cantidad: 50 }
+                ],
+                consecuencia: {},
+                respuestaAnteEventoAleatorio: {},
             },
         ]
     },
-//alteraStats
+    //alteraStats
     {
-        nombreDisplay:'MODIFICADOR',
-        descripcion:'Estos objetos modifican las propiedades de los pokemon.',
-        tipo:'alterStats',
-        objetos:[
+        nombreDisplay: 'MODIFICADOR',
+        descripcion: 'Estos objetos modifican las propiedades de los pokemon.',
+        tipo: 'alterStats',
+        objetos: [
             {
-                nombre:'porro',
-                tipo:'alteraStats',
-                nombreDisplay:'Porro',
+                nombre: 'porro',
+                tipo: 'alteraStats',
+                nombreDisplay: 'Porro',
+                nombreCombate: 'porro',
                 imagen: img_porro,
                 usos: 1,
-                efecto: {
-                    'alteraStats':[
-                        {'velocidad': -20},
-                        {'precision': -20},
-                        {'ataque': 20}
-                    ]
-                },
-                consecuencia:{},
-                respuestaAnteEventoAleatorio:{},
+                efecto: [
+                    {
+                        nombre: 'alterastats',
+                        cantidad: 50,
+                        stats: ['velocidad', 50]
+                    }
+                ],
+                consecuencia: {},
+                respuestaAnteEventoAleatorio: {},
             },
             {
-                nombre:'pastillas',
-                tipo:'alteraStats',
-                nombreDisplay:'Pastillas',
+                nombre: 'pastillas',
+                tipo: 'alteraStats',
+                nombreDisplay: 'Pastillas',
+                nombreCombate: 'pastillas',
                 imagen: img_pastillas,
                 usos: 1,
-                efecto: {
-                    'alteraStats':[
-                        {'velocidad': -20},
-                        {'precision': -20},
-                        {'ataque': 20}
-                    ]
-                },
-                consecuencia:{},
-                respuestaAnteEventoAleatorio:{},
+                efecto: [
+                    {
+                        nombre: 'alterastats',
+                        cantidad: 50,
+                        stats: ['velocidad', 50]
+                    }
+                ],
+                consecuencia: {},
+                respuestaAnteEventoAleatorio: {},
             },
             {
-                nombre:'altavoz',
-                tipo:'alteraStats',
-                nombreDisplay:'Altavoz',
+                nombre: 'altavoz',
+                tipo: 'alteraStats',
+                nombreDisplay: 'Altavoz',
+                nombreCombate: 'altavoz',
                 imagen: img_altavoz,
                 usos: 1,
-                efecto: {
-                    'alteraStats':[
-                        {'velocidad': -20},
-                        {'precision': -20},
-                        {'ataque': 20}
-                    ]
-                },
-                consecuencia:{},
-                respuestaAnteEventoAleatorio:{},
+                efecto: [
+                    {
+                        nombre: 'alterastats',
+                        cantidad: 50,
+                        stats: ['velocidad', 50]
+                    }
+                ],
+                consecuencia: {},
+                respuestaAnteEventoAleatorio: {},
             },
             {
-                nombre:'polvos',
-                tipo:'alteraStats',
-                nombreDisplay:'Polvos sospechosos',
+                nombre: 'polvos',
+                tipo: 'alteraStats',
+                nombreDisplay: 'Polvos sospechosos',
+                nombreCombate: 'polvos sospechosos',
                 imagen: img_polvos,
                 usos: 1,
-                efecto: {
-                    'alteraStats':[
-                        {'velocidad': -20},
-                        {'precision': -20},
-                        {'ataque': 20}
-                    ]
-                },
-                consecuencia:{},
-                respuestaAnteEventoAleatorio:{},
+                efecto: [
+                    {
+                        nombre: 'alterastats',
+                        cantidad: 50,
+                        stats: ['velocidad', 50]
+                    }
+                ],
+                consecuencia: {},
+                respuestaAnteEventoAleatorio: {},
             },
         ]
     },
-//eleccion
+    //eleccion
     {
-        nombreDisplay:'INTERACTIVO',
-        descripcion:'Objetos multiuso',
-        tipo:'eleccion',
-        objetos:[
+        nombreDisplay: 'INTERACTIVO',
+        descripcion: 'Objetos multiuso',
+        tipo: 'eleccion',
+        objetos: [
             {
-                nombre:'litrona',
-                tipo:'interactivo',
-                nombreDisplay : 'Litrona',
-                imagen : img_litrona,
-                descripcion:'Podrás bebertela o...',
+                nombre: 'litrona',
+                tipo: 'interactivo',
+                nombreDisplay: 'Litrona',
+                nombreCombate: 'litrona',
+                imagen: img_litrona,
+                descripcion: 'Podrás bebertela o...',
                 usos: 1,
-                efecto: {
-                    'ataque':{
-                        cantidad:50
+                efecto: [
+                    {
+                        nombre: 'eleccion',
+                        opciones: [
+                            {
+
+                            }, {
+
+                            }
+                        ]
                     }
-                },
-                consecuencia:{},
-                respuestaAnteEventoAleatorio:{},
+                ],
+                consecuencia: {},
+                respuestaAnteEventoAleatorio: {},
             },
             {
-                nombre:'tarjetaCredito',
-                tipo:'interactivo',
-                nombreDisplay : 'Tarjeta de crédito',
-                imagen : img_tarjetaCredito,
-                descripcion:'¿Cómo la usarás...?',
+                nombre: 'tarjetaCredito',
+                tipo: 'interactivo',
+                nombreDisplay: 'Tarjeta de crédito',
+                imagen: img_tarjetaCredito,
+                descripcion: '¿Cómo la usarás...?',
                 usos: 1,
                 efecto: {
-                    'ataque':{
-                        cantidad:50
+                    'ataque': {
+                        cantidad: 50
                     }
                 },
-                consecuencia:{},
-                respuestaAnteEventoAleatorio:{},
+                consecuencia: {},
+                respuestaAnteEventoAleatorio: {},
             },
             {
-                nombre:'raton',
-                tipo:'interactivo',
-                nombreDisplay : 'Ratón',
-                imagen : img_guitarra,
-                descripcion:'¿Cómo la usarás...?',
+                nombre: 'raton',
+                tipo: 'interactivo',
+                nombreDisplay: 'Ratón',
+                nombreCombate: 'ratón',
+                imagen: img_guitarra,
+                descripcion: '¿Cómo la usarás...?',
                 usos: 1,
                 efecto: {
-                    'ataque':{
-                        cantidad:50
+                    'ataque': {
+                        cantidad: 50
                     }
                 },
-                consecuencia:{},
-                respuestaAnteEventoAleatorio:{},
+                consecuencia: {},
+                respuestaAnteEventoAleatorio: {},
             },
             {
-                nombre:'vino',
-                tipo:'interactivo',
-                nombreDisplay : 'Copa de vino',
-                imagen : img_vino,
-                descripcion:'¿Cómo la usarás...?',
+                nombre: 'vino',
+                tipo: 'interactivo',
+                nombreDisplay: 'Copa de vino',
+                nombreCombate: 'copa de vino',
+                imagen: img_vino,
+                descripcion: '¿Cómo la usarás...?',
                 usos: 1,
                 efecto: {
-                    'ataque':{
-                        cantidad:50
+                    'ataque': {
+                        cantidad: 50
                     }
                 },
-                consecuencia:{},
-                respuestaAnteEventoAleatorio:{},
+                consecuencia: {},
+                respuestaAnteEventoAleatorio: {},
             }
         ]
     },
-//amuleto
+    //amuleto
     {
-        nombreDisplay:'PORTABLE',
-        descripcion:'Tu pokemon llevará este objeto durante todo el combate',
-        tipo:'amuleto',
-        objetos:[
+        nombreDisplay: 'PORTABLE',
+        descripcion: 'Tu pokemon llevará este objeto durante todo el combate',
+        tipo: 'amuleto',
+        objetos: [
             {
-                nombre:'crucifijo',
-                tipo:'amuleto',
-                nombreDisplay:'Crucifijo',
+                nombre: 'crucifijo',
+                tipo: 'amuleto',
+                nombreDisplay: 'Crucifijo',
                 imagen: img_cruz,
                 usos: 1,
                 efecto: {
-                    'alteraStats':[
-                        {'velocidad': -20},
-                        {'precision': -20},
-                        {'ataque': 20}
+                    'alteraStats': [
+                        { 'velocidad': -20 },
+                        { 'precision': -20 },
+                        { 'ataque': 20 }
                     ]
                 },
-                consecuencia:{},
-                respuestaAnteEventoAleatorio:{},
+                consecuencia: {},
+                respuestaAnteEventoAleatorio: {},
             },
             {
-                nombre:'guitarra',
-                tipo:'amuleto',
-                nombreDisplay:'Guitarra',
+                nombre: 'guitarra',
+                tipo: 'amuleto',
+                nombreDisplay: 'Guitarra',
                 imagen: img_guitarra,
                 usos: 1,
                 efecto: {
-                    'alteraStats':[
-                        {'velocidad': -20},
-                        {'precision': -20},
-                        {'ataque': 20}
+                    'alteraStats': [
+                        { 'velocidad': -20 },
+                        { 'precision': -20 },
+                        { 'ataque': 20 }
                     ]
                 },
-                consecuencia:{},
-                respuestaAnteEventoAleatorio:{},
+                consecuencia: {},
+                respuestaAnteEventoAleatorio: {},
             },
             {
-                nombre:'rinonera',
-                tipo:'amuleto',
-                nombreDisplay:'Riñonera',
+                nombre: 'rinonera',
+                tipo: 'amuleto',
+                nombreDisplay: 'Riñonera',
                 imagen: img_rinonera,
                 usos: 1,
                 efecto: {
-                    'alteraStats':[
-                        {'velocidad': -20},
-                        {'precision': -20},
-                        {'ataque': 20}
+                    'alteraStats': [
+                        { 'velocidad': -20 },
+                        { 'precision': -20 },
+                        { 'ataque': 20 }
                     ]
                 },
-                consecuencia:{},
-                respuestaAnteEventoAleatorio:{},
+                consecuencia: {},
+                respuestaAnteEventoAleatorio: {},
             },
             {
-                nombre:'libro',
-                tipo:'amuleto',
-                nombreDisplay:'Libro',
+                nombre: 'libro',
+                tipo: 'amuleto',
+                nombreDisplay: 'Libro',
                 imagen: img_libro,
                 usos: 1,
                 efecto: {
-                    'alteraStats':[
-                        {'velocidad': -20},
-                        {'precision': -20},
-                        {'ataque': 20}
+                    'alteraStats': [
+                        { 'velocidad': -20 },
+                        { 'precision': -20 },
+                        { 'ataque': 20 }
                     ]
                 },
-                consecuencia:{},
-                respuestaAnteEventoAleatorio:{},
+                consecuencia: {},
+                respuestaAnteEventoAleatorio: {},
             },
         ]
     },

@@ -1,53 +1,117 @@
 
-export function obtenerDialogo(infoCombate, nombreDialogo, ataque='ataque desconocido', objeto='objeto desconocido'){
+export function obtenerDialogo(infoCombate, nombreDialogo, ataque = 'ataque desconocido', objeto = 'objeto desconocido') {
     let dialogoReturn;
     let pokemonCausante;
-    if(infoCombate.turno===1){
-        pokemonCausante=infoCombate.jugador1;
-    }else if(infoCombate.turno===2){
-        pokemonCausante=infoCombate.jugador2;
+    if (infoCombate.turno === 1) {
+        pokemonCausante = infoCombate.jugador1;
+    } else if (infoCombate.turno === 2) {
+        pokemonCausante = infoCombate.jugador2;
     }
     switch (nombreDialogo) {
         case 'inicioCombate':
-            dialogoReturn =   
+            dialogoReturn =
                 [
-                    {texto: 'CHAN...CHAN....CHANNN', duracion:'corto', animacion:'typying'},
-                    {texto: 'Bienvenidos al combate', duracion:'medio', animacion:'fade-in'},
-                    {texto: 'PREPARADOS?......YAAAA!!!!', duracion:'medio', animacion:'typying'}
+                    { texto: 'CHAN...CHAN....CHANNN', duracion: 'corto', animacion: 'typying' },
+                    { texto: 'Bienvenidos al combate', duracion: 'medio', animacion: 'fade-in' },
+                    { texto: 'PREPARADOS?......YAAAA!!!!', duracion: 'medio', animacion: 'typying' }
                 ]
             break;
         case 'ataque':
-            dialogoReturn = 
+            dialogoReturn =
                 [
-                    {texto: `${pokemonCausante.nombre} usó ${ataque}`, duracion:'corto', animacion:'typying'},
+                    { texto: `${pokemonCausante.nombre} usó ${ataque}`, duracion: 'corto', animacion: 'typying' },
                 ]
             break;
         case 'objeto':
-            dialogoReturn = 
+            dialogoReturn =
                 [
-                    {texto: `${pokemonCausante.nombre} usó ${objeto}`, duracion:'corto', animacion:'typying'},
+                    { texto: `${pokemonCausante.nombre} usó ${objeto}`, duracion: 'corto', animacion: 'typying' },
                 ]
-                break;
+            break;
         case 'turno':
-            dialogoReturn = 
+            dialogoReturn =
                 [
-                    {texto: `Turno del jugador ${infoCombate.turno} (${pokemonCausante.nombre}).`, duracion:'corto', animacion:'typying'},
+                    { texto: `Turno del jugador ${infoCombate.turno} (${pokemonCausante.nombre}).`, duracion: 'corto', animacion: 'typying' },
                 ]
-                break;
+            break;
         case 'victoria':
-            dialogoReturn = 
+            dialogoReturn =
                 [
-                    {texto: `${pokemonCausante.nombre} aplastó a su oponente`, duracion:'corto', animacion:'typying'},
+                    { texto: `${pokemonCausante.nombre} aplastó a su oponente`, duracion: 'corto', animacion: 'typying' },
                 ]
-                break;
+            break;
         case 'finNarracion':
-            dialogoReturn = 
+            dialogoReturn =
                 [
-                    {texto: `(...)`, duracion:'corto', animacion:'typying'},
+                    { texto: `(...)`, duracion: 'corto', animacion: 'typying' },
                 ]
-                break;
+            break;
         default:
             break;
     }
+    return dialogoReturn;
+}
+
+export function obtenerDialogoObjeto(infoCombate, objeto) {
+    console.log(objeto);
+
+    let dialogoReturn = [];
+    let pokemonCausante;
+    if (infoCombate.turno === 1) {
+        pokemonCausante = infoCombate.jugador1;
+    } else if (infoCombate.turno === 2) {
+        pokemonCausante = infoCombate.jugador2;
+    }
+
+    switch (objeto.nombre) {
+        //comió su ****
+        case 'polvos':
+        case 'magdalena':
+        case 'seta':
+        case 'pastillas':
+            dialogoReturn.push({ texto: `${pokemonCausante.nombre} comió su(s) ${objeto.nombreCombate}.`, duracion: 'corto', animacion: 'typying' },)
+            break;
+        //bebió su ****
+        case 'pocion':
+        case 'monster':
+        case 'litrona':
+        case 'vino':
+            dialogoReturn.push({ texto: `${pokemonCausante.nombre} bebió de su ${objeto.nombreCombate}.`, duracion: 'corto', animacion: 'typying' },)
+            break;
+        //usó su ****
+        case 'pistola':
+        case 'porro':
+        case 'boli':
+        case 'carroCompra':
+        case 'shuriken':
+        case 'altavoz':
+        case 'raton':
+        case 'tarjetaCredito':
+        case 'crucifijo':
+        case 'guitarra':
+        case 'libro':
+        case 'rinonera':
+            dialogoReturn.push({ texto: `${pokemonCausante.nombre} usó su ${objeto.nombreCombate}.`, duracion: 'corto', animacion: 'typying' },)
+            break;
+        default:
+    }
+
+    switch (objeto.efecto[0].nombre) {
+        //comió su ****
+        case 'cura':
+            dialogoReturn.push({ texto: `${pokemonCausante.nombre} se ha curado ${objeto.efecto[0].cantidad} HP.`, duracion: 'corto', animacion: 'typying' },)
+            break;
+        case 'ataque':
+            dialogoReturn.push({ texto: `${pokemonCausante.nombre} quitó ${objeto.efecto[0].cantidad} HP.`, duracion: 'corto', animacion: 'typying' },)
+            break;
+        case 'alteraStats':
+            dialogoReturn.push({ texto: `${pokemonCausante.nombre} comió su(s) ${objeto.nombreCombate}.`, duracion: 'corto', animacion: 'typying' },)
+            break;
+        case 'pastillas':
+            dialogoReturn.push({ texto: `${pokemonCausante.nombre} comió su(s) ${objeto.nombreCombate}.`, duracion: 'corto', animacion: 'typying' },)
+            break;
+        default:
+    }
+
     return dialogoReturn;
 }

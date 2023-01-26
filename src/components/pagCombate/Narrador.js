@@ -4,17 +4,16 @@ export function Narrador(props) {
 //VARIABLES
   const {cfg, narradorTrabajando=true, callbackFin} = props
 
-  
   const [indiceTextoActivo, setIndiceTextoActivo] = React.useState(0);
   const [mostrarTextoDelay, setMostrarTextoDelay] = React.useState(false);
 
-//FUTURA IMPLENTACION HANDLE CLICK
     const mostrarSiguienteTexto = () => {
       if(indiceTextoActivo === cfg.textos.length-1){
         setIndiceTextoActivo(0);
         callbackFin();
         return;
       }
+      
       if(!narradorTrabajando){
         return;
       }else{
@@ -23,9 +22,9 @@ export function Narrador(props) {
 
     }
     React.useEffect(()=>{
-      window.setTimeout(()=>{
+      /*window.setTimeout(()=>{
         setMostrarTextoDelay(true);
-      },5000)
+      },5000)*/
     },[])
 
     React.useEffect(()=>{
@@ -33,7 +32,7 @@ export function Narrador(props) {
         callbackFin();
         return;
       }
-    },[indiceTextoActivo])
+    },[indiceTextoActivo, cfg])
 
   return (
     <>

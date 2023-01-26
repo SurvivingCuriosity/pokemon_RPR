@@ -3,7 +3,8 @@ import React from "react";
 export function TarjetaUsuario(props) {
 //PROPIEDADES
     const {objetos, pokemonActivo, infoCombate, callbackAtack, callbackObjeto, narradorTrabajando} = props;
-    console.log(pokemonActivo);
+
+
 //MANEJADORES DE EVENTOS
     const handleClickVolver = () =>{
         setContenidoActivo(tarjetaAtacarObjetos)
@@ -28,13 +29,14 @@ export function TarjetaUsuario(props) {
         <>
             <p className="boton-volver-tarjeta" onClick={handleClickVolver}>Volver</p>
             <div className="tarjeta-ataques">
-                <div onClick={handleUsarAtaque}><p className="oculta-primer-caracter">0{pokemonActivo.ataques[0].nombre}</p></div>
-                <div onClick={handleUsarAtaque}><p className="oculta-primer-caracter">1{pokemonActivo.ataques[1].nombre}</p></div>
-                <div onClick={handleUsarAtaque}><p className="oculta-primer-caracter">2{pokemonActivo.ataques[2].nombre}</p></div>
-                <div onClick={handleUsarAtaque}><p className="oculta-primer-caracter">3{pokemonActivo.ataques[3].nombre}</p></div>
+                <p onClick={handleUsarAtaque}className="oculta-primer-caracter">0{pokemonActivo.ataques[0].nombre}</p>
+                <p onClick={handleUsarAtaque}className="oculta-primer-caracter">1{pokemonActivo.ataques[1].nombre}</p>
+                <p onClick={handleUsarAtaque}className="oculta-primer-caracter">2{pokemonActivo.ataques[2].nombre}</p>
+                <p onClick={handleUsarAtaque}className="oculta-primer-caracter">3{pokemonActivo.ataques[3].nombre}</p>
             </div>
         </>
     )
+
     const tarjetaObjetos = (
         <>
             <p className="boton-volver-tarjeta" onClick={handleClickVolver}>Volver</p>
@@ -59,6 +61,7 @@ export function TarjetaUsuario(props) {
         </>
         
     )
+
     const tarjetaAtacarObjetos = (
         <div className="tarjeta-ataque-objeto">
             <div className=" fondo-rojo" onClick={handleClickAtacar}>Atacar</div>
@@ -67,6 +70,7 @@ export function TarjetaUsuario(props) {
     )
 //ESTADO    
     const [contenidoActivo, setContenidoActivo] = React.useState(tarjetaAtacarObjetos);
+    
 
   return (
     <div className={`tarjeta-usuario color-borde-${pokemonActivo.color} fade-in`}>
