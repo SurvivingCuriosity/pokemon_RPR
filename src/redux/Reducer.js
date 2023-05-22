@@ -11,7 +11,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case "RESET_BATTLE":
-            return{
+            return {
                 nombreJ1: null,
                 pokemon1: null,
                 objetos1: null,
@@ -47,9 +47,9 @@ const reducer = (state = initialState, action) => {
                     ...state.infoCombate,
                     jugador1: {
                         ...state.infoCombate.jugador1,
-                        propiedades:{
+                        propiedades: {
                             ...state.infoCombate.jugador1.propiedades,
-                            vida: action.nuevaVida < 0 ? 0 : action.nuevaVida
+                            vida: action.nuevaVida
                         }
                     }
                 }
@@ -60,27 +60,53 @@ const reducer = (state = initialState, action) => {
                     ...state.infoCombate,
                     jugador2: {
                         ...state.infoCombate.jugador2,
-                        propiedades:{
+                        propiedades: {
                             ...state.infoCombate.jugador2.propiedades,
-                            vida: action.nuevaVida < 0 ? 0 : action.nuevaVida
+                            vida: action.nuevaVida
                         }
                     }
                 }
             };
-        case "WIN":
+        case "J1_USES_OBJECT":
+            let nuevosObjetos1 = state.objetos1;
+            nuevosObjetos1.forEach(obj => {
+                if(obj.nombre === action.objeto){
+                    console.log('Ha usado '+obj.nombre);
+                    obj.usos = obj.usos - 1
+                    if(obj.usos<0) obj.usos = 0;
+                }
+            })
             return {
                 ...state,
-                winner: action.winner
-            };
-        case "CAMBIAR_TURNO":
-            return {
-                ...state, infoCombate: {
-                    ...state.infoCombate,
-                    turno: action.turnoActual === 1 ? 2 : 1
+                objetos1 : nuevosObjetos1
+            }
+        case "J2_USES_OBJECT":
+            let nuevosObjetos2 = state.objetos2;
+            nuevosObjetos2.forEach(obj => {
+                if(obj.nombre === action.objeto){
+                    console.log('Ha usado '+obj.nombre);
+                    obj.usos = obj.usos - 1
+                    if(obj.usos<0) obj.usos = 0;
                 }
-            };
+            })
+            return {
+                ...state,
+                objetos2 : nuevosObjetos2
+            }
+        case "WIN":
+return {
+    ...state,
+    winner: action.winner
+};
+        case "CAMBIAR_TURNO":
+return {
+    ...state, infoCombate: {
+        ...state.infoCombate,
+        turno: action.turnoActual === 1 ? 2 : 1
+    }
+};
         default:
-            return state;
+return state;
     }
 };
 

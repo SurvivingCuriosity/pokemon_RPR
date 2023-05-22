@@ -1,11 +1,10 @@
-import React from "react";
-import { useDispatch } from "react-redux";
 import { pokemons } from '../../../static-data/pokemons.js'
 import { CuadroEstadisticas } from '../CuadroEstadisticas'
 import { PokemonPick } from "./../pokemonPicker/PokemonPick";
-import { setPokemon } from "../../../redux/Actions.js";
+
 export function PokemonPicker(props) {
-    const dispatch = useDispatch();
+
+
     const { jugador, pokemonElegido, callback } = props;
     return (
         <div className="home-step-box">

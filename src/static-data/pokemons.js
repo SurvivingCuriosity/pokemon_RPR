@@ -1,7 +1,9 @@
 import charmander from '../imgs/pokemons/charmander.png'
 import pikachu from '../imgs/pokemons/pikachu.png'
 import bulbasour from '../imgs/pokemons/bulbasour.png'
+import groudon from '../imgs/pokemons/groudon.png'
 import mew from '../imgs/pokemons/mew.png'
+import kyogre from '../imgs/pokemons/kyogre.webp'
 
 export const pokemons = [
     {
@@ -21,6 +23,44 @@ export const pokemons = [
             {nombre:'Ascuas',potencia:20, usos:2,categoria:'normal'},
             {nombre:'Lanzallamas',potencia:100, usos:1, categoria:'normal'},
             {nombre:'Gruñido',potencia:0, usos:3, categoria:'especial'}
+        ]
+    },
+    {
+        nombre:"Kyogre",
+        tipo:"Agua",
+        imagen:kyogre,
+        color:'azuloscuro',
+        propiedades:{
+            vida:100,
+            velocidad:80,
+            ataque:100,
+            defensa:100,
+            precision:60
+        },
+        ataques:[
+            {nombre:'Tsunami',potencia:15, usos:3,categoria:'normal'},
+            {nombre:'Tsunami',potencia:20, usos:2,categoria:'normal'},
+            {nombre:'Tsunami',potencia:100, usos:1, categoria:'normal'},
+            {nombre:'Tsunami',potencia:0, usos:3, categoria:'especial'}
+        ]
+    },
+    {
+        nombre:"Groudon",
+        tipo:"Fuego",
+        imagen: groudon,
+        color:'rojo',
+        propiedades:{
+            vida:100,
+            velocidad:80,
+            ataque:100,
+            defensa:85,
+            precision:70
+        },
+        ataques:[
+            {nombre:'Terremoto',potencia:15, usos:3,categoria:'normal'},
+            {nombre:'Terremoto',potencia:20, usos:2,categoria:'normal'},
+            {nombre:'Terremoto',potencia:100, usos:1, categoria:'normal'},
+            {nombre:'Terremoto',potencia:0, usos:3, categoria:'especial'}
         ]
     },
     {

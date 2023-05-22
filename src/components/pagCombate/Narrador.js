@@ -8,6 +8,7 @@ export function Narrador(props) {
   const [mostrarTextoDelay, setMostrarTextoDelay] = React.useState(false);
 
     const mostrarSiguienteTexto = () => {
+      setMostrarTextoDelay(false);
       if(indiceTextoActivo === cfg.textos.length-1){
         setIndiceTextoActivo(0);
         callbackFin();
@@ -22,9 +23,14 @@ export function Narrador(props) {
 
     }
     React.useEffect(()=>{
-      /*window.setTimeout(()=>{
+      
+      const timeout = window.setTimeout(()=>{
         setMostrarTextoDelay(true);
-      },5000)*/
+      },5000)
+
+      return () => {
+        clearTimeout(timeout);
+      }
     },[])
 
     React.useEffect(()=>{
@@ -37,8 +43,8 @@ export function Narrador(props) {
   return (
     <>
         <div onClick={mostrarSiguienteTexto} className="pantalla-narrador">
-          <p className={`${cfg.textos[indiceTextoActivo].animacion}`}>{cfg.textos[indiceTextoActivo].texto}</p>
-          {mostrarTextoDelay && <p className={''}>Click para continuar...</p>}
+          <p className={`${cfg?.textos[indiceTextoActivo]?.animacion || ''} `}>{cfg?.textos[indiceTextoActivo]?.texto || ''}</p>
+          {narradorTrabajando && mostrarTextoDelay && <p className={'animacion-parpadeo'}>Click para continuar...</p>}
         </div>
     </>
   );

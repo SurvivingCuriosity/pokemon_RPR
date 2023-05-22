@@ -18,10 +18,12 @@ export function getObjetoFromLista(_nombre){
     return objReturn;
 }
 export function getObjetoFromListaDisplay(_nombre){
+    let nombreObjeto = _nombre.substring(0, _nombre.length - 3);
+    nombreObjeto=nombreObjeto.trim();
     let objReturn;
     objetos.forEach(categoria => {
         categoria.objetos.forEach(objeto => {
-            if(objeto.nombreDisplay===_nombre){
+            if(objeto.nombreDisplay===nombreObjeto){
                 objReturn=objeto;
             }
         });

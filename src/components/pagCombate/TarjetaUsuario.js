@@ -40,22 +40,22 @@ export function TarjetaUsuario(props) {
     const tarjetaObjetos = (
         <>
             <p className="boton-volver-tarjeta" onClick={handleClickVolver}>Volver</p>
-            <div className="tarjeta-ataques">
+            <div className="tarjeta-objetos-combate">
                 <div onClick={handleUsarObjeto}>
-                    <p>{objetos[0].nombreDisplay}</p>
-                    <img src={objetos[0].imagen} />
+                    <p>{objetos[0].nombreDisplay} ({objetos[0].usos})</p>
+                    <img  alt="Icono objeto 0" src={objetos[0].imagen} />
                 </div>
                 <div onClick={handleUsarObjeto}>
-                    <p>{objetos[1].nombreDisplay}</p>
-                    <img src={objetos[1].imagen} />
+                    <p>{objetos[1].nombreDisplay} ({objetos[1].usos})</p>
+                    <img  alt="Icono objeto 1" src={objetos[1].imagen} />
                 </div>
                 <div onClick={handleUsarObjeto}>
-                    <p>{objetos[2].nombreDisplay}</p>
-                    <img src={objetos[2].imagen} />
+                    <p>{objetos[2].nombreDisplay} ({objetos[2].usos})</p>
+                    <img  alt="Icono objeto 2" src={objetos[2].imagen} />
                 </div>
                 <div onClick={handleUsarObjeto}>
-                    <p>{objetos[3].nombreDisplay}</p>
-                    <img src={objetos[3].imagen} />
+                    <p>{objetos[3].nombreDisplay} ({objetos[3].usos})</p>
+                    <img  alt="Icono objeto 3" src={objetos[3].imagen} />
                 </div>
             </div>
         </>
@@ -64,8 +64,8 @@ export function TarjetaUsuario(props) {
 
     const tarjetaAtacarObjetos = (
         <div className="tarjeta-ataque-objeto">
-            <div className=" fondo-rojo" onClick={handleClickAtacar}>Atacar</div>
-            <div className=" fondo-azul" onClick={handleClickObjetos}>Usar objeto</div>
+            <div className="fondo-rojo" onClick={handleClickAtacar}>Atacar</div>
+            <div  onClick={handleClickObjetos}>Usar objeto</div>
         </div>
     )
 //ESTADO    
@@ -73,7 +73,7 @@ export function TarjetaUsuario(props) {
     
 
   return (
-    <div className={`tarjeta-usuario color-borde-${pokemonActivo.color} fade-in`}>
+    <div className={`tarjeta-usuario borde-${pokemonActivo.color} fade-in`}>
         <p>{`Turno del jugador ${infoCombate.turno}`}</p>
         {narradorTrabajando===false ? contenidoActivo : ''}
     </div>

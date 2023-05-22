@@ -9,7 +9,9 @@ import { obtenerDialogo } from "../../static-data/dialogosNarrador";
 import { InfoCombateOverlay } from "./InfoCombateOverlay";
 import { PantallaFinal } from "./PantallaFinal";
 import { useDispatch, useSelector } from "react-redux";
-import { userAttacksAction, cambiarTurnoAction } from "../../redux/Actions";
+import { userAttacksAction, cambiarTurnoAction, userUsesObjectAction } from "../../redux/Actions";
+import { obtenerDialogoObjeto } from "../../static-data/dialogosNarrador";
+import { getObjetoFromListaDisplay } from '../../helpers/funciones'
 
 export function Combate() {
     const navigate = useNavigate();
@@ -21,12 +23,12 @@ export function Combate() {
     const [mostrandoInfo, setMostrandoInfo] = React.useState(false);
     const [muestraPantallaFinal, setMuestraPantallaFinal] = React.useState(false);
 
-    React.useEffect(() => {
-        if (pokemon1 === null || pokemon2 === null) {
-            localStorage.clear();
-            navigate('/');
-        }
-    }, []);
+    // React.useEffect(() => {
+    //     if (pokemon1 === null || pokemon2 === null) {
+    //         localStorage.clear();
+    //         navigate('/');
+    //     }
+    // }, []);
 
     //Texto que va diciendo el narrador
     const [cfgNarrador, setCfgNarrador] = React.useState({
@@ -118,6 +120,8 @@ export function Combate() {
             textos: obtenerDialogo(infoCombate, 'finNarracion')
         })
         setNarradorTrabajando(false);
+
+        //aqui deberia realizarse la accion como atacar o usar un objeto
     }
 
     function userAttacks(evt, turno) {
@@ -136,138 +140,135 @@ export function Combate() {
 
     /**TODO: 
     */
-    function userUsesObject(evt, jugador) {
-        // setNarradorTrabajando(true);
-        // let objeto = getObjetoFromListaDisplay(evt.target.textContent);
-        // switch (objeto.tipo) {
-        //     case 'cura':
+    function userUsesObject(evt, turno) {
+        setNarradorTrabajando(true);
+        let objeto = getObjetoFromListaDisplay(evt.target.textContent);
 
-        //         setNarradorTrabajando(true);
-        //         setCfgNarrador({
-        //             textos: obtenerDialogoObjeto(infoCombate, objeto)
-        //         })
-
-        //         curar(jugador, objeto.cantidadCura);
-
-        //         break;
-        //     case 'ataque':
-        //         //TODO:20
-        //         setNarradorTrabajando(true);
-        //         setCfgNarrador({
-        //             textos: obtenerDialogoObjeto(infoCombate, objeto)
-        //         })
-        //         quitarVida(jugador, 20);
-        //         break;
-        //     case 'alteraStats':
-        //         setNarradorTrabajando(true);
-        //         setCfgNarrador({
-        //             textos: obtenerDialogoObjeto(infoCombate, objeto)
-        //         })
-        //         alterarPropiedades(jugador)
-        //         break;
-        //     case 'eleccion':
-        //         setNarradorTrabajando(true);
-        //         setCfgNarrador({
-        //             textos: obtenerDialogoObjeto(infoCombate, objeto)
-        //         })
-        //         break;
-        //     case 'amuleto':
-        //         setNarradorTrabajando(true);
-        //         setCfgNarrador({
-        //             textos: obtenerDialogoObjeto(infoCombate, objeto)
-        //         })
-        //         break;
-        //     default:
-        //         setNarradorTrabajando(true);
-        //         setCfgNarrador({
-        //             textos: obtenerDialogoObjeto(infoCombate, objeto)
-        //         })
-        //         break;
-        // }
-        // cambiarTurno();
+        if (turno === 1) {
+            objetos1.forEach(obj => {
+                if (obj.nombre === objeto.nombre) {
+                    if (obj.usos <= 0) {
+                        console.log('Sin usos');
+                        //no le quedan usos al objeto
+                        setNarradorTrabajando(true);
+                        setCfgNarrador({
+                            textos: obtenerDialogo(infoCombate, 'sin usos', '', '', objeto.nombre)
+                        })
+                    } else {
+                        //no le quedan usos al objeto
+                        setNarradorTrabajando(true);
+                        setCfgNarrador({
+                            textos: obtenerDialogoObjeto(infoCombate, objeto)
+                        })
+                        dispatch(userUsesObjectAction(turno, objeto));
+                        dispatch(cambiarTurnoAction(turno));
+                    }
+                }
+            })
+        } else if (turno === 2) {
+            objetos2.forEach(obj => {
+                if (obj.nombre === objeto.nombre) {
+                    if (obj.usos <= 0) {
+                        console.log('Sin usos');
+                        //no le quedan usos al objeto
+                        setNarradorTrabajando(true);
+                        setCfgNarrador({
+                            textos: obtenerDialogo(infoCombate, 'sin usos', '', '', objeto.nombre)
+                        })
+                    } else {
+                        setNarradorTrabajando(true);
+                        setCfgNarrador({
+                            textos: obtenerDialogoObjeto(infoCombate, objeto)
+                        })
+                        dispatch(userUsesObjectAction(turno, objeto));
+                        dispatch(cambiarTurnoAction(turno));
+                    }
+                }
+            })
+        }
     }
 
-    // function quitarVida(aQuien, cuanto) {
-    //     switch (aQuien) {
-    //         case 1:
-    //             setInfoCombate((prev) => {
-    //                 return {
-    //                     ...prev,
-    //                     jugador1: {
-    //                         ...prev.jugador1,
-    //                         propiedades: {
-    //                             ...prev.jugador1.propiedades,
-    //                             vida: Math.round(infoCombate.jugador1.propiedades.vida - cuanto)
-    //                         }
-    //                     }
-    //                 }
-    //             })
-    //             break;
-    //         case 2:
-    //             setInfoCombate((prev) => {
-    //                 return {
-    //                     ...prev,
-    //                     jugador2: {
-    //                         ...prev.jugador2,
-    //                         propiedades: {
-    //                             ...prev.jugador2.propiedades,
-    //                             vida: Math.round(infoCombate.jugador2.propiedades.vida - cuanto)
-    //                         }
-    //                     }
-    //                 }
-    //             })
-    //             break;
-    //         default:
-    //     }
+    //  function quitarVida(aQuien, cuanto) {
+    //      switch (aQuien) {
+    //          case 1:
+    //              setInfoCombate((prev) => {
+    //                  return {
+    //                      ...prev,
+    //                      jugador1: {
+    //                          ...prev.jugador1,
+    //                          propiedades: {
+    //                              ...prev.jugador1.propiedades,
+    //                              vida: Math.round(infoCombate.jugador1.propiedades.vida - cuanto)
+    //                          }
+    //                      }
+    //                  }
+    //              })
+    //              break;
+    //          case 2:
+    //              setInfoCombate((prev) => {
+    //                  return {
+    //                      ...prev,
+    //                      jugador2: {
+    //                          ...prev.jugador2,
+    //                          propiedades: {
+    //                              ...prev.jugador2.propiedades,
+    //                              vida: Math.round(infoCombate.jugador2.propiedades.vida - cuanto)
+    //                          }
+    //                      }
+    //                  }
+    //              })
+    //              break;
+    //          default:
+    //      }
+    //  }
+
+    //  function curar(aQuien, cuanto) {
+    //      let vidaActual;
+    //      let nuevaVida;
+    //      let vidaInicial = getVidaInicial(infoCombate.jugador1.nombre);
+    //      if (aQuien === 1) {
+    //          vidaActual = infoCombate.jugador1.propiedades.vida * 1
+    //          nuevaVida = vidaActual * 1 + cuanto * 1;
+    //          if (nuevaVida > vidaInicial) {
+    //              nuevaVida = vidaInicial
+    //          }
+    //          setInfoCombate((prev) => {
+    //              return {
+    //                  ...prev,
+    //                  jugador1: {
+    //                      ...prev.jugador1,
+    //                      propiedades: {
+    //                          ...prev.jugador1.propiedades,
+    //                          vida: Math.round(nuevaVida)
+    //                      }
+    //                  }
+    //              }
+    //          })
+    //      } else if (aQuien === 2) {
+    //          vidaActual = infoCombate.jugador2.propiedades.vida * 1;
+    //          nuevaVida = vidaActual * 1 + cuanto * 1;
+    //          vidaInicial = getVidaInicial(infoCombate.jugador2.nombre);
+    //          if (nuevaVida > vidaInicial) {
+    //              nuevaVida = vidaInicial
+    //          }
+    //          setInfoCombate((prev) => {
+    //              return {
+    //                  ...prev,
+    //                  jugador2: {
+    //                      ...prev.jugador2,
+    //                      propiedades: {
+    //                          ...prev.jugador2.propiedades,
+    //                          vida: Math.round(nuevaVida)
+    //                      }
+    //                  }
+    //              }
+    //          })
+    //      }
+    //      dispatch(curar(aQuien, cuanto));
+    //  }
+
+    // function alterarPropiedades() {
+
     // }
-
-    // function curar(aQuien, cuanto) {
-    //     let vidaActual;
-    //     let nuevaVida;
-    //     let vidaInicial = getVidaInicial(infoCombate.jugador1.nombre);
-    //     if (aQuien === 1) {
-    //         vidaActual = infoCombate.jugador1.propiedades.vida * 1
-    //         nuevaVida = vidaActual * 1 + cuanto * 1;
-    //         if (nuevaVida > vidaInicial) {
-    //             nuevaVida = vidaInicial
-    //         }
-    //         setInfoCombate((prev) => {
-    //             return {
-    //                 ...prev,
-    //                 jugador1: {
-    //                     ...prev.jugador1,
-    //                     propiedades: {
-    //                         ...prev.jugador1.propiedades,
-    //                         vida: Math.round(nuevaVida)
-    //                     }
-    //                 }
-    //             }
-    //         })
-    //     } else if (aQuien === 2) {
-    //         vidaActual = infoCombate.jugador2.propiedades.vida * 1;
-    //         nuevaVida = vidaActual * 1 + cuanto * 1;
-    //         vidaInicial = getVidaInicial(infoCombate.jugador2.nombre);
-    //         if (nuevaVida > vidaInicial) {
-    //             nuevaVida = vidaInicial
-    //         }
-    //         setInfoCombate((prev) => {
-    //             return {
-    //                 ...prev,
-    //                 jugador2: {
-    //                     ...prev.jugador2,
-    //                     propiedades: {
-    //                         ...prev.jugador2.propiedades,
-    //                         vida: Math.round(nuevaVida)
-    //                     }
-    //                 }
-    //             }
-    //         })
-    //     }
-    //     dispatch(curar(aQuien, cuanto));
-    // }
-
-    function alterarPropiedades() {
-
-    }
 }
 

@@ -49,22 +49,25 @@ export function ObjectPicker(props) {
             <h3 className={`texto-color-${pokemonElegido.color}`}>Elige tus objetos</h3>
             <div className="object-picker">
                 <div className="titulos-categorias">
-                    {(mostrandoCategoria < objetos.length + 1 && mostrandoCategoria !== 0) && <button onClick={() => { setMostrandoCategoria(prev => { return prev - 1 }) }}>◄</button> || <span></span>}
+                    {(mostrandoCategoria < objetos.length + 1 && mostrandoCategoria !== 0) && <button onClick={() => { setMostrandoCategoria(prev => { return prev - 1 }) }}>◄</button>}
                     {objetos[mostrandoCategoria].nombreDisplay}
-                    {mostrandoCategoria < 4 && <button onClick={() => { setMostrandoCategoria(prev => { return prev + 1 }) }}>►</button> || <span></span>}
+                    {mostrandoCategoria < 4 && <button onClick={() => { setMostrandoCategoria(prev => { return prev + 1 }) }}>►</button>}
                 </div>
 
                 <p className="descripcion-categorias">{objetos[mostrandoCategoria].descripcion}</p>
                 <div className="listaObjetos">
                     {objetos[mostrandoCategoria].objetos.map((obj, index) => {
                         return (
-                            <label key={Math.random() * 4000}>
+                            <div key={Math.random() * 4000}>
                                 <div id={`${obj.nombre},${objetos[mostrandoCategoria].tipo}`} onClick={userClicksObject} className={`tarjeta-objeto`} key={Math.random() * 4000}>
-                                    <p>{obj.nombreDisplay}</p>
-                                    <p className="descripcion-objeto">{obj.descripcion}</p>
-                                    <img style={{ width: `2em` }} src={obj.imagen}></img>
+                                    <p style={{color:'var(--negro)'}}>{obj.nombreDisplay}</p>
+                                    <div className="foto-y-descripcion">
+                                        <img alt="Icono de objeto" style={{ width: `1.75em` }} src={obj.imagen}></img>
+                                        <p className="descripcion-objeto">{obj.descripcion}</p>
+                                    </div>
+                                    <p className="cantidad-obj">Cantidad: {obj.usos}</p>
                                 </div>
-                            </label>
+                            </div>
 
                         )
                     })}
@@ -73,7 +76,7 @@ export function ObjectPicker(props) {
                     {objetosElegidos.map((obj, index) => {
                         return (
                             <div onClick={() => { setMostrandoCategoria(index) }} key={Math.random() * 4000} className={mostrandoCategoria === index ? `caja-resalta borde-${pokemonElegido.color}` : `caja borde-${pokemonElegido.color}`}>
-                                {obj.imagen ? <img style={{ width: `25px` }} src={obj.imagen}></img> : 'x'}
+                                {obj.imagen ? <img alt="Icono de objeto" style={{ width: `25px` }} src={obj.imagen}></img> : 'x'}
                             </div>
                         )
                     })}

@@ -2,11 +2,10 @@ import img_litrona from '../imgs/objetos/litrona.png'
 import img_seta from '../imgs/objetos/seta.png'
 import img_guitarra from '../imgs/objetos/guitarra.png'
 import img_pocion from '../imgs/objetos/pocion.png'
-import img_polvos from '../imgs/objetos/polvos.png'
-import img_escudo from '../imgs/objetos/escudo.png'
-import img_porro from '../imgs/objetos/porro.png'
+import img_nintendo from '../imgs/objetos/nintendo.png'
 import img_pistola from '../imgs/objetos/pistola.png'
-import img_tarjetaCredito from '../imgs/objetos/tarjetaCredito.png'
+import img_pajaro from '../imgs/objetos/pajaro.png'
+import img_limon from '../imgs/objetos/limon.png'
 import img_libro from '../imgs/objetos/libro.png'
 import img_shuriken from '../imgs/objetos/shuriken.png'
 import img_monster from '../imgs/objetos/monster.png'
@@ -14,10 +13,11 @@ import img_cruz from '../imgs/objetos/cruz.png'
 import img_altavoz from '../imgs/objetos/altavoz.png'
 import img_boli from '../imgs/objetos/boli.png'
 import img_magdalena from '../imgs/objetos/magdalena.png'
-import img_pastillas from '../imgs/objetos/pastillas.png'
+import img_paloma from '../imgs/objetos/paloma.png'
 import img_vino from '../imgs/objetos/vino.png'
 import img_rinonera from '../imgs/objetos/rinonera.png'
 import img_carro from '../imgs/objetos/carro.png'
+import img_hoja_misteriosa from '../imgs/objetos/hoja-misteriosa.png'
 
 export const objetos = [
     //cura
@@ -32,10 +32,10 @@ export const objetos = [
                 nombreDisplay: 'Poción',
                 nombreCombate: 'poción',
                 imagen: img_pocion,
-                descripcion: 'Cura 50HP',
-                usos: 1,
+                descripcion: 'Rico mejunje que cura 25HP',
+                usos: 2,
                 efecto: [
-                    { nombre: 'cura', cantidad: 50 }
+                    { nombre: 'cura', cantidad: 35 }
                 ],
                 consecuencia: {},
                 respuestaAnteEventoAleatorio: {},
@@ -46,6 +46,7 @@ export const objetos = [
                 nombreDisplay: 'Seta',
                 nombreCombate: 'seta',
                 imagen: img_seta,
+                descripcion: 'Una seta',
                 usos: 1,
                 cantidadCura: 30,
                 efecto: [
@@ -57,10 +58,10 @@ export const objetos = [
             {
                 nombre: 'magdalena',
                 tipo: 'cura',
-                nombreDisplay: 'Magdalenas',
+                nombreDisplay: 'Magdalena',
                 nombreCombate: 'magdalena',
                 imagen: img_magdalena,
-                descripcion: 'Unas buenas setitas...',
+                descripcion: 'Unas buenas magdalena...',
                 usos: 1,
                 cantidadCura: 30,
                 efecto: [
@@ -75,6 +76,7 @@ export const objetos = [
                 nombreDisplay: 'Monster',
                 nombreCombate: 'monster',
                 imagen: img_monster,
+                descripcion: 'Chute de energía que cura 50HP',
                 usos: 1,
                 cantidadCura: 30,
                 efecto: [
@@ -97,7 +99,7 @@ export const objetos = [
                 nombreDisplay: 'Pistola',
                 nombreCombate: 'pistola',
                 imagen: img_pistola,
-                descripcion: 'Daña 50HP',
+                descripcion: 'Fácil, dispara y quita 50HP.',
                 usos: 1,
                 efecto: [
                     { nombre: 'ataque', cantidad: 50 }
@@ -156,11 +158,12 @@ export const objetos = [
         tipo: 'alterStats',
         objetos: [
             {
-                nombre: 'porro',
+                nombre: 'hoja',
                 tipo: 'alteraStats',
-                nombreDisplay: 'Porro',
-                nombreCombate: 'porro',
-                imagen: img_porro,
+                nombreDisplay: 'Hoja misteriosa',
+                nombreCombate: 'hoja misteriosa',
+                imagen: img_hoja_misteriosa,
+                descripcion: 'Emite un humo extraño al quemarse...',
                 usos: 1,
                 efecto: [
                     {
@@ -173,11 +176,12 @@ export const objetos = [
                 respuestaAnteEventoAleatorio: {},
             },
             {
-                nombre: 'pastillas',
+                nombre: 'paloma',
                 tipo: 'alteraStats',
-                nombreDisplay: 'Pastillas',
-                nombreCombate: 'pastillas',
-                imagen: img_pastillas,
+                nombreDisplay: 'Paloma',
+                nombreCombate: 'paloma',
+                imagen: img_paloma,
+                descripcion: 'Paloma adiestrada con mal genio...',
                 usos: 1,
                 efecto: [
                     {
@@ -195,6 +199,7 @@ export const objetos = [
                 nombreDisplay: 'Altavoz',
                 nombreCombate: 'altavoz',
                 imagen: img_altavoz,
+                descripcion: 'Pones música y te vienes arriba',
                 usos: 1,
                 efecto: [
                     {
@@ -207,11 +212,12 @@ export const objetos = [
                 respuestaAnteEventoAleatorio: {},
             },
             {
-                nombre: 'polvos',
+                nombre: 'nintendo',
                 tipo: 'alteraStats',
-                nombreDisplay: 'Polvos sospechosos',
-                nombreCombate: 'polvos sospechosos',
-                imagen: img_polvos,
+                nombreDisplay: 'Nintendo',
+                nombreCombate: 'nintendo robada',
+                imagen: img_nintendo,
+                descripcion: 'Juega a pokemon en el metaverso',
                 usos: 1,
                 efecto: [
                     {
@@ -255,10 +261,11 @@ export const objetos = [
                 respuestaAnteEventoAleatorio: {},
             },
             {
-                nombre: 'tarjetaCredito',
+                nombre: 'limon',
                 tipo: 'interactivo',
-                nombreDisplay: 'Tarjeta de crédito',
-                imagen: img_tarjetaCredito,
+                nombreDisplay: 'Limón',
+                nombreCombate: 'limón',
+                imagen: img_limon,
                 descripcion: '¿Cómo la usarás...?',
                 usos: 1,
                 efecto: {
@@ -270,11 +277,11 @@ export const objetos = [
                 respuestaAnteEventoAleatorio: {},
             },
             {
-                nombre: 'raton',
+                nombre: 'pajaro',
                 tipo: 'interactivo',
-                nombreDisplay: 'Ratón',
-                nombreCombate: 'ratón',
-                imagen: img_guitarra,
+                nombreDisplay: 'Pájaro',
+                nombreCombate: 'pájaro',
+                imagen: img_pajaro,
                 descripcion: '¿Cómo la usarás...?',
                 usos: 1,
                 efecto: {
@@ -314,6 +321,7 @@ export const objetos = [
                 tipo: 'amuleto',
                 nombreDisplay: 'Crucifijo',
                 imagen: img_cruz,
+                descripcion: 'Reza... quizás venga Dios a verte',
                 usos: 1,
                 efecto: {
                     'alteraStats': [
@@ -331,6 +339,7 @@ export const objetos = [
                 nombreDisplay: 'Guitarra',
                 imagen: img_guitarra,
                 usos: 1,
+                descripcion: 'Invoca a Melendi',
                 efecto: {
                     'alteraStats': [
                         { 'velocidad': -20 },
@@ -346,6 +355,7 @@ export const objetos = [
                 tipo: 'amuleto',
                 nombreDisplay: 'Riñonera',
                 imagen: img_rinonera,
+                descripcion: 'Parecido al bolsillo de Doraemon',
                 usos: 1,
                 efecto: {
                     'alteraStats': [
@@ -362,6 +372,7 @@ export const objetos = [
                 tipo: 'amuleto',
                 nombreDisplay: 'Libro',
                 imagen: img_libro,
+                descripcion: 'Contiene sabiduría',
                 usos: 1,
                 efecto: {
                     'alteraStats': [

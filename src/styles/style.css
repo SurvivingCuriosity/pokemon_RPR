@@ -15,7 +15,8 @@
 
     --amarillo: #F4BD19;
     --morado: #B76BBE;
-    --azul: #428EBE;
+    --azul: #42b8be;
+    --azuloscuro: #4965c7;
     --verde: #5CDA5D;
     --naranja: #FA7627;
     --rojo: #dc0e0e;
@@ -150,6 +151,9 @@ input[type="text"] {
     align-items: center;
     justify-content: space-evenly;
     gap: 1em;
+    height: 7em;
+    overflow-x: scroll;
+    scroll-snap-type: mandatory;
 }
 
 #pokemon-picker-container p {
@@ -235,6 +239,36 @@ input[type="text"] {
 }
 
 /* CHECKED STYLES */
+.animacion-parpadeo {
+  
+    animation-name: parpadeo;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  
+    -webkit-animation-name:parpadeo;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+  }
+  
+  @-moz-keyframes parpadeo{  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+  }
+  
+  @-webkit-keyframes parpadeo {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+     100% { opacity: 1.0; }
+  }
+  
+  @keyframes parpadeo {  
+    0% { opacity: 1.0; }
+     50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+  }
 .salta {
     animation: salta 1s linear infinte;
     animation-name: salta;
@@ -334,7 +368,6 @@ input[type="text"] {
 }
 
 .tarjeta-combate {
-    opacity: 0.7;
     position: relative;
     padding: 0.7em;
     color: var(--negro);
@@ -376,7 +409,7 @@ input[type="text"] {
 
 .tarjeta-combate img {
     position: absolute;
-    width: 4em;
+    width: 4.5em;
     aspect-ratio: 1;
     z-index: 5;
 }
@@ -417,16 +450,18 @@ input[type="text"] {
     transition: all linear 1s;
 }
 
-.tarjeta-ataques {
+.tarjeta-ataques,
+.tarjeta-objetos-combate {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1em;
 }
 .tarjeta-ataques p{
-    border: 2px solid var(--negro2);
-    background-color: var(--blanco2);
-    padding: 1em;
+    border: 2px solid var(--negro3);
+    background-color: var(--negro);
+    padding: 2em;
     cursor: pointer;
+    margin: 0.25em;
+    text-align: center;
 }
 
 .tarjeta-ataque-objeto {
@@ -435,23 +470,28 @@ input[type="text"] {
 }
 
 .tarjeta-ataques div,
-.tarjeta-ataque-objeto div {
-    border: 1px solid var(--negro2);
-    padding: 0.5em 1em;
+.tarjeta-ataque-objeto div,
+.tarjeta-objetos-combate div {
+    border: 2px solid var(--negro);
+    padding: 0.25em 0.5em;
     margin: 0.15em;
     background-color: var(--negro3);
     color: var(--blanco);
     border-radius: 6px;
     min-width: 10em;
-    min-height: 3.3em;
+    min-height: 4em;
+    max-height: 3em;
     display: flex;
-    align-items: center;
     flex-direction: row-reverse;
-    justify-content: space-evenly;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.85em;
+    gap: 0.5em;
 }
 
 .tarjeta-ataques img,
-.tarjeta-ataque-objeto img {
+.tarjeta-ataque-objeto img,
+.tarjeta-objetos-combate img {
     width: 1.75em;
 }
 
@@ -465,9 +505,9 @@ input[type="text"] {
 }
 
 .tarjeta-usuario {
-    background-color: var(--blanco3);
+    background-color: var(--negro2);
     padding: 0.5em;
-    color: var(--negro);
+    color: var(--blanco2);
     position: relative;
     min-height: 10em;
     display: flex;
@@ -475,10 +515,11 @@ input[type="text"] {
     align-items: stretch;
     justify-content: space-evenly;
     align-content: center;
-    border: 6px solid var(--azul);
+    border: 5px solid var(--azul);
     border-radius: 10px;
     min-width: 300px;
-    width: 100%;
+    width: 95%;
+    margin: 1em;
 }
 
 .boton-volver-tarjeta {
@@ -584,12 +625,12 @@ input[type="text"] {
     background-color: var(--azul) !important;
 }
 
-.fondo-morado {
-    background-color: var(--morado) !important;
+.fondo-azuloscuro {
+    background-color: var(--azuloscuro) !important;
 }
 
-.fondo-rojo {
-    background-color: var(--rojo) !important;
+.fondo-morado {
+    background-color: var(--morado) !important;
 }
 
 .texto-color-amarillo {
@@ -606,6 +647,10 @@ input[type="text"] {
 
 .texto-color-azul {
     color: var(--azul) !important;
+}
+
+.texto-color-azuloscuro {
+    color: var(--azuloscuro) !important;
 }
 
 .texto-color-verde {
@@ -630,6 +675,9 @@ input[type="text"] {
 
 .borde-azul {
     border-color: var(--azul) !important;
+}
+.borde-azuloscuro {
+    border-color: var(--azuloscuro) !important;
 }
 
 .borde-verde {
@@ -756,6 +804,17 @@ input[type="text"] {
     margin: 1em 0;
 }
 
+.object-picker .listaObjetos .foto-y-descripcion{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.object-picker .listaObjetos .cantidad-obj{
+    font-size: 0.45em;
+    color: var(--negro);
+}
+
 .object-picker .categoria-container {
     text-align: center;
 }
@@ -779,6 +838,9 @@ input[type="text"] {
     width: 100%;
     overflow: hidden;
     letter-spacing: -2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .descripcion-categorias {
@@ -789,6 +851,8 @@ input[type="text"] {
 
 .descripcion-objeto {
     font-size: 0.45em;
+    letter-spacing: 0.01cm;
+    line-height: 12px;
     margin: 0.5em;
 }
 
