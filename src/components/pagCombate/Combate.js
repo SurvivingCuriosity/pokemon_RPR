@@ -23,12 +23,22 @@ export function Combate() {
     const [mostrandoInfo, setMostrandoInfo] = React.useState(false);
     const [muestraPantallaFinal, setMuestraPantallaFinal] = React.useState(false);
 
-    // React.useEffect(() => {
-    //     if (pokemon1 === null || pokemon2 === null) {
-    //         localStorage.clear();
-    //         navigate('/');
-    //     }
-    // }, []);
+    const [infoAtaque, setInfoAtaque] = React.useState({});
+
+    const fondosTatami = [
+        require('../../imgs/fondos/almendro.gif'),
+        require('../../imgs/fondos/atardecer.gif'),
+        require('../../imgs/fondos/ciudad.gif'),
+        require('../../imgs/fondos/futuristico.gif'),
+        require('../../imgs/fondos/noche.gif'),
+        require('../../imgs/fondos/postapo.gif'),
+        // Agrega aquí el resto de tus imágenes
+      ];
+
+      const getRandomImage = () => {
+        const randomIndex = Math.floor(Math.random() * fondosTatami.length);
+        return fondosTatami[randomIndex];
+      };
 
     //Texto que va diciendo el narrador
     const [cfgNarrador, setCfgNarrador] = React.useState({
@@ -40,6 +50,10 @@ export function Combate() {
             setMuestraPantallaFinal(true)
         }
     }, [narradorTrabajando])
+
+    React.useEffect(() => {
+        console.log('Cambia infoataque y es: '+infoAtaque.animacion);
+    }, [infoAtaque])
 
     return (
         <>
@@ -56,7 +70,7 @@ export function Combate() {
                     <Link to='/' className="flecha-atras">←</Link>
                     <p onClick={() => { setMostrandoInfo(true) }} className="boton-info">i</p>
 
-                    <div className="tatami">
+                    <div style={{backgroundImage: `url(${getRandomImage()})`}} className="tatami">
                         <TarjetaPokemonCombate
                             jugador={2}
                             datosIniciales={pokemon2}
@@ -64,6 +78,7 @@ export function Combate() {
                             turno={infoCombate.turno}
                             objetos={objetos2}
                             narradorTrabajando={narradorTrabajando}
+                            infoAtaque={infoAtaque}
                         />
                         <TarjetaPokemonCombate
                             jugador={1}
@@ -72,6 +87,7 @@ export function Combate() {
                             turno={infoCombate.turno}
                             objetos={objetos1}
                             narradorTrabajando={narradorTrabajando}
+                            infoAtaque={infoAtaque}
                         />
                     </div>
 
@@ -127,11 +143,13 @@ export function Combate() {
     function userAttacks(evt, turno) {
         let indiceAtaque = evt.target.textContent;//saca el texto dle boton: 0Ascuas
         indiceAtaque = indiceAtaque[0];//saca el primer caracter: 0
-        let nombreAtaque = infoCombate[`jugador${turno}`].ataques[indiceAtaque].nombre;
+        let ataque = infoCombate[`jugador${turno}`].ataques[indiceAtaque];
+        
+        setInfoAtaque(ataque);
 
         setNarradorTrabajando(true);
         setCfgNarrador({
-            textos: obtenerDialogo(infoCombate, 'ataque', nombreAtaque, '')
+            textos: obtenerDialogo(infoCombate, 'ataque', ataque.nombre, '')
         })
 
         dispatch(userAttacksAction(turno, indiceAtaque));
@@ -187,88 +205,5 @@ export function Combate() {
             })
         }
     }
-
-    //  function quitarVida(aQuien, cuanto) {
-    //      switch (aQuien) {
-    //          case 1:
-    //              setInfoCombate((prev) => {
-    //                  return {
-    //                      ...prev,
-    //                      jugador1: {
-    //                          ...prev.jugador1,
-    //                          propiedades: {
-    //                              ...prev.jugador1.propiedades,
-    //                              vida: Math.round(infoCombate.jugador1.propiedades.vida - cuanto)
-    //                          }
-    //                      }
-    //                  }
-    //              })
-    //              break;
-    //          case 2:
-    //              setInfoCombate((prev) => {
-    //                  return {
-    //                      ...prev,
-    //                      jugador2: {
-    //                          ...prev.jugador2,
-    //                          propiedades: {
-    //                              ...prev.jugador2.propiedades,
-    //                              vida: Math.round(infoCombate.jugador2.propiedades.vida - cuanto)
-    //                          }
-    //                      }
-    //                  }
-    //              })
-    //              break;
-    //          default:
-    //      }
-    //  }
-
-    //  function curar(aQuien, cuanto) {
-    //      let vidaActual;
-    //      let nuevaVida;
-    //      let vidaInicial = getVidaInicial(infoCombate.jugador1.nombre);
-    //      if (aQuien === 1) {
-    //          vidaActual = infoCombate.jugador1.propiedades.vida * 1
-    //          nuevaVida = vidaActual * 1 + cuanto * 1;
-    //          if (nuevaVida > vidaInicial) {
-    //              nuevaVida = vidaInicial
-    //          }
-    //          setInfoCombate((prev) => {
-    //              return {
-    //                  ...prev,
-    //                  jugador1: {
-    //                      ...prev.jugador1,
-    //                      propiedades: {
-    //                          ...prev.jugador1.propiedades,
-    //                          vida: Math.round(nuevaVida)
-    //                      }
-    //                  }
-    //              }
-    //          })
-    //      } else if (aQuien === 2) {
-    //          vidaActual = infoCombate.jugador2.propiedades.vida * 1;
-    //          nuevaVida = vidaActual * 1 + cuanto * 1;
-    //          vidaInicial = getVidaInicial(infoCombate.jugador2.nombre);
-    //          if (nuevaVida > vidaInicial) {
-    //              nuevaVida = vidaInicial
-    //          }
-    //          setInfoCombate((prev) => {
-    //              return {
-    //                  ...prev,
-    //                  jugador2: {
-    //                      ...prev.jugador2,
-    //                      propiedades: {
-    //                          ...prev.jugador2.propiedades,
-    //                          vida: Math.round(nuevaVida)
-    //                      }
-    //                  }
-    //              }
-    //          })
-    //      }
-    //      dispatch(curar(aQuien, cuanto));
-    //  }
-
-    // function alterarPropiedades() {
-
-    // }
 }
 

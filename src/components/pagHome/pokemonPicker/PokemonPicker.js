@@ -22,9 +22,27 @@ export function PokemonPicker(props) {
                 })}
 
             </ul>
+
+            <div className='descripcion-ataques-cabeceras'>
+                <p>Ataque</p>
+                <p>Tipo</p>
+                <p>Potencia</p>
+                <p>Usos</p>
+            </div>
+
+            {pokemonElegido?.ataques?.map(atk => (
+                <div className='descripcion-ataques' key={atk.nombre}>
+                    <p>{atk.nombre}</p>
+                    <p>{atk.tipo}</p>
+                    <p>{atk.potencia}</p>
+                    <p>{atk.usos}</p>
+                </div>
+            ))}
+
             <CuadroEstadisticas pokemon={pokemonElegido} />
 
             <button
+                disabled={!pokemonElegido && true}
                 className={`fondo-${pokemonElegido.color}`}
                 onClick={()=>{callback()}}
             >

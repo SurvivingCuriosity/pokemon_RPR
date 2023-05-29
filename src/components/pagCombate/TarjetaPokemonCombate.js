@@ -1,12 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
-
 export function TarjetaPokemonCombate(props) {
   //PROPS
-  const { jugador, turno, datosCombate, datosIniciales, objetos } = props;
+  const { jugador, turno, datosCombate, datosIniciales, objetos, infoAtaque } = props;
   //ESTADO
   const [porcentaje, setPorcentaje] = React.useState(100);
   const [color, setColor] = React.useState('verde');
+  
+  const [mostrandoAnimacion, setMostrandoAnimacion] = React.useState(false);
 
   React.useEffect(() => {
     let miPorcentaje;
@@ -25,6 +26,19 @@ export function TarjetaPokemonCombate(props) {
       }
   }, [porcentaje])
 
+  React.useEffect(() => {
+    console.log('Mostrando animacion: '+mostrandoAnimacion);
+  }, [mostrandoAnimacion])
+
+  React.useEffect(()=>{
+    turno === jugador && infoAtaque.animacion && setMostrandoAnimacion(true);
+  },[infoAtaque])
+
+  const handleGifLoad = () => {
+    setTimeout(() => {
+      setMostrandoAnimacion(false); // Oculta el GIF después de que se haya cargado y reproducido una vez
+    }, 1500);
+  };
 
   return (
     <div className="tarjeta-combate">
@@ -39,6 +53,15 @@ export function TarjetaPokemonCombate(props) {
       <div className="barra-vida">
         <div className={`--barra-vida-vida fondo-${color}`} style={{ width: `${porcentaje}%` }}></div>
       </div>
+
+      {mostrandoAnimacion && (
+        <img
+          src={infoAtaque.animacion}
+          alt="GIF de ataque"
+          onLoad={handleGifLoad}
+        />
+        
+      )}
     </div>
   );
 
