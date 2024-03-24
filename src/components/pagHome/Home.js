@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import logo from '../../imgs/iconos/logo.png'
 import { useSelector, useDispatch } from "react-redux";
 import { setNombreJ1, setNombreJ2, resetBattle } from "../../redux/Actions";
@@ -7,7 +7,6 @@ import { setNombreJ1, setNombreJ2, resetBattle } from "../../redux/Actions";
 function Home() {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	const reduxState = useSelector(state => state);
 
 	React.useEffect(() => {
 		dispatch(resetBattle())
@@ -20,7 +19,7 @@ function Home() {
 		<>
 			<div className="page-container home-container">
 				<div className="titulo-y-descripcion">
-					<img className='logo-home' src={logo}></img>
+					<img className='logo-home' src={logo} alt='Icono Pokeball'></img>
 					<h1>Pokemon</h1>
 					<p>Juego de combate Pokemon para dos jugadores donde todo puede pasar...</p>
 				</div>

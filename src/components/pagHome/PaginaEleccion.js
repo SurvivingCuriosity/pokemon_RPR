@@ -1,10 +1,8 @@
 import React from "react";
 import { Link } from 'react-router-dom'
-import useLocalStorage from "use-local-storage";
 import icon_home from '../../imgs/iconos/home.webp'
 import { ObjectPicker } from "./objectPicker/ObjectPicker";
 import { PokemonPicker } from "./pokemonPicker/PokemonPicker";
-import { getPokemonFromLista } from '../../helpers/funciones'
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { iniciarBatalla } from "../../redux/Actions";
@@ -17,7 +15,6 @@ export function PaginaEleccion() {
 	const [j2HasPokemon, setJ2HasPokemon] = React.useState(false);
 
 	const [mostrandoJugador2, setMostrandoJugador2] = React.useState(false);
-	const [haySeleccion, setHaySeleccion] = React.useState(false);
 
 	React.useEffect(() => {
 		if(pokemon1?.nombre && objetos1){
@@ -74,7 +71,7 @@ export function PaginaEleccion() {
 	return (
 		<>
 			<div className="page-container home-container">
-				<Link className='link-boton-home' to='/'><img src={icon_home}></img></Link>
+				<Link className='link-boton-home' to='/'><img src={icon_home} alt='Icono home'></img></Link>
 				{!mostrandoJugador2 && parteJugador1}
 				{mostrandoJugador2 && parteJugador2}
 			</div>

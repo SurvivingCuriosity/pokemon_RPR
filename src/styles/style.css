@@ -96,7 +96,7 @@ input[type="text"] {
 
 /*PAGINA HOME*/
 .page-container {
-    width: 95vw;
+    width: 90vw;
 }
 
 .home-container {
@@ -105,6 +105,13 @@ input[type="text"] {
     flex-flow: column nowrap;
     align-items: center;
     justify-content: center;
+}
+.home-container form{
+    display: flex;
+    gap: 0.5em;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
 }
 
 .home-container h2 {
@@ -123,6 +130,7 @@ input[type="text"] {
 .home-container .titulo-y-descripcion {
     padding-bottom: 1em;
     text-align: center;
+    margin-bottom: 1em;
 }
 
 .home-container .titulo-y-descripcion h1 {
